@@ -137,7 +137,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Uptime -- Prod: 24x7, 744 hours/month, QA - 50 hours/month, DEV/Test - 200 hours/month
 
-3.  High availability and disaster recovery
+3.  High availability and disaster recovery:
 
     -   Availability
 
@@ -161,7 +161,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
         -   Monthly HANA DB full backup for 1 year, annual for 3 years
 
-4.  End user access
+4.  End user access:
 
     -   User locations -- 300 from US, 50 LATAM, 50 Europe, 30 Asia - all intranet
 
