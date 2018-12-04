@@ -9,9 +9,8 @@ Hands-on lab unguided
 </div>
 
 <div class="MCWHeader3">
-December 2017
+October 2018
 </div>
-
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -156,15 +155,15 @@ In this hands-on lab, you are working with Contoso to develop a process of imple
 
 -   A lab computer running Windows 10 or Windows Server 2016 with:
 
-    -   access to Microsoft Azure
+    -   Access to Microsoft Azure
 
-    -   access to the SAP HANA installation media (requires an SAP Online Service System account)
+    -   Access to the SAP HANA installation media (requires an SAP Online Service System account)
 
-    -   an SSH client e.g. PuTTY, available from <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
+    -   An SSH client e.g. PuTTY, available from <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
 
     -   WinSCP client available from <https://winscp.net/eng/download.php>
 
--   SUSE Linux Enterprise Server 60-day free trial subscription (available from <https://www.suse.com/products/server/download/> ) via which you obtain registration code for an evaluation copy of SUSE Linux Enterprise Server for SAP Applications 12 SP3 for x86-64
+-   SUSE Linux Enterprise Server 60-day free trial subscription (available from <https://www.suse.com/products/server/download/> ) via which you obtain registration code for an evaluation copy of SUSE Linux Enterprise Server for SAP Applications 12 SP3 for x86-64.
 
 ## Exercise 1: Provision Azure infrastructure
 
@@ -181,63 +180,77 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
 #### Tasks to complete
 
--   Deploy an Azure virtual machine running Windows with the following settings:
+-   Deploy an Azure virtual machine with the following settings:
 
-    -   Name: **s03-hana-0**
+    -   Subscription: **the name of your Azure subscription**
 
-    -   VM disk type: **HDD**
+    -   Resource group: *the name of a new resource group* **hana-s03-RG**
 
-    -   User name: **demouser**
+    -   Virtual machine name: **s03-hana-0**
+
+    -   Region: **the Azure region you identified in the Before the Hands-on Lab section**
+
+    -   Availability Options: **No infrastructure redundancy required**
+    
+    -   Image: **Windows Server 2016 Datacenter**
+    
+    -   Size: **Standard DS1 v2**
+    
+    -   Username: **demouser**
 
     -   Password: **demo\@pass123**
 
-    -   Confirm password: **demo\@pass123**
+    -   Public inbound ports: **Allow selected ports**
+    
+    -   Select inbound ports: **RDP**
+    
+    -   Already have a Windows license?: **No**
 
-    -   Subscription: *the name of your Azure subscription*
+    -   OS disk type: **Standard HDD**
+    
+    -   Use unmanaged disks: **No**
 
-    -   Resource group: *create a new resource group named* **hana-s03-RG**
-
-    -   Location: *the Azure region you identified in the Before the Hands-on Lab section*
-
-    -   Size: **D1\_V2 Standard**
-
-    -   High availability: **None**
-
-    -   Use managed disks: **Yes**
-
-    -   Network: click **(new) hana-s03-RG-vnet**. On the **Create virtual network** blade, specify the following settings and click **OK**:
+    -   Virtual network: create a new virtual network named **(new) hana-s03-RG-vnet** with the following settings:
 
         -   Name: **hana-s03-RG-vnet**
-
+        
         -   Address space: **172.16.0.0/20**
 
         -   Subnet name: **subnet-0**
 
         -   Subnet address range: **172.16.0.0/24**
 
-    -   Subnet: **subnet-0 (172.16.0.0/24)**
+    -   Subnet: **subnet-0**
 
-    -   Public IP address: *accept the default value*
+    -   Public IP: **accept the default value**
 
-    -   Network security group: **None**
+    -   Network security group: **Basic**
+    
+    -   Public inbound ports: **Allow selected ports**
+    
+    -   Select inbound ports: **RDP**
+    
+    -   Accelerated networking: **Off**
+    
+    -   Boot diagnostics: **Off**
 
-    -   Extensions: **No extension**
-
-    -   Auto-shutdown: **Off**
-
-    -   Boot diagnostics: **Disabled**
-
-    -   Guest OS diagnostics: **Disabled**
-
+    -   OS guest diagnostics: **Off**
+    
+    -   Managed service identity: **Off**
+    
+    -   Enable auto-shutdown: **Off**
+        
+    -   Enable backup: **Off**
+ 
 #### Exit criteria 
 
--   A resource group named **s03-hana-RG** containing a Windows VM **s03-hana-0** on **subnet-0** of a virtual network named **hana-s03-RG-vnet**
+-   A resource group named **s03-hana-RG** containing a Windows VM **s03-hana-0** on **subnet-0** of a virtual network named **hana-s03-RG-vnet**.
 
 ### Task 2: Create a virtual network subnet for the HANA database tier
 
 #### Tasks to complete
 
--   Create a virtual network subnet for the HANA database tier
+-   Create a virtual network subnet for the HANA database tier:
 
     -   Name: **subnet-1**
 
@@ -251,29 +264,25 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
 #### Exit criteria 
 
--   A resource group named **s03-hana-RG** containing a **subnet-0** and **subnet-1** of a virtual network named **hana-s03-RG-vnet**
+-   A resource group named **s03-hana-RG** containing a **subnet-0** and **subnet-1** of a virtual network named **hana-s03-RG-vnet**.
 
-    -   Service endpoints (Preview): **0 selected**
-
-
+    -   Service endpoints (Preview): **0 selected**.
 
 ### Task 3: Deploy an Azure Resource Manager QuickStart template
 
 #### Tasks to complete
 
--   Deploy an Azure Resource Manager QuickStart template
+-   Deploy an Azure Resource Manager QuickStart template:
 
-    -   Use the template <https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-multi-sid-db-md>
-
-    -   Edit the template to reference the **12-SP3** sku of **SLES 12 BYOS** image
+    -   Use the template <https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-multi-sid-db-md>.
 
     -   Use the following deployment parameters
 
-        -   Subscription: *the name of your Azure subscription*
+        -   Subscription: **the name of your Azure subscription**
 
-        -   Resource group: **s03-hana-RG**
+        -   Resource group: **hana-s03-RG**
 
-        -   Location: *the Azure region you identified in the Before the Hands-on Lab section*
+        -   Location: **the Azure region you identified in the Before the Hands-on Lab section**
 
         -   Sap System Id: **S03**
 
@@ -286,38 +295,40 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
         -   System Availability: **HA**
 
         -   Admin Username: **demouser**
+        
+        -   Authentication Type: **password**
 
-        -   Admin Password: **demo\@pass123**
+        -   Admin Password Or Key: **demo\@pass123**
 
-        -   Subnet id: reference the **subnet-1** you created in the previous task
+        -   Subnet id: the resource ID of **subnet-1** you created in the previous task
 
-        -   \_artifacts Location: *accept the default value*
+        -   \_artifacts Location: **accept the default value**
 
-        -   \_artifacts Location SaS Token: *accept the default value*
+        -   \_artifacts Location SaS Token: **accept the default value**
 
 #### Exit criteria 
 
--   A resource group named **s03-hana-RG** containing all resources included in the ARM template available at <https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-multi-sid-db-md>
+-   A resource group named **s03-hana-RG** containing all resources included in the ARM template available at <https://github.com/Azure/azure-quickstart-templates/tree/master/sap-3-tier-marketplace-image-multi-sid-db-md>.
 
 ### Task 4: Configure IP settings of Azure VMs running Linux
 
 #### Tasks to complete
 
--   Configure IP settings of Azure VMs running Linux
+-   Configure IP settings of Azure VMs running Linux.
 
     -   Set **s03-pip-db-0** to the static IP address 172.16.0.10
 
     -   Set **s03-pip-db-1** to the static IP address 172.16.0.11
 
-    -   Assign a DNS name label to the public IP addresses of s03-db-0 and s03-db-1
+    -   Assign a DNS name label to the public IP addresses of s03-db-0 and s03-db-1.
 
 #### Exit criteria 
 
--   A resource group named **s03-hana-RG** containing two Linux VMs named **s03-db-0** and **s03-db-1** with DNS name label and static IP addresses of 172.16.0.10 and 172.16.0.11 assigned to each (respectively)
+-   A resource group named **s03-hana-RG** containing two Linux VMs named **s03-db-0** and **s03-db-1** with DNS name label and static IP addresses of 172.16.0.10 and 172.16.0.11 assigned to each (respectively).
 
 ## Exercise 2: Configure operating system on Azure VMs running Linux
 
-In this exercise, you will configure operating system settings on Azure VMs running SUSE Linux Enterprise Server to accommodate subsequent clustered installation of SAP HANA
+In this exercise, you will configure operating system settings on Azure VMs running SUSE Linux Enterprise Server to accommodate subsequent clustered installation of SAP HANA.
 
 ### Help references
 
@@ -330,7 +341,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
 
 #### Tasks to complete
 
--   Connect to the s03-db-0 and s03-db-1 Azure VMs via SSH and register SUSE Linux Enterprise Server image
+-   Connect to the s03-db-0 and s03-db-1 Azure VMs via SSH and register SUSE Linux Enterprise Server image.
 
 #### Exit criteria 
 
@@ -340,7 +351,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
 
 #### Tasks to complete
 
--   On both s03-db-0 and s03-db-1,
+-   On both s03-db-0 and s03-db-1:
 
     -   use YaST to add **Extensions and Modules from Registration Server** package
 
@@ -350,37 +361,37 @@ In this exercise, you will configure operating system settings on Azure VMs runn
 
 #### Exit criteria
 
--   Successfully installed **Extensions and Modules from Registration Server** package, installed **sle-ha-release fence-agents**, and successfully updated all installed packages
+-   Successfully installed **Extensions and Modules from Registration Server** package, installed **sle-ha-release fence-agents**, and successfully updated all installed packages.
 
 ### Task 3: Enable cross-node password-less SSH access
 
 #### Tasks to complete
 
--   Generate passphrase-less key pairs on each Linux VM and store the resulting public keys from each VM in the **/root/.ssh/authorized\_keys** file on the other VM
+-   Generate passphrase-less key pairs on each Linux VM and store the resulting public keys from each VM in the **/root/.ssh/authorized\_keys** file on the other VM.
 
 #### Exit criteria 
 
--   The ability to establish SSH session from each of the two VMs to the other VM without being prompted for a password
+-   The ability to establish SSH session from each of the two VMs to the other VM without being prompted for a password.
 
 ### Task 4: Configure name resolution
 
 #### Tasks to complete
 
--   Add entries to **/etc/hosts** on both Linux VM s03-db-0 and s03-db-1 to facilitate resolution of their names to their respective private IP addresses
+-   Add entries to **/etc/hosts** on both Linux VM s03-db-0 and s03-db-1 to facilitate resolution of their names to their respective private IP addresses.
 
 #### Exit criteria 
 
--   Successful name resolution of s03-db-0 and s03-db-1 names to their respective IP addresses from both VMs
+-   Successful name resolution of s03-db-0 and s03-db-1 names to their respective IP addresses from both VMs.
 
 ### Task 5: Configure storage
 
 #### Tasks to complete
 
--   On each of the two Linux VMs, s03-db-0 and s03-db-1, create s03-db-0, create a directory that will be used to host the SAP HANA installation media in /hana/shared/media
+-   On each of the two Linux VMs, s03-db-0 and s03-db-1, create s03-db-0, create a directory that will be used to host the SAP HANA installation media in /hana/shared/media.
 
 #### Exit criteria 
 
--   Use **ls** to verify that the directory was successfully created
+-   Use **ls** to verify that the directory was successfully created.
 
 
 ## Exercise 3: Configure clustering on Azure VMs running Linux
@@ -398,27 +409,27 @@ In this exercise, you will configure clustering on Azure VMs running Linux.
 
 #### Tasks to complete
 
--   From **s03-db-0**, run **ha-cluster-init**
+-   From **s03-db-0**, run **ha-cluster-init**.
 
--   From **s03-db-1**, run **ha-cluster-join**
+-   From **s03-db-1**, run **ha-cluster-join**.
 
--   Change the password of hacluster account to **demo\@pass123**
+-   Change the password of hacluster account to **demo\@pass123**.
 
 #### Exit criteria 
 
--   Cluster successfully created and the password of the hacluster user account set to **demo\@pass123**
+-   Cluster successfully created and the password of the hacluster user account set to **demo\@pass123**.
 
 ### Task 2: Configure corosync 
 
 #### Tasks to complete
 
--   Modify the **/etc/corosync/corosync.conf** file on both s03-db-0 and s03-db-1 to add the references to both cluster nodes
+-   Modify the **/etc/corosync/corosync.conf** file on both s03-db-0 and s03-db-1 to add the references to both cluster nodes.
 
--   Restart the corosync service on both cluster nodes
+-   Restart the corosync service on both cluster nodes.
 
 #### Exit criteria 
 
--   Corosync reconfigured to include references to both cluster nodes
+-   Corosync reconfigured to include references to both cluster nodes.
 
 ## Exercise 4: Install SAP HANA
 
@@ -436,11 +447,11 @@ In this exercise, you will install SAP HANA.
 
 #### Tasks to complete
 
--   Copy the SAP HANA installation media to the /hana/shared/media directory on both s03-db-0 and s03-db-1
+-   Copy the SAP HANA installation media to the /hana/shared/media directory on both s03-db-0 and s03-db-1.
 
 #### Exit criteria 
 
--   SAP HANA installation media residing in the /hana/shared/media directory on both s03-db-0 and s03-db-1
+-   SAP HANA installation media residing in the /hana/shared/media directory on both s03-db-0 and s03-db-1.
 
 ### Task 2: Run hdblcm on both Linux VMs
 
@@ -452,25 +463,25 @@ In this exercise, you will install SAP HANA.
 
     -   Enter comma-separated list of the selected indices \[3\]: **1**
 
-    -   Enter Installation Path \[/hana/shared\]: *accept the default*
+    -   Enter Installation Path \[/hana/shared\]: **accept the default**
 
-    -   Enter Local Host Name \[s03-db-0\]: *accept the default*
+    -   Enter Local Host Name \[s03-db-0\]: **accept the default**
 
-    -   Do you want to add additional hosts to the system? (y/n) \[n\]: *accept the default*
+    -   Do you want to add additional hosts to the system? (y/n) \[n\]: **accept the default**
 
     -   Enter SAP HANA System ID: **S03**
 
-    -   Enter Instance Number \[00\]: *accept the default*
+    -   Enter Instance Number \[00\]: **accept the default**
 
-    -   Select Database Mode / Enter Index \[1\]: *accept the default*
+    -   Select Database Mode / Enter Index \[1\]: **accept the default**
 
     -   Select System Usage / Enter Index \[4\]: **4**
 
-    -   Enter Location of Data Volumes \[/hana/data/S03\]: *accept the default*
+    -   Enter Location of Data Volumes \[/hana/data/S03\]: **accept the default**
 
-    -   Enter Location of Log Volumes \[/hana/log/S03\]: *accept the default*
+    -   Enter Location of Log Volumes \[/hana/log/S03\]: **accept the default**
 
-    -   Enter Certificate Host Name For Host \'s03-db-0\' \[s03-db-0\]: *accept the default*
+    -   Enter Certificate Host Name For Host \'s03-db-0\' \[s03-db-0\]: **accept the default**
 
     -   Enter SAP Host Agent User (sapadm) Password: **demo\@pass123**
 
@@ -480,23 +491,23 @@ In this exercise, you will install SAP HANA.
 
     -   Confirm System Administrator (s03adm) Password: **demo\@pass123**
 
-    -   Enter System Administrator Home Directory \[/usr/sap/S03/home\]: *accept the default*
+    -   Enter System Administrator Home Directory \[/usr/sap/S03/home\]: **accept the default**
 
-    -   Enter System Administrator Login Shell \[/bin/sh\]: *accept the default*
+    -   Enter System Administrator Login Shell \[/bin/sh\]: **accept the default**
 
-    -   Enter System Administrator User ID \[1001\]: *accept the default*
+    -   Enter System Administrator User ID \[1001\]: **accept the default**
 
-    -   Enter ID of User Group (sapsys) \[79\]: *accept the default*
+    -   Enter ID of User Group (sapsys) \[79\]: **accept the default**
 
     -   Enter Database User (SYSTEM) Password: **Demo\@pass123**
 
     -   Confirm Database User (SYSTEM) Password: **Demo\@pass123**
 
-    -   Restart system after machine reboot? \[n\]: *accept the default*
+    -   Restart system after machine reboot? \[n\]: **accept the default**
 
 #### Exit criteria 
 
--   SAP HANA installed successfully on both s03-db-0 and s03-db-1
+-   SAP HANA installed successfully on both s03-db-0 and s03-db-1.
 
 ## Exercise 5: Configure SAP HANA replication
 
@@ -513,7 +524,7 @@ In this exercise, you will configure SAP HANA replication.
 
 #### Tasks to complete
 
--   On s03-db-0, create a HANA DATA ADMIN user account with non-expiring password and the following settings
+-   On s03-db-0, create a HANA DATA ADMIN user account with non-expiring password and the following settings:
 
     -   User name: **s03hasync**
 
@@ -521,31 +532,31 @@ In this exercise, you will configure SAP HANA replication.
 
 #### Exit criteria 
 
--   Successfully created HANA DATA ADMIN user account with non-expiring password, named **s03hasync** with the password set to **C0mpl3xp\@55w0rd**
+-   Successfully created HANA DATA ADMIN user account with non-expiring password, named **s03hasync** with the password set to **C0mpl3xp\@55w0rd**.
 
 ### Task 2: Configure keystore and perform a backup
 
 #### Tasks to complete
 
--   On both s03-db-0 and s03-db-1, configure keystore
+-   On both s03-db-0 and s03-db-1, configure keystore.
 
--   On s03-db-0, run HANA system backup
+-   On s03-db-0, run HANA system backup.
 
 #### Exit criteria 
 
--   Keystore created on both s03-db-0 and s03-db-1 and a HANA backup completed on s03-db-0
+-   Keystore created on both s03-db-0 and s03-db-1 and a HANA backup completed on s03-db-0.
 
 ### Task 3: Create the primary and the secondary sites
 
 #### Tasks to complete
 
--   On s03-db-0, create a site named SITE1 and configure it as system replication source site
+-   On s03-db-0, create a site named SITE1 and configure it as system replication source site.
 
--   On s03-db-1, stop the HANA DB instance and create a site named SITE2 configured as synchronously replicated system replication destination
+-   On s03-db-1, stop the HANA DB instance and create a site named SITE2 configured as synchronously replicated system replication destination.
 
 #### Exit criteria 
 
--   Synchronous replication between the HANA DB instance on s03-db-0 and s03-db-1
+-   Synchronous replication between the HANA DB instance on s03-db-0 and s03-db-1.
 
 ## Exercise 6: Configure cluster framework
 
@@ -558,37 +569,7 @@ In this exercise, you will configure SAP HANA replication.
 | **Description** | **Links** |
 | High Availability of SAP HANA on Azure Virtual Machines (VMs) | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/sap-hana-high-availability/> |
 
-### Task 1: Configure STONITH clustering options
-
-#### Tasks to complete
-
--   On s03-db-0, configure the following STONITH clustering options:
-
-        property \$id=\"cib-bootstrap-options\" \\
-
-        no-quorum-policy=\"ignore\" \\
-
-        stonith-enabled=\"true\" \\
-
-        stonith-action=\"reboot\" \\
-
-        stonith-timeout=\"150s\"
-
-        rsc\_defaults \$id=\"rsc-options\" \\
-
-        resource-stickiness=\"1000\" \\
-
-        migration-threshold=\"5000\"
-
-        op\_defaults \$id=\"op-options\" \\
-
-        timeout=\"600\"
-
-#### Exit criteria 
-
--   Successfully applied STONITH clustering options
-
-### Task 2: Create an Azure AD application for the STONITH device
+### Task 1: Create an Azure AD application for the STONITH device
 
 #### Tasks to complete
 
@@ -600,51 +581,61 @@ In this exercise, you will configure SAP HANA replication.
 
     -   Sign-on URL: **http://localhost**
 
--   Identify *subscription\_id, resource\_group, tenant\_id, login\_id,* and *password* values corresponding to the Azure subscription, the Azure AD tenant, and the new application
+-   Identify *subscription\_id, resource\_group, tenant\_id, login\_id,* and *password* values corresponding to the Azure subscription, the Azure AD tenant, and the new application.
 
 #### Exit criteria 
 
--   An application named **Stonith app** created in the Azure AD tenant associated with the Azure subscription hosting the lab deployment
+-   An application named **Stonith app** created in the Azure AD tenant associated with the Azure subscription hosting the lab deployment.
+
+### Task 1: Create a custom role for the STONITH device
+
+#### Tasks to complete
+
+-   In the Azure AD tenant, create a custom role named **Linux Fence Agent Role** that has permissions to read properties of any Compute provider resource as well as the ability to start and deallocate Azure VMs within the Azure subscription you are using for this lab.
+
+#### Exit criteria 
+
+-   An custom role named **Linux Fence Agent Role** created in the Azure AD tenant associated with the Azure subscription hosting the lab deployment.
 
 ### Task 3: Grant permissions to Azure VMs to the service principal of the STONITH app
 
 #### Tasks to complete
 
--   From the Azure portal, assign the Owner role to the service principal associated with the Stonith app to s03-db-0 and s03-db-1 Azure VMs
+-   From the Azure portal, assign the custom role created in the previous task to the service principal associated with the Stonith app to s03-db-0 and s03-db-1 Azure VMs.
 
 #### Exit criteria 
 
--   The service principal associated with the Stonith app assigned the Owner role to s03-db-0 and s03-db-1 Azure VMs
+-   The service principal associated with the Stonith app assigned the custom role to s03-db-0 and s03-db-1 Azure VMs.
 
 ### Task 4: Configure the STONITH cluster device
 
 #### Tasks to complete
 
--   From s03-db-0, configure the STONITH cluster device by associating it with Azure AD Stonith app
+-   From s03-db-0, configure the STONITH cluster device by associating it with Azure AD Stonith app.
 
 #### Exit criteria 
 
--   Configured STONITH cluster device, associated with Azure AD Stonith app
+-   Configured STONITH cluster device, associated with Azure AD Stonith app.
 
 ### Task 5: Create SAPHanaTopology cluster resource agent
 
 #### Tasks to complete
 
--   From s03-db-0, create the SAPHanaTopology cluster resource agent
+-   From s03-db-0, create the SAPHanaTopology cluster resource agent.
 
 #### Exit criteria 
 
--   Create SAPHanaTopology cluster resource agent successfully added to the cluster
+-   Create SAPHanaTopology cluster resource agent successfully added to the cluster.
 
 ### Task 6: Create SAPHana cluster resource agent
 
 #### Tasks to complete
 
--   From s03-db-0, create the SAPHana cluster resource agent
+-   From s03-db-0, create the SAPHana cluster resource agent.
 
 #### Exit criteria 
 
--   Create SAPHana cluster resource agent successfully added to the cluster
+-   Create SAPHana cluster resource agent successfully added to the cluster.
 
 ## Exercise 7: Test the deployment
 
@@ -661,13 +652,13 @@ In this exercise, you will test the HANA deployment.
 
 #### Tasks to complete
 
--   Copy the DATA\_UNITS\\HDB\_STUDIO\_WINDOWS\_X86\_64 folder from the installation media to the s03-hana-0 Azure VM
+-   Copy the DATA\_UNITS\\HDB\_STUDIO\_WINDOWS\_X86\_64 folder from the installation media to the s03-hana-0 Azure VM.
 
--   On the s03-hana-0 Azure VM, install **SAP HANA Studio Administration**
+-   On the s03-hana-0 Azure VM, install **SAP HANA Studio Administration**.
 
 #### Exit criteria
 
--   **SAP HANA Studio Administration** installed on the s03-hana-0 Azure VM
+-   **SAP HANA Studio Administration** installed on the s03-hana-0 Azure VM.
 
 ### Task 2: Modify Azure Internal Load Balancer configuration
 
@@ -677,7 +668,7 @@ In this exercise, you will test the HANA deployment.
 
 #### Exit criteria 
 
--   The health probe and load balancing rules modified to account for the fact that you deployed instance 00
+-   The health probe and load balancing rules modified to account for the fact that you deployed instance 00.
 
 ### Task 3: Connect to HANA cluster by using SAP HANA Studio Administration
 
@@ -709,45 +700,45 @@ In this exercise, you will test the HANA deployment.
 
 #### Exit criteria 
 
--   In the **SUSE Hawk** interface, examine the state of the HANA resources including **SAPHANATopology** and **SAPHana**
+-   In the **SUSE Hawk** interface, examine the state of the HANA resources including **SAPHANATopology** and **SAPHana**.
 
 ### Task 5: Test a manual failover (from s03-db-0 to s03-db-1)
 
 #### Tasks to complete
 
--   From an SSH session to s03-db-0, stop the pacemaker service
+-   From an SSH session to s03-db-0, stop the pacemaker service.
 
--   Use Hawk to verify that a failover took place and ensure that you can connect to the cluster via SAP HANA Administration Console
+-   Use Hawk to verify that a failover took place and ensure that you can connect to the cluster via SAP HANA Administration Console.
 
--   Restart the pacemaker service on s03-db-0
+-   Restart the pacemaker service on s03-db-0.
 
--   Use Hawk to verify that the SAPHana clustered resource on s03-db-0 failed to start
+-   Use Hawk to verify that the SAPHana clustered resource on s03-db-0 failed to start.
 
--   From the SSH session to s03-db-0, re-establish HANA system replication and clean up the failed state
+-   From the SSH session to s03-db-0, re-establish HANA system replication and clean up the failed state.
 
--   Use Hawk to verify that the SAPHana clustered resource on s03-db-0 started successfully
+-   Use Hawk to verify that the SAPHana clustered resource on s03-db-0 started successfully.
 
 #### Exit criteria 
 
--   In the SUSE Hawk interface, verify that SAPHANA clustered resource is operational, with s03-db-1 as master and s03-db-0 as slave
+-   In the SUSE Hawk interface, verify that SAPHANA clustered resource is operational, with s03-db-1 as master and s03-db-0 as slave.
 
 ### Task 6: Test a migration (from s03-db-1 to s03-db-0)
 
 #### Tasks to complete
 
--   From an SSH session to s03-db-1, migrate the SAPHana master node and the group containing the virtual IP address of the cluster to s03-db-0
+-   From an SSH session to s03-db-1, migrate the SAPHana master node and the group containing the virtual IP address of the cluster to s03-db-0.
 
 -   Use Hawk to verify that the migration took place and that that the SAPHana clustered resource on s03-db-1 failed to start as secondary.
 
--   From the SSH session to s03-db-1, reestablish the HANA system replication
+-   From the SSH session to s03-db-1, reestablish the HANA system replication.
 
--   Use Hawk to remove all location constraints
+-   Use Hawk to remove all location constraints.
 
--   From the SSH session to s03-db-1, clean up the failed state
+-   From the SSH session to s03-db-1, clean up the failed state.
 
--   Use Hawk to verify that the SAPHana clustered resource is operational on both nodes with s03-db-0 as the master
+-   Use Hawk to verify that the SAPHana clustered resource is operational on both nodes with s03-db-0 as the master.
 
--   Use SAP HANA Administration Console to verify that SAP HANA is running at this point on the s03-db-0 node and is operational
+-   Use SAP HANA Administration Console to verify that SAP HANA is running at this point on the s03-db-0 node and is operational.
 
 #### Exit criteria 
 
@@ -757,21 +748,21 @@ In this exercise, you will test the HANA deployment.
 
 #### Tasks to complete
 
--   From an SSH session to s03-db-0, shut down the eth0 network interface
+-   From an SSH session to s03-db-0, shut down the eth0 network interface.
 
--   From the Azure portal, verify that the s03-db-0 virtual machine gets automatically restarted
+-   From the Azure portal, verify that the s03-db-0 virtual machine gets automatically restarted.
 
--   Use Hawk to verify that the cluster resources are automatically moved to s03-db-1
+-   Use Hawk to verify that the cluster resources are automatically moved to s03-db-1.
 
--   Use SAP HANA Administration Console to verify that SAP HANA is running at this point on the s03-db-1 node and is operational
+-   Use SAP HANA Administration Console to verify that SAP HANA is running at this point on the s03-db-1 node and is operational.
 
--   Use the Azure portal to ensure that the s03-db-0 virtual machine is running again
+-   Use the Azure portal to ensure that the s03-db-0 virtual machine is running again.
 
--   From the SSH session to s03-db-0, reestablish the HANA system replication and clean up the failed state
+-   From the SSH session to s03-db-0, reestablish the HANA system replication and clean up the failed state.
 
--   Use Hawk to verify that the SAPHana clustered resource is operational on both nodes with s03-db-1 as the master
+-   Use Hawk to verify that the SAPHana clustered resource is operational on both nodes with s03-db-1 as the master.
 
--   Use SAP HANA Administration Console to verify that the SAP HANA system replication status is active
+-   Use SAP HANA Administration Console to verify that the SAP HANA system replication status is active.
 
 #### Exit criteria
 
@@ -785,14 +776,14 @@ After completing the hands-on lab, you will remove the resource group and all of
 
 ### Task 1: Remove the resource group containing all Azure resources deployed in this lab
 
-1.  From the lab computer, in the Azure portal at <http://portal.azure.com> , click the **Cloud Shell** icon
+1.  From the lab computer, in the Azure portal at <http://portal.azure.com> , click the **Cloud Shell** icon.
 
-2.  If prompted, in the **Welcome to Azure Cloud Shell** window, click **Bash (Linux)**
+2.  If prompted, in the **Welcome to Azure Cloud Shell** window, click **Bash (Linux)**.
 
 3.  At the Bash prompt, run the following:
 
-```
-az group delete \--name s03-hana-RG \--no-wait \--yes
-```
+   ```
+    az group delete \--name s03-hana-RG \--no-wait \--yes
+   ```
 
 You should follow all steps provided *after* the Hands-on lab.

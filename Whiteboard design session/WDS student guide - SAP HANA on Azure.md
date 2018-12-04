@@ -9,7 +9,7 @@ SAP HANA on Azure
 </div>
 
 <div class="MCWHeader3">
-December 2017
+October 2018
 </div>
 
 
@@ -59,11 +59,11 @@ Timeframe: 15 minutes
 
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
-1.  Meet your table participants and trainer
+1.  Meet your table participants and trainer.
 
-2.  Read all of the directions for steps 1-3 in the student guide
+2.  Read all of the directions for steps 1-3 in the student guide.
 
-3.  As a table team, review the following customer case study
+3.  As a table team, review the following customer case study.
 
 ### Customer situation
 
@@ -73,7 +73,7 @@ Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytic
 
 Contoso Leadership and Planning Groups wants to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud.
 
-Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in August CY18), and migrate ECC in Q4 of CY18. The multi-stage approach is supposed to minimize potential migration risks.
+Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY19), and migrate ECC in Q4 of CY19. The multi-stage approach is supposed to minimize potential migration risks.
 
 Considering that Contoso management team often uses BW to support their management decisions, the systems should be highly available, and their performance must be predictable and consistent. In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency of the migrated environment in case the primary region hosting the new deployment becomes unavailable.
 
@@ -84,17 +84,24 @@ Before migrating the production environment, Contoso wants to test its new deplo
 ### Customer needs 
 
 -   Highly responsive systems with low network latency
+
 -   In-memory database performance
+
 -   High availability & disaster recovery
+
 -   Enterprise data protection & security
+
 -   Safe migration with downtime minimized
+
 -   Access from HANA-based applications
+
 -   Minimized cost
+
 1.  Design scope:
 
     -   BW migration to HANA in Azure VMs
 
-        -   Go-live date: March 2018
+        -   Go-live date: March 2019
 
         -   Current BW (ABAP Unicode) on-premises with HP-UX/Oracle and application layer on Linux
 
@@ -102,7 +109,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
             -   Use 1-year Reserved VM Instance option for Production VMs
 
-    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2018
+    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2019
 
         -   Data is transferred from ERP (on-premises) to BW (in Cloud) every hour
 
@@ -130,13 +137,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Uptime -- Prod: 24x7, 744 hours/month, QA - 50 hours/month, DEV/Test - 200 hours/month
 
-3.  High availability and disaster recovery
+3.  High availability and disaster recovery:
 
     -   Availability
 
-        -   Both HA and Non-HA options need to be proposed
+        -   Both HA and Non-HA options need to be proposed.
 
-        -   With HA option, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day
+        -   With HA option, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day.
 
     -   Backup
 
@@ -154,7 +161,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
         -   Monthly HANA DB full backup for 1 year, annual for 3 years
 
-4.  End user access
+4.  End user access:
 
     -   User locations -- 300 from US, 50 LATAM, 50 Europe, 30 Asia - all intranet
 
@@ -164,7 +171,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Customer objections 
 
-1.  ECC remains on-premises until Dec CY18. How can we maintain integrations between ECC and BW?
+1.  ECC remains on-premises until Dec CY19. How can we maintain integrations between ECC and BW?
 
 2.  How much does Azure cost? Give us a few options (e.g. HA and non-HA, DR and non-DR).
 
@@ -174,32 +181,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Infographic for common scenarios
 
-![A list of common scenarios displays. At this time, we are unable to capture all of the items on the list. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image2.png "Common scenarios list")
-
-![Three solution paths are listed. At this time, we are unable to capture all of the information in the solution paths. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image3.png "Solution paths taken by a lot of customers")
-
-![Customers are using Azure in all stages for SAP landscapes, from only disaster recovery footprints to extra large.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image4.png "SAP on Azure - customer stages in Azure")
-
-SAP Certified Azure VMs
-
-![SAP Certified Azure VMs go from the highest value (NetWeaver Certified), to largest scale-up (SAP Hana certified). At this time, we are unable to capture all of the value types in the window. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image5.png "SAP Certified Azure VMs")
-
-![SAP on Azure has a huge variety of CPU and memory selections. A bulleted list mentions some of these options. At this time, we are unable to capture all of the CPU and memory information in listed. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image6.png "SAP on Azure - huge variety on instances")
-
-![Azure is one of the only public cloud platforms that offers single VM SLAs. At this time, we are unable to capture all of the reliability information listed. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image7.png "SAP on Azure - reliability")
-
-![Azure offers in-region availability. At this time, we are unable to capture all of the in-region availabity information listed. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image8.png "SAP on Azure - in-region availability")
-
-![Azure also offers across-region availability. Azure building blocks include Azure Site Recovery Services (A2A scenario). At this time, we are unable to capture all of the in-region availabity information listed. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image9.png "SAP on Azure - across-region availability 1")
-
-![Across-region availability also offers Building blocks through Virtual Name and DNS. At this time, we are unable to capture all of the across-region availabity information listed. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image10.png "SAP on Azure - across-region availability 2")
-
-![A table displays SAP any database information, including: SAP Product(s), Guest OS, Database, and VM/Server Type. At this time, we are unable to capture all of the information listed in the table. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image11.png "SAP on Azure Certifications (Any DB)")
-
-![A table displays SAP HANA information, including: Scenario, SAP Product(s), Guest OS, Database, and VM/Server Type. At this time, we are unable to capture all of the information listed in the table. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image12.png "SAP on Azure Certifications (HANA)")
-
-![A table displays Azure VM Options for SAP Applications. At this time, we are unable to capture all of the information listed in the table. Future versions of this course should address this.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image13.png "Azure VM Options for SAP Applications")
-
+![Common solutions for the case study.](images/CommonScenarios.png "Common Scenarios")
 
 ## Step 2: Design a proof of concept solution
 
@@ -211,7 +193,7 @@ Timeframe: 60 minutes
 
 **Business needs**
 
-Directions: With all participants at your table, answer the following questions and list the answers on a flip chart.
+Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
 
 1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -219,7 +201,7 @@ Directions: With all participants at your table, answer the following questions 
 
 **Design**
 
-Directions: With all participants at your table, respond to the following questions on a flip chart.
+Directions: With all participants at your table, respond to the following questions on a flip chart:
 
 *High-level solution architecture:*
 
@@ -253,33 +235,41 @@ Directions: With all participants at your table, respond to the following questi
 
 **Prepare**
 
-Directions: With all participants at your table: 
+Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution
-2.  Identify the benefits of your solution
-3.  Determine how you will respond to the customer’s objections 
+1.  Identify any customer needs that are not addressed with the proposed solution.
 
-Prepare a 15-minute chalk-talk style presentation to the customer 
+2.  Identify the benefits of your solution.
 
+3.  Determine how you will respond to the customer's objections.
+
+Prepare a 15-minute chalk-talk style presentation to the customer.
 
 ## Step 3: Present the solution
 
 **Outcome**
- 
+
 Present a solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 30 minutes
 
-**Presentation** 
+**Presentation**
 
 Directions:
-1.  Pair with another table
-2.  One table is the Microsoft team and the other table is the customer
-3.  The Microsoft team presents their proposed solution to the customer
-4.  The customer makes one of the objections from the list of objections
-5.  The Microsoft team responds to the objection
+
+1.  Pair with another table.
+
+2.  One table is the Microsoft team and the other table is the customer.
+
+3.  The Microsoft team presents their proposed solution to the customer.
+
+4.  The customer makes one of the objections from the list of objections.
+
+5.  The Microsoft team responds to the objection.
+
 6.  The customer team gives feedback to the Microsoft team.
-7.  Tables switch roles and repeat Steps 2–6
+
+7.  Tables switch roles and repeat Steps 2-6.
 
 ##  Wrap-up 
 
