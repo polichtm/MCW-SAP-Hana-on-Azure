@@ -514,7 +514,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
      s03-db-0:~ # vi /etc/systemd/system.conf
     ```
 
-2. In the /etc/systemd/system.conf file, locate the DefaultTasksMax entry and configure it as follows (remove the leading # character, if present):
+2. In the /etc/systemd/system.conf file, locate the DefaultTasksMax entry and configure it as follows (remove the leading # character, if present), then save your change and close the file (by pressing the **Escape** key, typing `:wq!`, and pressing the **Enter** key):
 
     ```
      DefaultTasksMax=4096
@@ -532,7 +532,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
      s03-db-0:~ # vi /etc/sysctl.conf
     ```
 
-5. In the /etc/sysctl.conf file, create (or modify, if they already exist) the following entries:
+5. In the /etc/sysctl.conf file, add (or modify, if they already exist) the following entries, then save your change and close the file (by pressing the **Escape** key, typing `:wq!`, and pressing the **Enter** key):
 
     ```
      vm.dirty_bytes = 629145600
