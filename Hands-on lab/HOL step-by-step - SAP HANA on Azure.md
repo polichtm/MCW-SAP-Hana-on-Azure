@@ -431,7 +431,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
 
     ![The Automatic Changes screen displays, with OK selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image15.png "Automatic Changes screen")
 
-8.  Once the installation has completed, click **Finish**.
+8.  Once the installation has completed, click **Finish**, select **Accept**, and click **OK**.
 
     ![The Installation Report screen shows that installation was successfully finsihed, and the Finish button is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image16.png "Installation Report screen")
 
