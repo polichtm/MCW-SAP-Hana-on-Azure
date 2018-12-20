@@ -129,11 +129,11 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
     -   Subscription: **The name of your Azure subscription**
 
-    -   Resource group: **The name of a new resource group: **hana-s03-RG**
+    -   Resource group: **The name of a new resource group: hana-s03-RG**
 
     -   Virtual machine name: **s03-hana-0**
 
-    -   Region: **The name of the Azure region you identified in the Before the Hands-on Lab section**
+    -   Region: **The name of the Azure region you identified in the Before the Hands-on Lab session**
 
     -   Availability Options: **No infrastructure redundancy required**
     
@@ -157,7 +157,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
     -   OS disk type: **Standard HDD**
     
-    -   Use unmanaged disks: **No**
+    -   Use managed disks (ADVANCED): **Yes**
 
 7.  On the **Create a virtual machine** blade, on the **Networking** tab, specify the following settings, and click **Next: Management >**:
 
@@ -171,8 +171,6 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
         -   Subnet address range: **172.16.0.0/24**
 
-    -   Subnet: **subnet-0**
-
     -   Public IP: **Accept the default value**
 
     -   Network security group: **Basic**
@@ -182,6 +180,8 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
     -   Select inbound ports: **RDP**
     
     -   Accelerated networking: **Off**
+    
+    -   Place this virtual machine behind an existing load balancing solution: **No**
     
 8.  On the **Create a virtual machine** blade, on the **Management** tab, specify the following settings, and click **Next: Guest config >**:   
 
@@ -223,6 +223,8 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
     -   Route table: **None**
 
     -   Service endpoints: **0 selected**
+    
+    -   Subnet delegation: **None**
 
 ### Task 3: Deploy an Azure Resource Manager QuickStart template
 
@@ -295,7 +297,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
 7.  On the **s03-db-0** blade, click **Configure** under the **DNS name** label.
 
-8.  In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-0** Azure VM from your lab computer (the name will be in the format ***custom-name-0.Azure-region.*cloudapp.azure.com**), and click **Save**.
+8.  In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-0** Azure VM from your lab computer (the name will be in the format *custom-name-0.Azure-region*.**cloudapp.azure.com**), and click **Save**.
 
     ![In the Configuration blade, Assignment is Dynamic, Idle timeout is 4 minutes, and DNS name label is set to a custom value](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image5.png "Configuration blade")
 
@@ -323,7 +325,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
 14. On the **s03-db-1** blade, click **Configure** under the **DNS name** label.
 
-15. In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-1** Azure VM from your lab computer (the name will be in the format ***custom-name-1.Azure-region.*cloudapp.azure.com**), and click **Save**.
+15. In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-1** Azure VM from your lab computer (the name will be in the format *custom-name-1.Azure-region*.**cloudapp.azure.com**), and click **Save**.
 
     ![In the Configuration blade, Assignment is Dynamic, Idle timeout is 4 minutes, and DNS name label is set to a custom value.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image7.png "Configuration blade")
 
