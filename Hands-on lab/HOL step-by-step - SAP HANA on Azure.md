@@ -855,6 +855,13 @@ In this exercise, you will configure clustering on Azure VMs running Linux.
        No new SSH keys installed
        Configuring csync2
        Merging known_hosts
+       ! Failed to get known_hosts from s03-db-1: Exited with error code 255, Error output: Warning: Permanently added 's03-db-1,172.16.1.11' (ECDSA) to the list of known hosts.
+       parallax error: SSH requested a password. Please create SSH keys or
+       use the -A option to provide a password.
+       parallax error: SSH requested a password. Please create SSH keys or
+       use the -A option to provide a password.
+       Permission denied (publickey,password,keyboard-interactive).
+       
        Probing for new partitions...done
          Hawk cluster interface is now running. To see cluster status, open:
            https://172.16.1.11:7630/
