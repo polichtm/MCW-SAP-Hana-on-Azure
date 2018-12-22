@@ -996,8 +996,6 @@ In this exercise, you will install SAP HANA.
 
     -   Enter Location of Log Volumes \[/hana/log/S03\]: **accept the default**
     
-    -   Restrict maximum memory allocation? \[n\]: **accept the default**
-
     -   Enter Certificate Host Name for Host \'s03-db-0\' \[s03-db-0\]: **accept the default**
 
     -   Enter SAP Host Agent User (sapadm) Password: **demo@pass123**
@@ -1390,7 +1388,7 @@ In this exercise, you will configure cluster framework.
 
     ![Fields in the Create blade display with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image26.png "Create blade")
 
-8.  On the list of apps, click the newly created app. On the app blade, note the value of **Application ID**. This will be referenced as the login id later in this exercise:
+8.  On the blade displaying the newly created app, note the value of **Application ID**. This will be referenced as the login id later in this exercise:
 
     ![The Application ID displays in the Registered Apps blade.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image27.png "Registered Apps blade")
 
@@ -1446,19 +1444,19 @@ In this exercise, you will configure cluster framework.
 
     ![In the Virtual Machine blade, Access control (IAM) is selected. ](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image31.png "Virtual Machine blade")
 
-3.  Click + **Add**.
+3.  Click + **Add role assignment**.
 
-4.  On the **Add permissions** blade, specify the following settings and click **Save**:
+4.  On the **Add role assignment** blade, specify the following settings and click **Save**:
 
     -   Role: **Linux Fence Agent Role**
 
-    -   Assign access to: **Azure AD user, group, or application**
+    -   Assign access to: **Azure AD user, group, or service principal**
 
     -   Select: **Stonith App**
 
-        ![Fields in the Add permissions blade are set to the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image32.png "Add permissions blade")
+        ![Fields in the Add role assignment blade are set to the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image32.png "Add role assignment blade")
 
-5.  Repeat steps 1 to 4 to assign the Stonith App the Owner role to the s03-db-1 Azure VM.
+5.  Repeat steps 1 to 4 to assign the Stonith App the Linux Fence Agent Role to the s03-db-1 Azure VM.
 
 ### Task 4: Configure the STONITH cluster device 
 
