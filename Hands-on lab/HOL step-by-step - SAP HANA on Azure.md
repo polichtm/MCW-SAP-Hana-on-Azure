@@ -1694,7 +1694,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
         ![The Connection Properties dialog box displays with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image48.png "Connection Properties dialog box")
 
-10. Once you successfully connected to **S03** as **SYSTEM**, click the **System Monitor** icon in the Systems toolbar.
+10. Once you successfully connected to **S03** as **SYSTEM**, select the **S03 (SYSTEM)** node and click the **System Monitor** icon in the Systems toolbar.
 
     ![On the Systems node toolbar, the System Monitor icon is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image49.png "Systems toolbar")
 
@@ -1702,6 +1702,8 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
     ![The SAP HANA Administration Console System Monitor tab displays the System Monitor status.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image50.png "SAP HANA Administration Console, System Monitor tab")
 
+   > **Note**: Proceed to the next step even if the **Operational State** is not reporting that all services are started, as long as the output of the `crm_mon -r` command you ran in Exercise 6, Task 6 was correct. It typically takes a few minutes before the operational status is fully identified.
+   
 12. Right click the **S03 (SYSTEM)** node and in the right click menu. Click **Configuration and Monitoring** followed by **Open Administration**.
 
     ![On the Systems node, S03 (System) is selected. From its right-click menu, Configuration and Monitoring is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image51.png "Systems node")
@@ -1742,7 +1744,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
     ![The same page displays with the SAPHana resource details.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image58.png "SAPHana Resource details page")
 
-    Switch to the SSH session on s03-db-0, and stop the pacemaker service by running **service pacemaker stop** (This will trigger the failover of the **SAPHana** clustered resource.)
+    Switch to the SSH session on the node you identified in the previous step (**s03-db-0**), and stop the pacemaker service by running **service pacemaker stop** (This will trigger the failover of the **SAPHana** clustered resource.)
     
      ```
      s03-db-0:~ # service pacemaker stop
@@ -1809,7 +1811,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Waiting for 1 replies from the CRMd. OK
     ```
 
-9.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary:
+9.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary (you might need to wait a few minutes for the interface to refresh):
 
     ![On the Resources tab, the SAPHana line now displays a blue dot.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image63.png "Resources tab")
 
@@ -1828,7 +1830,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      INFO: Move constraint created for g_ip_S03_HDB00 to s03-db-0
     ```
 
-2.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource on s03-db-1 failed to start as secondary. This is because **AUTOMATED\_REGISTER** property was set to **false** in Exercise 6 Task 6.
+2.  Switch to the **SUSE Hawk Status** page and note the **SAPHana** clustered resource on s03-db-1 failed to start as secondary. This is because **AUTOMATED\_REGISTER** property was set to **false** in Exercise 6 Task 6 (you might need to wait a few minutes for the interface to refresh).
 
     ![An Error message displays on the Status page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image64.png "Status page")
 
@@ -1871,6 +1873,8 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 5.  From the **Constraints** page, delete the **cli-prefer-msl\_SAPHana\_S03\_HDB00** constraint.
 
     ![Under Operations, the Delete constraint icon is selected for cli-prefer-msl\_SAPHana\_S03\_HDB00.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image67.png "Delete constraint")
+    
+   > **Note**: Delete any other location constraints that might exist in the current configuration.
 
 6.  Switch to the SSH session on s03-db-1, and clean up the failed state by running **crm resource cleanup msl\_SAPHana\_S03\_HDB00 s03-db-1**:
 
@@ -1879,7 +1883,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Cleaned up rsc_SAPHana_S03_HDB00:0 on s03-db-1
     ```
 
-7.  Switch to the **SUSE Hawk Status** page, and verify the **SAPHana** clustered resource is operational on both nodes with s03-db-0 as the master.
+7.  Switch to the **SUSE Hawk Status** page, and verify the **SAPHana** clustered resource is operational on both nodes with s03-db-0 as the master (you might need to wait a few minutes for the interface to refresh).
 
     ![The Resources tab is selected on the Status page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image68.png "Status page")
 
@@ -1895,7 +1899,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      s03-db-0:~ # ifdown eth0
     ```
 
-2.  This will trigger restart of the Azure virtual machine, as you can verify it by checking its status from the Azure portal.
+2.  This will trigger restart of the Azure virtual machine, as you can verify it by checking its status from the Azure portal (you might need to wait a few minutes for the restart to be initiated).
 
     ![the Virtual machines blade displays with the status results for three virtual machines. One is updating, and two are running.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image70.png "Virtual machines blade")
 
@@ -1918,7 +1922,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
     sapcontrol --nr 00 --function StopWait 600 10 (stop the HANA instance in case it is running)
     hdbnsutil -sr_register --remoteHost=s03-db-1 --remoteInstance=00 --replicationMode=sync --name=SITE1 (register the local instance as secondary)
     exit(switch back to the root)
-    crm resource cleanup msl_SAPHana_S03_HDB00 s03-db-0** (clean up the failed state)
+    crm resource cleanup msl_SAPHana_S03_HDB00 s03-db-0 (clean up the failed state)
     
      s03-db-0:~ # su - s03adm
      s03adm@s03-db-0:/usr/sap/S03/HDB00> sapcontrol -nr 00 -function StopWait 600 10
@@ -1944,7 +1948,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Cleaned up rsc_SAPHana_S03_HDB00:0 on s03-db-0
     ```
     
-7.  Switch to the **SUSE Hawk Status** page, and note that the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary.
+7.  Switch to the **SUSE Hawk Status** page, and note that the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary (you might need to wait a few minutes for the interface to refresh).
 
     ![The Resources tab shows that the SAPHana resource is now running.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image75.png "Resources tab")
 
