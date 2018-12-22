@@ -1466,7 +1466,14 @@ In this exercise, you will configure cluster framework.
      crm configure primitive rsc_st_azure stonith:fence_azure_arm \
      params subscriptionId="subscription_id" resourceGroup="hana-s03-RG" tenantId="tenant_id" login="login_id" passwd="password"
     ```
+   
+   > **Note**: Ignore the error messages listed below and any warning messages when running the crm commands
 
+    ```
+     ERROR: rsc_st_azure: required parameter username not defined
+     ERROR: rsc_st_azure: required parameter plug not defined
+    ```
+    
 2.  From the SSH session on s03-db-0, run the following:
 
     ```
