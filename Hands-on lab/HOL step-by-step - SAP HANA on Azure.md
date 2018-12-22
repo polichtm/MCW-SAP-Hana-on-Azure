@@ -293,7 +293,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
         ![The ipconfig blade displays with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image4.png "ipconfig blade")
 
-6.  In the Azure portal, navigate back to the **hana-s03-RG** resource group blade, and click **s03-db-0**.
+6.  Wait for the change to complete. Next, in the Azure portal, navigate back to the **hana-s03-RG** resource group blade, and click **s03-db-0**.
 
 7.  On the **s03-db-0** blade, click **Configure** under the **DNS name** label.
 
