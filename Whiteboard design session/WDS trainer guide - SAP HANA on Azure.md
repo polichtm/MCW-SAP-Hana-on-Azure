@@ -470,7 +470,7 @@ Business Unit IT / Developers (Director of SAP Business Analysts, Director of SA
 Central IT (VP of IT Operations)
 
 -   Reports into CIO and responsible for operating datacenter
-
+ q
 -   Concerned about shadow IT created issues: security/compliance, server sprawl, and lack of control
 
 ## Preferred solution
@@ -491,7 +491,7 @@ Central IT (VP of IT Operations)
     
     *Option 1: Azure Virtual Machines -- BW on HANA without HA*
 
-    ![Diagram of the BW on HANA without HA preferred solution.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image14.png "BW on HANA without HA preferred solution")
+    ![Diagram of the BW on HANA without HA preferred solution. The first option delivers the core functionality without SAP HANA high availability and disaster recovery capabilities. It accommodates a hybrid scenario, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. For cross-premises connectivity, it leverages the MPLS-based ExpressRoute circuit. The solution also includes a standalone HANA production database running on a Standard M128s, memory-optimized Azure VM. The Azure VM is configured with two P30 disks, striped into a single volume hosting data files, which deliver total of 2 TB of disk space and 400 MB/s throughput. Logs are stored on a volume residing on two P15 disks that deliver combined 512 GB of disk space and 250 MB/s throughput. The shared HANA volume uses one P30 disk, with 1 TB of disk space and 200 MB/s throughput. In addition to the Azure VM hosting HANA DB, the solution includes a pair of Azure VMs virtual machines that serve as the ASCS and the application servers. This satisfies the customer requirement, according to which the Business Warehouse application servers must be able to handle 15,000 SAPS. Two E8_v3 Azure VMs give us total of 18,512 SAPS.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image14.png "BW on HANA without HA preferred solution")
     
     The first option delivers the core functionality without SAP HANA high availability and disaster recovery capabilities. It accommodates a hybrid scenario, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. For cross-premises connectivity, it leverages the MPLS-based ExpressRoute circuit. 
 
@@ -501,13 +501,13 @@ Central IT (VP of IT Operations)
 
     *Option 2: Azure Virtual Machines -- BW on HANA with HA*
 
-    ![Diagram of the BW on HANA with HA preferred solution.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image16.png "BW on HANA with HA preferred solution")
+    ![Diagram of the BW on HANA with HA preferred solution. The second option delivers the same core functionality as the first option but, in addition, it provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM into the same availabilty set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image16.png "BW on HANA with HA preferred solution")
 
     The second option delivers the same core functionality as the first option but, in addition, it provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM into the same availabilty set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.
 
     *Option 3: Azure virtual machines - BW on HANA with HA/DR*
 
-    ![Diagram of the BW on HANA with HA/DR preferred solution.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image20.png)
+    ![Diagram of the BW on HANA with HA/DR preferred solution. To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement a standby disaster recovery environment for the application tier.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image20.png)
 
     To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement a standby disaster recovery environment for the application tier. 
 
