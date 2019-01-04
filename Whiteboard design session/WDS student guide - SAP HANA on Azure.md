@@ -9,7 +9,7 @@ SAP HANA on Azure
 </div>
 
 <div class="MCWHeader3">
-October 2018
+December 2018
 </div>
 
 
@@ -181,7 +181,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Infographic for common scenarios
 
-![Common solutions for the case study.](images/CommonScenarios.png "Common Scenarios")
+![Common solutions for the case study are represented by icons of virtual machines, virtual networks, VPN gateway, hybrid connectivity, load balancers, and storage, as well as SAP on Azure, with more information available via https://aka.ms/sapazure](images/CommonScenarios.png "Common Scenarios")
 
 ## Step 2: Design a proof of concept solution
 
