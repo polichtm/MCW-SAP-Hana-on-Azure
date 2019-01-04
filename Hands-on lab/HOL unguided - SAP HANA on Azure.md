@@ -149,6 +149,10 @@ After its completion, you will be able to provision Azure infrastructure compone
 
 In this hands-on lab, you are working with Contoso to develop a process of implementing a highly available deployment of SAP HANA on Azure virtual machines (VMs). Your tasks will include provisioning of Azure infrastructure components of the deployment, setting up a clustered pair of Azure Linux VMs running SUSE Linux Enterprise Server to support SAP HANA, installing SAP HANA instance on each of the Azure VMs, and configuring SAP HANA system replication between them.
 
+## Solution architecture
+
+![Solution architecture to setup SAP HANA on Azure consisting of a pair of Azure VMs configured with SAP HANA synchronous replication.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image1.png  "Solution architecture diagram")
+
 ## Requirements
 
 -   A Microsoft Azure subscription
