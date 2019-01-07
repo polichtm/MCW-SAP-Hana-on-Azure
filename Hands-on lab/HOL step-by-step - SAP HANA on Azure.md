@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-October 2018
+December 2018
 </div>
 
 
@@ -30,6 +30,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 - [SAP HANA on Azure hands-on lab step-by-step](#sap-hana-on-azure-hands-on-lab-step-by-step)
     - [Abstract and learning objectives](#abstract-and-learning-objectives)
     - [Overview](#overview)
+    - [Solution architecture](#solution-architecture)
     - [Requirements](#requirements)
     - [Help references](#help-references)
     - [Exercise 1: Provision Azure infrastructure](#exercise-1-provision-azure-infrastructure)
@@ -85,6 +86,10 @@ After its completion, you will be able to provision Azure infrastructure compone
 
 In this hands-on lab, you are working with Contoso to develop a process of implementing a highly available deployment of SAP HANA on Azure virtual machines (VMs). Your tasks will include the provisioning of Azure infrastructure components of the deployment, setting up a clustered pair of Azure Linux VMs running SUSE Linux Enterprise Server to support SAP HANA, installing SAP HANA instance on each of the Azure VMs, and configuring SAP HANA system replication between them.
 
+## Solution architecture
+
+![Solution architecture to setup SAP HANA on Azure consisting of a pair of Azure VMs configured with SAP HANA synchronous replication.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image1.png  "Solution architecture diagram")
+
 ## Requirements
 
 -   A Microsoft Azure subscription
@@ -129,11 +134,11 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
     -   Subscription: **The name of your Azure subscription**
 
-    -   Resource group: **The name of a new resource group: **hana-s03-RG**
+    -   Resource group: **The name of a new resource group: hana-s03-RG**
 
     -   Virtual machine name: **s03-hana-0**
 
-    -   Region: **The name of the Azure region you identified in the Before the Hands-on Lab section**
+    -   Region: **The name of the Azure region you identified in the Before the Hands-on Lab session**
 
     -   Availability Options: **No infrastructure redundancy required**
     
@@ -157,7 +162,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
     -   OS disk type: **Standard HDD**
     
-    -   Use unmanaged disks: **No**
+    -   Use managed disks (ADVANCED): **Yes**
 
 7.  On the **Create a virtual machine** blade, on the **Networking** tab, specify the following settings, and click **Next: Management >**:
 
@@ -171,8 +176,6 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
         -   Subnet address range: **172.16.0.0/24**
 
-    -   Subnet: **subnet-0**
-
     -   Public IP: **Accept the default value**
 
     -   Network security group: **Basic**
@@ -182,6 +185,8 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
     -   Select inbound ports: **RDP**
     
     -   Accelerated networking: **Off**
+    
+    -   Place this virtual machine behind an existing load balancing solution: **No**
     
 8.  On the **Create a virtual machine** blade, on the **Management** tab, specify the following settings, and click **Next: Guest config >**:   
 
@@ -223,6 +228,8 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
     -   Route table: **None**
 
     -   Service endpoints: **0 selected**
+    
+    -   Subnet delegation: **None**
 
 ### Task 3: Deploy an Azure Resource Manager QuickStart template
 
@@ -291,11 +298,11 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
         ![The ipconfig blade displays with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image4.png "ipconfig blade")
 
-6.  In the Azure portal, navigate back to the **hana-s03-RG** resource group blade, and click **s03-db-0**.
+6.  Wait for the change to complete. Next, in the Azure portal, navigate back to the **hana-s03-RG** resource group blade, and click **s03-db-0**.
 
 7.  On the **s03-db-0** blade, click **Configure** under the **DNS name** label.
 
-8.  In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-0** Azure VM from your lab computer (the name will be in the format ***custom-name-0.Azure-region.*cloudapp.azure.com**), and click **Save**.
+8.  In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-0** Azure VM from your lab computer (the name will be in the format *custom-name-0.Azure-region*.**cloudapp.azure.com**), and click **Save**.
 
     ![In the Configuration blade, Assignment is Dynamic, Idle timeout is 4 minutes, and DNS name label is set to a custom value](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image5.png "Configuration blade")
 
@@ -323,7 +330,7 @@ In this exercise, you will deploy Azure infrastructure prerequisites for impleme
 
 14. On the **s03-db-1** blade, click **Configure** under the **DNS name** label.
 
-15. In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-1** Azure VM from your lab computer (the name will be in the format ***custom-name-1.Azure-region.*cloudapp.azure.com**), and click **Save**.
+15. In the **DNS name label** text box, type a unique name you will use to connect to the **s03-db-1** Azure VM from your lab computer (the name will be in the format *custom-name-1.Azure-region*.**cloudapp.azure.com**), and click **Save**.
 
     ![In the Configuration blade, Assignment is Dynamic, Idle timeout is 4 minutes, and DNS name label is set to a custom value.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image7.png "Configuration blade")
 
@@ -429,7 +436,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
 
     ![The Automatic Changes screen displays, with OK selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image15.png "Automatic Changes screen")
 
-8.  Once the installation has completed, click **Finish**.
+8.  Once the installation has completed, click **Finish**, select **Accept**, and click **OK**.
 
     ![The Installation Report screen shows that installation was successfully finsihed, and the Finish button is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image16.png "Installation Report screen")
 
@@ -512,7 +519,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
      s03-db-0:~ # vi /etc/systemd/system.conf
     ```
 
-2. In the /etc/systemd/system.conf file, locate the DefaultTasksMax entry and configure it as follows (remove the leading # character, if present):
+2. In the /etc/systemd/system.conf file, locate the DefaultTasksMax entry and configure it as follows (remove the leading # character, if present), then save your change and close the file (by pressing the **Escape** key, typing `:wq!`, and pressing the **Enter** key):
 
     ```
      DefaultTasksMax=4096
@@ -530,7 +537,7 @@ In this exercise, you will configure operating system settings on Azure VMs runn
      s03-db-0:~ # vi /etc/sysctl.conf
     ```
 
-5. In the /etc/sysctl.conf file, create (or modify, if they already exist) the following entries:
+5. In the /etc/sysctl.conf file, add (or modify, if they already exist) the following entries, then save your change and close the file (by pressing the **Escape** key, typing `:wq!`, and pressing the **Enter** key):
 
     ```
      vm.dirty_bytes = 629145600
@@ -853,6 +860,13 @@ In this exercise, you will configure clustering on Azure VMs running Linux.
        No new SSH keys installed
        Configuring csync2
        Merging known_hosts
+       ! Failed to get known_hosts from s03-db-1: Exited with error code 255, Error output: Warning: Permanently added 's03-db-1,172.16.1.11' (ECDSA) to the list of known hosts.
+       parallax error: SSH requested a password. Please create SSH keys or
+       use the -A option to provide a password.
+       parallax error: SSH requested a password. Please create SSH keys or
+       use the -A option to provide a password.
+       Permission denied (publickey,password,keyboard-interactive).
+       
        Probing for new partitions...done
          Hawk cluster interface is now running. To see cluster status, open:
            https://172.16.1.11:7630/
@@ -994,8 +1008,6 @@ In this exercise, you will install SAP HANA.
 
     -   Enter Location of Log Volumes \[/hana/log/S03\]: **accept the default**
     
-    -   Restrict maximum memory allocation? \[n\]: **accept the default**
-
     -   Enter Certificate Host Name for Host \'s03-db-0\' \[s03-db-0\]: **accept the default**
 
     -   Enter SAP Host Agent User (sapadm) Password: **demo@pass123**
@@ -1388,7 +1400,7 @@ In this exercise, you will configure cluster framework.
 
     ![Fields in the Create blade display with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image26.png "Create blade")
 
-8.  On the list of apps, click the newly created app. On the app blade, note the value of **Application ID**. This will be referenced as the login id later in this exercise:
+8.  On the blade displaying the newly created app, note the value of **Application ID**. This will be referenced as the login id later in this exercise:
 
     ![The Application ID displays in the Registered Apps blade.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image27.png "Registered Apps blade")
 
@@ -1444,19 +1456,19 @@ In this exercise, you will configure cluster framework.
 
     ![In the Virtual Machine blade, Access control (IAM) is selected. ](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image31.png "Virtual Machine blade")
 
-3.  Click + **Add**.
+3.  Click + **Add role assignment**.
 
-4.  On the **Add permissions** blade, specify the following settings and click **Save**:
+4.  On the **Add role assignment** blade, specify the following settings and click **Save**:
 
     -   Role: **Linux Fence Agent Role**
 
-    -   Assign access to: **Azure AD user, group, or application**
+    -   Assign access to: **Azure AD user, group, or service principal**
 
     -   Select: **Stonith App**
 
-        ![Fields in the Add permissions blade are set to the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image32.png "Add permissions blade")
+        ![Fields in the Add role assignment blade are set to the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image32.png "Add role assignment blade")
 
-5.  Repeat steps 1 to 4 to assign the Stonith App the Owner role to the s03-db-1 Azure VM.
+5.  Repeat steps 1 to 4 to assign the Stonith App the Linux Fence Agent Role to the s03-db-1 Azure VM.
 
 ### Task 4: Configure the STONITH cluster device 
 
@@ -1466,7 +1478,14 @@ In this exercise, you will configure cluster framework.
      crm configure primitive rsc_st_azure stonith:fence_azure_arm \
      params subscriptionId="subscription_id" resourceGroup="hana-s03-RG" tenantId="tenant_id" login="login_id" passwd="password"
     ```
+   
+   > **Note**: Ignore the error messages listed below and any warning messages when running the crm commands
 
+    ```
+     ERROR: rsc_st_azure: required parameter username not defined
+     ERROR: rsc_st_azure: required parameter plug not defined
+    ```
+    
 2.  From the SSH session on s03-db-0, run the following:
 
     ```
@@ -1680,7 +1699,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
         ![The Connection Properties dialog box displays with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image48.png "Connection Properties dialog box")
 
-10. Once you successfully connected to **S03** as **SYSTEM**, click the **System Monitor** icon in the Systems toolbar.
+10. Once you successfully connected to **S03** as **SYSTEM**, select the **S03 (SYSTEM)** node and click the **System Monitor** icon in the Systems toolbar.
 
     ![On the Systems node toolbar, the System Monitor icon is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image49.png "Systems toolbar")
 
@@ -1688,6 +1707,8 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
     ![The SAP HANA Administration Console System Monitor tab displays the System Monitor status.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image50.png "SAP HANA Administration Console, System Monitor tab")
 
+   > **Note**: Proceed to the next step even if the **Operational State** is not reporting that all services are started, as long as the output of the `crm_mon -r` command you ran in Exercise 6, Task 6 was correct. It typically takes a few minutes before the operational status is fully identified.
+   
 12. Right click the **S03 (SYSTEM)** node and in the right click menu. Click **Configuration and Monitoring** followed by **Open Administration**.
 
     ![On the Systems node, S03 (System) is selected. From its right-click menu, Configuration and Monitoring is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image51.png "Systems node")
@@ -1728,7 +1749,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 
     ![The same page displays with the SAPHana resource details.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image58.png "SAPHana Resource details page")
 
-    Switch to the SSH session on s03-db-0, and stop the pacemaker service by running **service pacemaker stop** (This will trigger the failover of the **SAPHana** clustered resource.)
+    Switch to the SSH session on the node you identified in the previous step (**s03-db-0**), and stop the pacemaker service by running **service pacemaker stop** (This will trigger the failover of the **SAPHana** clustered resource.)
     
      ```
      s03-db-0:~ # service pacemaker stop
@@ -1795,7 +1816,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Waiting for 1 replies from the CRMd. OK
     ```
 
-9.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary:
+9.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary (you might need to wait a few minutes for the interface to refresh):
 
     ![On the Resources tab, the SAPHana line now displays a blue dot.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image63.png "Resources tab")
 
@@ -1814,7 +1835,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      INFO: Move constraint created for g_ip_S03_HDB00 to s03-db-0
     ```
 
-2.  Switch to the **SUSE Hawk Status** page, and note the **SAPHana** clustered resource on s03-db-1 failed to start as secondary. This is because **AUTOMATED\_REGISTER** property was set to **false** in Exercise 6 Task 6.
+2.  Switch to the **SUSE Hawk Status** page and note the **SAPHana** clustered resource on s03-db-1 failed to start as secondary. This is because **AUTOMATED\_REGISTER** property was set to **false** in Exercise 6 Task 6 (you might need to wait a few minutes for the interface to refresh).
 
     ![An Error message displays on the Status page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image64.png "Status page")
 
@@ -1857,6 +1878,8 @@ The template-based deployment of Azure components that form the SAP HANA infrast
 5.  From the **Constraints** page, delete the **cli-prefer-msl\_SAPHana\_S03\_HDB00** constraint.
 
     ![Under Operations, the Delete constraint icon is selected for cli-prefer-msl\_SAPHana\_S03\_HDB00.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image67.png "Delete constraint")
+    
+   > **Note**: Delete any other location constraints that might exist in the current configuration.
 
 6.  Switch to the SSH session on s03-db-1, and clean up the failed state by running **crm resource cleanup msl\_SAPHana\_S03\_HDB00 s03-db-1**:
 
@@ -1865,7 +1888,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Cleaned up rsc_SAPHana_S03_HDB00:0 on s03-db-1
     ```
 
-7.  Switch to the **SUSE Hawk Status** page, and verify the **SAPHana** clustered resource is operational on both nodes with s03-db-0 as the master.
+7.  Switch to the **SUSE Hawk Status** page, and verify the **SAPHana** clustered resource is operational on both nodes with s03-db-0 as the master (you might need to wait a few minutes for the interface to refresh).
 
     ![The Resources tab is selected on the Status page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image68.png "Status page")
 
@@ -1881,7 +1904,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      s03-db-0:~ # ifdown eth0
     ```
 
-2.  This will trigger restart of the Azure virtual machine, as you can verify it by checking its status from the Azure portal.
+2.  This will trigger restart of the Azure virtual machine, as you can verify it by checking its status from the Azure portal (you might need to wait a few minutes for the restart to be initiated).
 
     ![the Virtual machines blade displays with the status results for three virtual machines. One is updating, and two are running.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image70.png "Virtual machines blade")
 
@@ -1904,7 +1927,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
     sapcontrol --nr 00 --function StopWait 600 10 (stop the HANA instance in case it is running)
     hdbnsutil -sr_register --remoteHost=s03-db-1 --remoteInstance=00 --replicationMode=sync --name=SITE1 (register the local instance as secondary)
     exit(switch back to the root)
-    crm resource cleanup msl_SAPHana_S03_HDB00 s03-db-0** (clean up the failed state)
+    crm resource cleanup msl_SAPHana_S03_HDB00 s03-db-0 (clean up the failed state)
     
      s03-db-0:~ # su - s03adm
      s03adm@s03-db-0:/usr/sap/S03/HDB00> sapcontrol -nr 00 -function StopWait 600 10
@@ -1930,7 +1953,7 @@ The template-based deployment of Azure components that form the SAP HANA infrast
      Cleaned up rsc_SAPHana_S03_HDB00:0 on s03-db-0
     ```
     
-7.  Switch to the **SUSE Hawk Status** page, and note that the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary.
+7.  Switch to the **SUSE Hawk Status** page, and note that the **SAPHana** clustered resource is operational on both s03-db-0 and s03-db-1 with s03-db-1 as the primary (you might need to wait a few minutes for the interface to refresh).
 
     ![The Resources tab shows that the SAPHana resource is now running.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image75.png "Resources tab")
 
