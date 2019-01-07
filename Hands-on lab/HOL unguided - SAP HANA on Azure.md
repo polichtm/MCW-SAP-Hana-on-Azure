@@ -29,6 +29,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 - [SAP HANA on Azure hands-on lab unguided](#sap-hana-on-azure-hands-on-lab-unguided)
     - [Abstract and learning objectives](#abstract-and-learning-objectives)
     - [Overview](#overview)
+    - [Solution architecture](#solution-architecture)
     - [Requirements](#requirements)
     - [Exercise 1: Provision Azure infrastructure](#exercise-1-provision-azure-infrastructure)
         - [Help references](#help-references)
