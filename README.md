@@ -16,7 +16,7 @@ At the end of this workshop you will be able to better design and deploy SAP HAN
 
 ### Whiteboard design session
 
-In this Whiteboard design session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
+In this whiteboard design session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
 
 At the end of this whiteboard design session you will be able to better design and deploy SAP HANA on Azure.
 
