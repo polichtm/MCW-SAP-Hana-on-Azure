@@ -14,9 +14,9 @@ In this workshop, you will learn how to provision a highly available deployment 
 
 At the end of this workshop you will be able to better design and deploy SAP HANA on Azure. After its completion, you will be able to provision Azure infrastructure components necessary to support highly available SAP HANA deployments, configure Azure virtual machines to support highly available SAP HANA installations, implement SUSE Linux Enterprise clustering, install SAP HANA, configure SAP HANA system replication, and test high availability scenarios.
 
-### Whiteboard Design Session
+### Whiteboard design session
 
-In this Whiteboard Design Session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
+In this Whiteboard design session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
 
 At the end of this whiteboard design session you will be able to better design and deploy SAP HANA on Azure.
 
