@@ -33,23 +33,23 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Solution architecture](#solution-architecture)
     - [Requirements](#requirements)
     - [Help references](#help-references)
-    - [Exercise 1: Deploy a single node HANA instance by using Terraform and Ansible](#exercise-1-deploy-single-node-hana-instance)
+    - [Exercise 1: Deploy a single node HANA instance by using Terraform and Ansible](#exercise-1-deploy-a-single-node-hana-instance)
         - [Task 1: Upload media files to Azure Storage](#task-1-upload-media-files-to-azure-storage)
-        - [Task 2: Prepare for the single node HANA deployment](#task-2-prepare-for-single-node-hana-deployment)
-        - [Task 3: Perform a single node HANA deployment](#task-3-perform-single-node-hana-deployment)
-    - [Exercise 2: Validate the deployment of the single node HANA instance](#exercise-2-validate-the-single-node-hana-deployment)
-        - [Task 1: Connect to HANA instance by using SAP HANA Studio](#task-1-connect-to-hana-instance-by-using-sap-hana-studio)
-        - [Task 2: Remove the single node HANA deployment](#task-2-remove-single-node-hana-deployment)
-    - [Exercise 3: Deploy a high-availability HANA instance by using Terraform and Ansible](#exercise-3-deploy-ha-hana-instance)
-        - [Task 1: Prepare for the high-availability HANA deployment](#task-1-prepare-for-ha-hana-deployment)
-        - [Task 2: Perform a high-availability HANA deployment](#task-2-perform-ha-hana-deployment)
-    - [Exercise 4: Validate the deployment of highly-available HANA instance](#exercise-4-validate-the-ha-hana-deployment)
-        - [Task 1: Connect to HANA cluster by using SAP HANA Studio](#task-1-connect-to-hana-cluster-by-using-sap-hana-studio)
-        - [Task 2: Connect to HANA cluster by using Hawk](#task-2-connect-to-hana-cluster-by-using-hawk)
-        - [Task 3: Test a manual failover](#task-3-test-a-manual-failover)
+        - [Task 2: Prepare for a single node HANA deployment](#task-2-prepare-for-a-single-node-hana-deployment)
+        - [Task 3: Perform the single node HANA deployment](#task-3-perform-the-single-node-hana-deployment)
+    - [Exercise 2: Validate and remove the single node HANA deployment](#exercise-2-validate-and-remove-the-single-node-hana-deployment)
+        - [Task 1: Connect to the single node HANA instance by using SAP HANA Studio](#task-1-connect-to-the-single-node-hana-instance-by-using-sap-hana-studio)
+        - [Task 2: Remove the single node HANA deployment](#task-2-remove-the-single-node-hana-deployment)
+    - [Exercise 3: Deploy highly-available HANA instances by using Terraform and Ansible](#exercise-3-deploy-ha-hana-instances)
+        - [Task 1: Prepare for a highly-available HANA deployment](#task-1-prepare-for-ha-hana-deployment)
+        - [Task 2: Perform the highly-available HANA deployment](#task-2-perform-ha-hana-deployment)
+    - [Exercise 4: Validate and remove the deployment of the highly-available HANA instances](#exercise-4-validate-and-remove-the-ha-hana-deployment)
+        - [Task 1: Connect to the highly-available HANA instances by using SAP HANA Studio](#task-1-connect-to-ha-hana-instances-by-using-sap-hana-studio)
+        - [Task 2: Connect to the highly-available HANA instances by using Hawk](#task-2-connect-to-ha-hana-instances-by-using-hawk)
+        - [Task 3: Test a failover](#task-3-test-a-failover)
         - [Task 4: Test a migration](#task-4-test-a-migration)
         - [Task 5: Test fencing](#task-5-test-fencing)
-        - [Task 6: Remove the high-availability HANA deployment](#task-6-remove-ha-hana-deployment)
+        - [Task 6: Remove the highly-available HANA deployment](#task-6-remove-ha-hana-deployment)
     - [After the Hands-on lab](#after-the-hands-on-lab)
 
 
@@ -61,7 +61,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 In this hands-on lab, you will step through the implementation of a single node and highly available SAP HANA deployments on Microsoft Azure virtual machines running SUSE Linux Enterprise Server. 
 
-After its completion, you will be able to perform single node and highly available SAP HANA deployments by using Terraform and Ansible, valiadate both types of deployments, and test failover scenarios.
+After its completion, you will be able to perform single node and highly available SAP HANA deployments by using Terraform and Ansible, valiadate both types of deployments, test failover scenarios, and remove the deployed resources.
 
 ## Overview
 
@@ -70,11 +70,11 @@ In this hands-on lab, you are working with Contoso to develop a process of imple
 
 ## Solution architecture
 
-HANA Single-Node Instance
+HANA single node deployment
 
 ![Solution architecture to setup SAP HANA on Azure consisting of a single node HANA instance.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image1.png  "Single-node HANA instance solution architecture diagram")
 
-HANA high-availability pair
+HANA highly available deployment
 
 ![Solution architecture to setup SAP HANA on Azure consisting of a highly-available HANA instance.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image2.png  "Highly available HANA instance solution architecture diagram")
 
@@ -128,8 +128,6 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
     ![In the Azure Portal, the Cloud Shell icon is selected.](images/Setup/image2.png "Azure Portal")
 
-1.  If prompted, in the **Welcome to Azure Cloud Shell** window, click **Bash (Linux)**.
-
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create a resource group that will host a storage account containing media files, where `location` designates the target Azure region that you intend to use for this lab (e.g. `eastus`):
 
     ```
@@ -150,7 +148,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     az storage account create --location $LOCATION --resource-group $MEDIA_RESOURCE_GROUP_NAME --name $MEDIA_STORAGE_ACCOUNT_NAME --kind Storage --sku Standard_LRS
     ``` 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve one of the keys of the newly created storage account:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the first key of the newly created storage account:
 
     ```
     MEDIA_STORAGE_ACCOUNT_KEY=$(az storage account keys list --account-name $MEDIA_STORAGE_ACCOUNT_NAME --resource-group $MEDIA_RESOURCE_GROUP_NAME --query '[0].[value]' --output tsv)
@@ -167,11 +165,11 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  From the **Upload blob**, upload the HANA media files you downloaded from **SAP Software Downloads** at the beginning of this task.
 
 
-### Task 2: Prepare for the single node HANA deployment
+### Task 2: Prepare for a single node HANA deployment
 
 1.  If needed, in the Azure portal, restart the Cloud Shell. 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to generate the SSH key pair that will be used to secure access to Azure VMs deployed in this lab:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to generate the SSH key pair that will be used to secure access to Linux Azure VMs deployed in this lab:
 
     ```
     ssh-keygen -t rsa -b 2048
@@ -226,13 +224,13 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to clone the repository hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    git clone https://github.com/Azure/sap-hana.git
+    git clone https://github.com/Microsoft/MCW-SAP-HANA-on-Azure
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd ~/sap-hana/deploy/vm/modules/single_node_hana/
+    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the previous task:
@@ -249,7 +247,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     az group create --location $LOCATION --name $HANA_V1_SN_RESOURCE_GROUP_NAME
     ``` 
 
-   > **Note**: If needed, this step can be automated as well. Terraform (as well as Azure Resource Manager) templates can be configured to create resource groups.
+    > **Note**: If needed, this step can be automated as well. Terraform (as well as Azure Resource Manager) templates can be configured to create resource groups.
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to generate a pseudo-random name that will be used as a prefix for DNS names assigned to public IP address resources deployed in this task:
 
@@ -257,7 +255,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     DOMAIN_NAME=hanav1sn$RANDOM
     ``` 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the Azure VM size to be used to host the single node HANA instance deployed in this task:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the size of the Azure VM to be used to host the single node HANA instance deployed in this task:
 
     ```
     VM_SIZE='Standard_E8s_v3'
@@ -342,21 +340,21 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     sed -i "s/VAR_WINDOWS_ADMIN_PASSWORD/$WINDOWS_ADMIN_PASSWORD/" ./terraform.tfvars
     ```
 
-### Task 3: Perform a single node HANA deployment
+### Task 3: Perform the single node HANA deployment
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to initialize Terraform modules and provider plugins necessary to perform Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to initialize Terraform modules and provider plugins necessary to perform Terraform-based single-node HANA deployment:
 
     ```
     terraform init
     ```
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based single-node HANA deployment:
 
     ```
     terraform plan
     ```
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to initiate Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to initiate Terraform-based single-node HANA deployment:
 
     ```
     terraform apply -auto-approve
@@ -365,14 +363,14 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
    > **Note**: The deployment takes about 40 minutes to complete. 
 
 
-## Exercise 2: Validate the deployment of the single node HANA instance
+## Exercise 2: Validate and remove the single node HANA deployment
 
 Duration: 20 minutes
 
-In this exercise, you will validate the deployment of the single-node HANA instance you performed in the previous exercise by using the Windows bastion host. Once you successfully validate the deployment, you will remove all of its resources.
+In this exercise, you will validate the single-node HANA deployment you performed in the previous exercise by using the Windows bastion host. Once you successfully validate the deployment, you will remove all of its resources.
 
 
-### Task 1: Connect to HANA instance by using SAP HANA Studio
+### Task 1: Connect to the single node HANA instance by using SAP HANA Studio
 
 1.  From the lab computer, in the Azure portal, navigate to the blade of the **hn1-win-bastion** Azure VM operating as the Windows bastion host and initiate a Remote Desktop session. When prompted, sign in with the following credentials:
 
@@ -387,9 +385,10 @@ In this exercise, you will validate the deployment of the single-node HANA insta
 1.  Add the following entries to the host file, save your changes, and close the file:
 
     ```
-    10.0.0.6	hn1-hdb0
-        
+    10.0.0.6	hn1-hdb0        
     ```
+
+    > **Note**: `10.0.0.6` is the private IP address assigned to the network interface of the Azure VM hosting the HANA instance.
 
 1.  Within the Remote Desktop session, start SAP HANA Studio Administration.
 
@@ -443,12 +442,12 @@ In this exercise, you will validate the deployment of the single-node HANA insta
 1.  Switch to the lab computer and, in the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the single node HANA deployment:
 
     ```
-    cd ~/sap-hana/deploy/vm/modules/single_node_hana/
+    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
     ``` 
 
-   > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
+    > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based single-node HANA deployment:
 
     ```
     terraform destroy
@@ -459,11 +458,11 @@ In this exercise, you will validate the deployment of the single-node HANA insta
    > **Note**: Do not wait for the completion of the removal but instead proceed to the next exercise.
 
 
-## Exercise 3: Deploy a high-availability HANA instance by using Terraform and Ansible
+## Exercise 3: Deploy highly-available HANA instances by using Terraform and Ansible
 
 Duration: 90 minutes
 
-In this exercise, you will implement a highly-available deployment of SAP HANA on Azure virtual machines (VMs). Following initial configuration of Terraform-based templates, the deployment will be fully automated, including installation of all necessary SAP HANA components. 
+In this exercise, you will implement a highly-available deployment of SAP HANA on Azure virtual machines (VMs). Following initial configuration of Terraform configuration files, the deployment will be fully automated, including installation of all necessary SAP HANA components. 
 
 You will leverage a number of tasks that you already performed earlier in this lab, including:
 
@@ -471,17 +470,17 @@ You will leverage a number of tasks that you already performed earlier in this l
 
     -   SSH key pair you generated in the second task of the first exercise
 
-    -   the clone of the Git repository hosting the lab files
+    -   the clone of the Git repository hosting the lab files created in the second task of the first exercise
 
 
-### Task 1: Prepare for the high-availability HANA deployment
+### Task 1: Prepare for a highly-available HANA deployment
 
 1.  If needed, in the Azure portal, start the Cloud Shell. 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd ~/sap-hana/deploy/vm/modules/ha_pair/
+    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
@@ -490,7 +489,21 @@ You will leverage a number of tasks that you already performed earlier in this l
     HANA_SP=$(az ad sp create-for-rbac --name hanav1hasp01)
     ``` 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the previous task:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the variables that that will be used during deployment, representing, respectively, the identifier of the Azure subscription and its Azure AD tenant, as well as the application identifier and the corresponding password of the service principal you created in the previous step:
+
+    ```
+    export AZURE_SUBSCRIPTION_ID=$(az account show | jq -r '.id')
+    export AZURE_TENANT=$(az account show | jq -r '.tenantId')
+    export AZURE_CLIENT_ID=$(echo $HANA_SP | jq -r '.appId')
+    export AZURE_SECRET=$(echo $HANA_SP | jq -r '.password')
+
+    export ARM_SUBSCRIPTION_ID=$(az account show | jq -r '.id')
+    export ARM_TENANT_ID=$(az account show | jq -r '.tenantId')
+    export ARM_CLIENT_ID=$(echo $HANA_SP | jq -r '.appId')
+    export ARM_CLIENT_SECRET=$(echo $HANA_SP | jq -r '.password')
+    ``` 
+
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the first task of the first exercise of this lab:
 
     ```
     MEDIA_RESOURCE_GROUP_NAME='hanaMedia-RG'
@@ -510,7 +523,7 @@ You will leverage a number of tasks that you already performed earlier in this l
     DOMAIN_NAME=hanav1ha$RANDOM
     ``` 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the Azure VM size to be used to host the single node HANA instance deployed in this task:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the size of the Azure VMs to be used to host the highly available HANA instances deployed in this task:
 
     ```
     VM_SIZE='Standard_E8s_v3'
@@ -598,15 +611,15 @@ You will leverage a number of tasks that you already performed earlier in this l
     ```
 
 
-### Task 2: Perform a high-availability HANA deployment
+### Task 2: Perform the highly-available HANA deployment
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based highly-available HANA deployment:
 
     ```
     terraform plan
     ```
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to initiate Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to initiate Terraform-based highly-available HANA deployment:
 
     ```
     terraform apply -auto-approve
@@ -615,14 +628,14 @@ You will leverage a number of tasks that you already performed earlier in this l
    > **Note**: The deployment takes about 60 minutes to complete. 
 
 
-## Exercise 4: Validate the deployment of highly-available HANA instance
+## Exercise 4: Validate and remove the deployment of the highly-available HANA instances
 
 Duration: 60 minutes
 
 In this exercise, you will validate the deployment of the highly-available HANA instance you performed in the previous exercise by using the Windows bastion host. Once you successfully validate the deployment, you will remove all of its resources.
 
 
-### Task 1: Connect to HANA cluster by using SAP HANA Studio
+### Task 1: Connect to the highly-available HANA instances by using SAP HANA Studio
 
 1.  From the lab computer, in the Azure portal, navigate to the blade of the **hn1-win-bastion** Azure VM operating as the Windows bastion host and initiate a Remote Desktop session. When prompted, sign in with the following credentials:
 
@@ -640,9 +653,10 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Add the following entries to the host file, save your changes, and close the file:
 
     ```
-    10.0.0.13	hadb
-        
+    10.0.0.13	hadb        
     ```
+
+    > **Note**: `10.0.0.13` is the IP address assigned to the front end of the Azure Internal Load Balancer that distributes network traffic to the Azure VMs hosting highly-available HANA instances.
 
 1.  Within the Remote Desktop session to hn1-win-bastion, start SAP HANA Studio.
 
@@ -686,7 +700,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![The SAP HANA Administration Console System Monitor tab displays the System Monitor status.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image14.png "SAP HANA Administration Console, System Monitor tab")
 
-   > **Note**: It typically takes a few minutes before the operational state is fully identified.
+    > **Note**: It typically takes a few minutes before the operational state is fully identified.
    
 1.  Right click the **S03 (SYSTEM)** node and in the right click menu. Click **Configuration and Monitoring** followed by **Open Administration**.
 
@@ -701,7 +715,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
     ![On the SAP HANA Administration Console Alerts tab, no operational issues display.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image17.png "SAP HANA Administration Console, Alerts tab")
 
 
-### Task 2: Connect to HANA cluster by using Hawk
+### Task 2: Connect to the highly-available HANA instances by using Hawk
 
 1.  From the lab computer, in the Azure portal, navigate to the **Virtual machines** blade. 
 
@@ -760,7 +774,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
     ![A page displays with the SAPHana resource details.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image21.png "SAPHana resource details page")
 
 
-### Task 3: Test a manual failover
+### Task 3: Test a failover
 
 1.  Within the the Remote Desktop session to **hn1-win-bastion** Azure VM, in the Internet Explorer window displaying the **SUSE Hawk** page, from the **msl\_SAPHana\_HN1\_HDB01** pane, identify the system currently serving the master role. Close the **msl\_SAPHana\_HN1\_HDB01** pane.
 
@@ -770,7 +784,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     > **Note**: You might need to restart the Bash session and reestablish the SSH session. If so, follow the instructions in the previous task.
 
-1.  Within the SSH session, initiate the manual failover by running the following:
+1.  Within the SSH session, initiate a failover by running the following:
 
     ```
     sudo service pacemaker stop
@@ -792,7 +806,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     > **Note**: You might need to wait a few minutes before the operational state is identified.
 
-1.  Switch to the lab computer, in the Azure portal, navigate to the SSH session to s03-db-0 in Cloud Shell, and start the pacemaker service by running the following:
+1.  Switch to the lab computer, in the Azure portal and, in the SSH session to s03-db-0 in Cloud Shell, start the pacemaker service by running the following:
 
     ```
     sudo service pacemaker start
@@ -823,7 +837,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![In the Migrate msl_SAPHana_HN1_HDB01 dialog box, the entry hn1-hdb0 is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image27.png "Resources tab")
 
-1.  On the **SUSE Hawk Status** page, note that the status of **SAPHana** clustered resource is listed with a question mark and a couple of chain links representing constraints. 
+1.  On the **SUSE Hawk Status** page, note that the status of **SAPHana** clustered resource is listed with a question mark and a couple of chain link icons representing constraints. 
 
     ![On the Resources tab, the SAPHana line now displays a question mark and two constraints symbols.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image28.png "Resources tab")
 
@@ -876,7 +890,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![In the Configuration and Monitoring view, on the System Repliation sub-tab of the Landscape tab, details display active replication status for SAP HANA.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image38.png "SAP HANA Administration Console, Landscape tab")
 
-1.  In **SAP HANA Administration Console**, switch to the Overview tab in the **Configuration and Monitoring** view. Note that SAP HANA is running at this point on the **hn1-hdb0** node and is fully operational.
+1.  In **SAP HANA Administration Console**, switch to the Overview tab in the **Configuration and Monitoring** view. Note that SAP HANA continues running 	on the **hn1-hdb1** node and is fully operational.
 
     ![In the Configuration and Monitoring view, on the Overview tab, details display for the hn1-hdb0 node.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image39.png "SAP HANA Administration Console, Overview tab")
 
@@ -886,12 +900,12 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Switch to the lab computer and, in the first Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the highly-available HANA deployment:
 
     ```
-    cd ~/sap-hana/deploy/vm/modules/ha_pair/
+    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
     ``` 
 
-   > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
+    > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based deployment of a single-node HANA instance:
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based highly-available HANA deployment:
 
     ```
     terraform destroy
@@ -899,7 +913,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 1.  When prompted, type **yes** and press the Enter key to continue with the deployment. 
 
-   > **Note**: Do not wait for the completion of the removal but instead proceed to the next exercise.
+   > **Note**: Wait for the completion of the removal before you proceed to the next task.
 
 Make sure to complete all After the Hands-on lab steps below.
 
@@ -922,4 +936,5 @@ After completing the hands-on lab, you will remove the resource group and any re
     az group delete --name hanav1sn-RG --no-wait --yes
     az group delete --name hanav1ha-RG --no-wait --yes
     az group delete --name hanaMedia-RG --no-wait --yes
+    rm ~/MCW-SAP-HANA-on-Azure -r -f
     ```

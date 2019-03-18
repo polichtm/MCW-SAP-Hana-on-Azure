@@ -31,7 +31,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - [SAP HANA on Azure before the hands-on-lab setup guide](#sap-hana-on-azure-before-the-hands-on-lab-setup-guide)
     - [Requirements](#requirements)
     - [Before the hands-on lab](#before-the-hands-on-lab)
-        - [Task 1: Validate the owner role membership in the Azure subscription](#task-1-validate-the-owner-role-membership-in-the-azure-subscription)
+        - [Task 1: Validate the owner role membership in the target Azure subscription](#task-1-validate-the-owner-role-membership-in-the-target-azure-subscription)
         - [Task 2: Validate availability of the SUSE Linux Enterprise Server image](#task-2-validate-availability-of-the-suse-linux-enterprise-server-image)
         - [Task 3: Validate sufficient number of vCPU cores](#task-3-validate-sufficient-number-of-vcpu-cores)
 
@@ -59,7 +59,7 @@ To complete this lab, you must verify your account has sufficient permissions to
 
 ### Task 1: Validate the owner role membership in the Azure subscription
 
-1.  Login to <http://portal.azure.com>, click on **All services** and, in the service menu, click **Subscriptions**.
+1.  Login to <http://portal.azure.com>, click on **All services** and, in the list of services, click **Subscriptions**.
 
 1.  On the **Subscriptions** blade, click the name of the subscription you intend to use for this lab.
 
@@ -77,18 +77,18 @@ To complete this lab, you must verify your account has sufficient permissions to
 
 1.  If prompted, in the **You have no storage mounted** window, click **Create storage**.
 
-1.  Once the storage account gets provisioned, at the Bash prompt, run the following: where ***location*** designates the target Azure region that you intend to use for this lab (e.g. ***eastus***), and verify the output includes an existing image:
+1.  Once the storage account gets provisioned, at the Bash prompt, run the following: where `<Azure_region>` designates the target Azure region that you intend to use for this lab (e.g. `eastus`), and verify the output includes an existing image:
 
     ```
-    az vm image list --location location --publisher SUSE --offer SLES-SAP --sku 12-SP3 --all --output table
+    az vm image list --location <Azure_region> --publisher SUSE --offer SLES-SAP --sku 12-SP3 --all --output table
     ``` 
      
 ### Task 3: Validate sufficient number of vCPU cores
 
-1.  In the Azure portal at <http://portal.azure.com>, in the **Cloud Shell**, at the Bash prompt, run the following: where ***location*** designates the target Azure region that you intend to use for this lab (e.g. ***eastus***):
+1.  In the Azure portal at <http://portal.azure.com>, in the **Cloud Shell**, at the Bash prompt, run the following: where `<Azure_region>` designates the target Azure region that you intend to use for this lab (e.g. `eastus`):
 
     ```
-    az vm list-usage --location location" --query "[?localName == 'Standard DSv2 Family vCPUs' || localName == 'Standard ESv3 Family vCPUs'].{VMFamily:localName, currentValue:currentValue, Limit:limit}" --output table
+    az vm list-usage --location <Azure_region> --query "[?localName == 'Standard DSv2 Family vCPUs' || localName == 'Standard ESv3 Family vCPUs'].{VMFamily:localName, currentValue:currentValue, Limit:limit}" --output table
     ``` 
 
 1.  Review the output of the command executed in the previous step and ensure that you have at least 6 available vCPUs in the **Standard DSv2 Family** VM family and at least 24 available vCPUs in the **Standard ESv3 Family** in the target Azure region.
@@ -121,7 +121,7 @@ To complete this lab, you must verify your account has sufficient permissions to
 
 1.  On the **Contact Information** blade, provide your contact details and click **Create**
 
-   > **Note**: Quota increase requests are typically handled during the same business day.
+   > **Note**: Quota increase requests are typically completed during the same business day.
 
 
 You should follow all steps provided *before* performing the Hands-on lab.
