@@ -1,4 +1,4 @@
-![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+﻿![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 
 <div class="MCWHeader1">
@@ -10,7 +10,7 @@ SAP HANA on Azure
 </div>
 
 <div class="MCWHeader3">
-December 2018
+March 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -188,25 +188,28 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 1.  Meet your table participants and trainer.
 
-2.  Read all of the directions for steps 1-3 in the student guide.
+1.  Read all of the directions for steps 1-3 in the student guide.
 
-3.  As a table team, review the following customer case study.
+1.  As a table team, review the following customer case study.
 
 ### Customer situation
 
 Contoso Group is a global pharmaceutical company with its headquarters based in Boston, US.
 
-Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytics systems on the HP-UX/Oracle platform.
+Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytics systems on the HP-UX/Oracle platform. 
 
-Contoso Leadership and Planning Groups wants to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud.
+Contoso Leadership and Planning Groups wants to significantly reduce server and storage hardware in their own datacenters to minimize IT related costs. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud. Contoso is also considering transitioning to SAP HANA 2.0 with a longer term objective of deploying S/4 HANA and BW/4 HANA.
 
-Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY19), and migrate ECC in Q4 of CY19. The multi-stage approach is supposed to minimize potential migration risks.
+Contoso has already a number of their non-SAP systems migrated to Azure. Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY20), and migrate ECC in Q4 of CY20. The multi-stage approach is supposed to minimize potential migration risks.
 
 Considering that Contoso management team often uses BW to support their management decisions, the systems should be highly available, and their performance must be predictable and consistent. In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency of the migrated environment in case the primary region hosting the new deployment becomes unavailable.
 
 As Andrew Cross, CIO of Contoso Group emphasized this point by stating "Our operational dependencies on SAP applications force us to seek reasonably priced availability and disaster recovery capabilities for our production SAP HANA deployments."
 
+Contoso also wants to dramatically simplify the process of provisioning Azure resources, as well as installation and configuration of SAP HANA software components. Contoso IT has been relying on Ansible to manage its on-premises environment and, with the cloud migration plans, it started evaluating the use of Terraform to automate on-premises and cloud-based deployments. 
+
 Before migrating the production environment, Contoso wants to test its new deployment approach by provisioning training, development, test, and UAT environments in Azure.
+
 ### Customer needs 
 
 -   Highly responsive systems with low network latency
@@ -221,13 +224,15 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 -   Access from HANA-based applications
 
+-   Automated provisioning
+
 -   Minimized cost
 
 1.  Design scope:
 
     -   BW migration to HANA in Azure VMs
 
-        -   Go-live date: March 2019
+        -   Go-live date: March 2020
 
         -   Current BW (ABAP Unicode) on-premises with HP-UX/Oracle and application layer on Linux
 
@@ -235,13 +240,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
             -   Use 1-year Reserved VM Instance option for Production VMs
 
-    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2019
+    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2020
 
         -   Data is transferred from ERP (on-premises) to BW (in Cloud) every hour
 
     -   (Option) Need to start to prepare for ERP migration to Cloud
 
-2.  Target environment:
+1.  Target environment:
 
     -   Sizing
 
@@ -263,13 +268,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Uptime -- Prod: 24x7, 744 hours/month, QA - 50 hours/month, DEV/Test - 200 hours/month
 
-3.  High availability and disaster recovery:
+1.  High availability and disaster recovery:
 
     -   Availability
 
-        -   Both HA and Non-HA options need to be proposed.
+        -   Both HA only and HA with DR options need to be proposed.
 
-        -   With HA option, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day.
+        -   In regard to HA, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day.
 
     -   Backup
 
@@ -287,7 +292,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
         -   Monthly HANA DB full backup for 1 year, annual for 3 years
 
-4.  End user access:
+1.  End user access:
 
     -   User locations -- 300 from US, 50 LATAM, 50 Europe, 30 Asia - all intranet
 
@@ -297,13 +302,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Customer objections 
 
-1.  ECC remains on-premises until Dec CY19. How can we maintain integrations between ECC and BW?
+1.  ECC remains on-premises until Dec CY20. How can we maintain integrations between ECC and BW?
 
-2.  How much does Azure cost? Give us a few options (e.g. HA and non-HA, DR and non-DR).
+1.  How much does Azure cost? Give us two options (HA only and HA with DR).
 
-3.  Do I have to pay for virtual machines when they are stopped?
+1.  Do I have to pay for virtual machines when they are stopped?
 
-4.  Can I automate the shutdown of virtual machines at specific times of day?
+1.  Can I automate the shutdown of virtual machines at specific times of day?
 
 ### Infographic for common scenarios
 
@@ -323,7 +328,7 @@ Directions:  With all participants at your table, answer the following questions
 
 1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
-2.  What customer business needs do you need to address with your solution?
+1.  What customer business needs do you need to address with your solution?
 
 **Design**
 
@@ -333,31 +338,31 @@ Directions: With all participants at your table, respond to the following questi
 
 1.  What should be the Azure region(s) where the solution will be deployed?
 
-2.  Should the customer use a 2-tier or 3-tier architecture for its SAP deployment?
+1.  Should the customer use a 2-tier or 3-tier architecture for its SAP deployment?
 
-3.  How would you ensure that the high-availability and disaster recovery requirements are satisfied?
+1.  How would you ensure that the high-availability and disaster recovery requirements are satisfied?
 
 *Network design:*
 
 1.  What should be the hybrid connectivity option?
 
-2.  What should be the Azure virtual network design in order to maximize security?
+1.  What should be the Azure virtual network design in order to maximize security?
 
-*SAP deployment architecture:*
+*SAP deployment architecture and methodology:*
 
 1.  What will be the configuration of the configuration of the application and database components of your solution?
 
-2.  What Azure VM sizes do you intend to use?
+1.  What Azure VM sizes do you intend to use?
 
-3.  What other Azure resources will be part of your solution?
+1.  What other Azure resources will be part of your solution?
+
+1.  What should be the SAP deployment methodology?
 
 *Solution cost:*
 
-1.  What is the estimated cost of your solution without HA/DR?
+1.  What is the estimated cost of your solution with HA?
 
-2.  What is the estimated cost of your solution with HA?
-
-3.  What is the estimated cost of your solution with HA/DR?
+1.  What is the estimated cost of your solution with HA/DR?
 
 **Prepare**
 
@@ -365,9 +370,9 @@ Directions: With all participants at your table:
 
 1.  Identify any customer needs that are not addressed with the proposed solution.
 
-2.  Identify the benefits of your solution.
+1.  Identify the benefits of your solution.
 
-3.  Determine how you will respond to the customer's objections.
+1.  Determine how you will respond to the customer's objections.
 
 Prepare a 15-minute chalk-talk style presentation to the customer.
 
@@ -385,17 +390,17 @@ Directions:
 
 1.  Pair with another table.
 
-2.  One table is the Microsoft team and the other table is the customer.
+1.  One table is the Microsoft team and the other table is the customer.
 
-3.  The Microsoft team presents their proposed solution to the customer.
+1.  The Microsoft team presents their proposed solution to the customer.
 
-4.  The customer makes one of the objections from the list of objections.
+1.  The customer makes one of the objections from the list of objections.
 
-5.  The Microsoft team responds to the objection.
+1.  The Microsoft team responds to the objection.
 
-6.  The customer team gives feedback to the Microsoft team.
+1.  The customer team gives feedback to the Microsoft team.
 
-7.  Tables switch roles and repeat Steps 2-6.
+1.  Tables switch roles and repeat Steps 2-6.
 
 ##  Wrap-up 
 
@@ -407,9 +412,10 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 |    |            |
 |----------|:-------------:|
 | **Description** | **Links** |
-| High Availability of SAP HANA on Azure Virtual Machines (VMs) | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/sap-hana-high-availability/> |
-| HANA + NetWeaver HA on Azure VM | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/high-availability-guide-suse> |
-| Scripted HANA deployment | <https://github.com/AzureCAT-GSI/SAP-HANA-ARM> |
+| High availability of SAP HANA on Azure VMs on SUSE Linux Enterprise Server | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/sap-hana-high-availability/> |
+| High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/high-availability-guide-suse> |
+| Automated SAP Deployments in Azure Cloud | <https://github.com/Azure/sap-hana> |
+| 1928533 - SAP Applications on Azure: Supported Products and Azure VM types | <https://launchpad.support.sap.com/#/notes/1928533> |
 
 # SAP HANA on Azure whiteboard design session trainer guide
 
@@ -470,7 +476,7 @@ Business Unit IT / Developers (Director of SAP Business Analysts, Director of SA
 Central IT (VP of IT Operations)
 
 -   Reports into CIO and responsible for operating datacenter
- q
+
 -   Concerned about shadow IT created issues: security/compliance, server sprawl, and lack of control
 
 ## Preferred solution
@@ -479,79 +485,89 @@ Central IT (VP of IT Operations)
 
 1.  **Design**: What should be the Azure region(s) where the solution should be deployed?
 
-    **Solution**: The first option of our solution delivers core functionality without SAP HANA high availability and disaster recovery capabilities. It provides cross premises connectivity, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. To enhance our design, we offer two additional options that include, incrementally, high availability and disaster recovery provisions. The latter of the two involves implementation of a virtual network in the West US Azure region and leverages MPLS-based ExpressRoute to facilitate cross-region and cross-premises connectivity. 
-    
-2.  **Design**: Should the customer use a 2-tier or 3-tier architecture for its SAP deployment?
+    **Solution**: Our solution consists of two options. Both options offer SAP HANA high availability but the second one includes additionally disaster recovery capabilities. Both provide cross premises connectivity, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. The second option involves implementation of a virtual network in the West US 2 Azure region and leverages MPLS-based ExpressRoute to facilitate cross-region and cross-premises connectivity. 
 
-    **Solution**: The 3-tier architecture is necessary in the second and the third option in order to satisfy high-availability requirement stipulated by the customer.
+    Note that the West US 2 region chosen for the secondary site is not paired up with East US 2. Its selection is based on the availability of **M-series** Azure VM sizes that are included in the planned implementation and on the need to minimize the possibility of a regional disaster affecting negatively the operational status of the secondary site. 
 
-3.  **Design**: How would you ensure that the high-availability and disaster recovery requirements are satisfied?
+1.  **Design**: Should the customer use a 2-tier or 3-tier architecture for its SAP deployment?
+
+    **Solution**: The 3-tier architecture is necessary in order to satisfy high-availability requirement stipulated by the customer.
+
+1.  **Design**: How would you ensure that the high-availability and disaster recovery requirements are satisfied?
 
     **Solution**: Our design offers two options, which allow the customer to choose a solution that provides the required level of high availability and disaster recovery. The first option (Azure Virtual Machines -- BW on HANA with HA) provides high availability for the SAP HANA deployment. The second option (Azure virtual machines - BW on HANA with HA/DR) further enhances our design by providing disaster recovery capabilities.
     
     
     *Option 1: Azure Virtual Machines -- BW on HANA with HA*
 
-    ![Diagram of the BW on HANA with HA preferred solution. The second option delivers the same core functionality as the first option but, in addition, it provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM into the same availabilty set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image16.png "BW on HANA with HA preferred solution")
+    ![Diagram of the BW on HANA with HA preferred solution. This option provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM and a single D2sv3 Azure VM into the same availabilty set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. The single E2s v3 Azure VM hosts an iSCSI target component and serves the function of an SDB (STONITH Block Device daemon) device in the Pacemaker-based cluster containing the three Azure VMs. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2s v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8 v3 Azure VMs, hosting the application servers and delivering total of 17,512 SAPS. We also provision a non-production SAP HANA environment consisting of a single M64s Azure VM for QA purposes and two E32s v3 Azure VMs that will serve as development and test servers. A couple of E2 v3 Azure VMs deployed into the designated DMZ subnet can be used for remote administration tasks, such as patching.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image16.png "BW on HANA with HA preferred solution")
 
-    This option provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM into the same availability set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.
+    This option provides high availability for the SAP HANA components. This is accomplished by provisioning two identically configured M128s Azure VM and a single E2s v3 Azure VM into the same availability set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. The single Es2 v3 Azure VM hosts an iSCSI target component and serves the role of an SDB (STONITH Block Device daemon) device in a Pacemaker-based cluster containing the three Azure VMs. 
+
+     > **Note**: The iSCSI target server can be shared with other Pacemaker clusters. The advantage of using an SBD device is a faster failover time (comparing with the Azure Fence agent that relies on an Azure Active Directory service principal) and, is identical to the way SBD devices are used in on-premises scenarios. It is possible to use up to three SBD devices for a Pacemaker cluster to allow an SBD device to become unavailable, for example during OS patching of the iSCSI target server. 
+
+    Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.
+
+    We also provision a non-production SAP HANA environment consisting of a single M64s Azure VM for QA purposes and two E32s v3 Azure VMs that will serve as development and test servers. A couple of E2 v3 Azure VMs deployed into the designated DMZ subnet can be used for remote administration tasks, such as patching.
 
     *Option 2: Azure virtual machines - BW on HANA with HA/DR*
-    ![Diagram of the BW on HANA with HA/DR preferred solution. To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement a standby disaster recovery environment for the application tier.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image20.png)
+    ![Diagram of the BW on HANA with HA/DR preferred solution. To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US 2 Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also leverage Azure Site Recovery to implement a standby disaster recovery environment for the application tier. In order to ensure that the content of the sapmnt share is up-to-date, we provision a single E2 v3 Azure VM serving the role of the SAP ASCS DR instance and configure it as target of a scheduled task that performs file robocopy from the production SAP ASCS instance.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image20.png)
 
-    To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement a standby disaster recovery environment for the application tier. 
+    To further enhance our design by providing disaster recovery capabilities, we create a virtual network in the West US 2 Azure region and leverage MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. Next, we deploy another M128s Azure VM in the newly provisioned virtual network and configure it with asynchronous HANA system replication from the cluster hosting the primary database instance. We also leverage Azure Site Recovery to implement a standby disaster recovery environment for the application tier. In order to ensure that the content of the **sapmnt** share is up-to-date, we provision a single E2 v3 Azure VM serving the role of the SAP ASCS DR instance and configure it as target of a scheduled task that performs file robocopy from the production SAP ASCS instance.
 
 *Network design:*
 
 1.  **Design**: What should be the hybrid connectivity option?
 
-    **Solution**: Each option in our solution accounts for the need for hybrid connectivity, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. For cross-premises connectivity, our design leverages an MPLS-based ExpressRoute circuit. The third option, providing disaster recovery capabilities, includes a virtual network in the West US Azure region and leverages MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity.
+    **Solution**: Both option in our solution accounts for the need for hybrid connectivity, with the customer’s on-premises corporate network and an Azure datacenter in the East US 2 region. For cross-premises connectivity, our design leverages an MPLS-based ExpressRoute circuit. The second option, providing disaster recovery capabilities, includes a virtual network in the West US 2 Azure region and leverages MPLS-based ExpressRoute to provide cross-region and cross-premises connectivity. 
 
-2.  **Design**: What should be the Azure virtual network design in order to maximize security?
+     > **Note**: A single ExpressRoute circuit can be used to connect to multiple regions in the same geopolitical area (in this case, to both East US 2 and West US 2 regions).
 
-    **Solution**: All connectivity between on-premises networks and Azure virtual networks is provided by using private connections via MPLS-based ExpressRoute. 
+1.  **Design**: What should be the Azure virtual network design in order to maximize security?
+
+    **Solution**: All connectivity between on-premises networks and Azure virtual networks is provided by using private connections via MPLS-based ExpressRoute. The on-premises connection to the virtual network hosting our SAP deployment will be routed via a dedicated hub virtual network. The hub virtual network will contain a DMZ subnet hosting a pair of jumpbox Azure VMs that can be used to perform standard remote management tasks, such as patching. Traffic destined to and originating from each subnet of the hub and spokes virtual networks will be additinally restricted by using Network Security Groups.
 
 *SAP deployment architecture:*
 
 1.  **Design**: What will be the configuration of the application and database components of your solution?
 
-    **Solution**: The first option includes a standalone HANA production database and a pair of Azure VMs virtual machines that serve as the ASCS and the application servers. The second option provides high availability for the SAP HANA deployment. This is accomplished by provisioning two identically configured Azure VM into the same availability set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two Azure VMs, forming a Linux-based cluster, hosting the application servers. The third option includes another Azure VM hosting HANA database configured asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement a standby disaster recovery environment for the application tier. 
+    **Solution**: Both options provide high availability for the SAP HANA deployment. This is accomplished by provisioning two identically configured M128s Azure VM and a single D2sv3 Azure VM into the same availabilty set. The two Azure VMs form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. A single E2s v3 Azure VM hosts an iSCSI target component and serves the function of an SDB (STONITH Block Device daemon) device in the Pacemaker-based cluster containing the three Azure VMs. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs, with each pair in its own availability set. The first pair consists of two E2s v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8 v3 Azure VMs, hosting the application servers and delivering total of 17,512 SAPS. We also provision a non-production SAP HANA environment consisting of a single M64s Azure VM for QA purposes and two E32s v3 Azure VMs that will serve as development and test servers. A couple of E2 v3 Azure VMs deployed into the designated DMZ subnet can be used for remote administration tasks, such as patching. The second option includes another Azure VM hosting HANA database configured for asynchronous HANA system replication from the cluster hosting the primary database instances. We also leverage Azure Site Recovery to implement a standby disaster recovery environment for the application tier. To ensure that the content of the **sapmnt** share is up-to-date, we provision a single E2 v3 Azure VM serving the role of the SAP ASCS DR instance and configure it as target of a scheduled task that performs file robocopy from the production SAP ASCS instance. 
 
-2.  **Design**: What Azure VM sizes do you intend to use?
+1.  **Design**: What Azure VM sizes do you intend to use?
 
-    **Solution**: As per customer's requirements, the Azure deployment includes Dev, Test, QA, and production environments. There are two Dev and Test Standard E32v3 Azure VMs, each with one P15 data disk, one P10 transaction log disk, and one P15 shared disk. A single QA Azure VM uses the Standard M64 size, with one P30 data disk, one P20 transaction log disk, and one P30 shared data disk.
+    **Solution**: The first option includes two identically configured M128s memory-optimized Azure VM, which, along with a single E2s v3 Azure VM that serves the function of an SDB device, form a Pacemaker-based cluster. Each of the two Azure VMs hosts an identically configured HANA instance, which are synchronized by using HANA System Replication. These Azure VMs are configured with three P30 disks, striped into a single volume hosting data files, which deliver total of 3 TB of disk space and 600 MB/s throughput. Logs are stored on a volume residing on two P20 disks that deliver combined 1 TB of disk space and 300 MB/s throughput. The shared HANA volume uses one P30 disk, with 1 TB of disk space and 200 MB/s throughput. 
 
-    The first option of our solution includes the standalone HANA production database running on a Standard M128s Azure VM, which offers memory-optimized design. The Azure VM is configured with two P30 disks, striped into a single volume hosting data files, which deliver total of 2 TB of disk space and 400 MB/s throughput. Logs are stored on a volume residing on two P15 disks that deliver combined 512 GB of disk space and 250 MB/s throughput. The shared HANA volume uses one P30 disk, with 1 TB of disk space and 200 MB/s throughput. In addition to the Azure VM hosting HANA DB, the solution includes two Azure VMs virtual machines that serve as the ASCS and the application servers. This satisfies the customer requirement, according to which the Business Warehouse application servers must be able to handle 15,000 SAPS. Two E8_v3 Azure VMs give us total of 18,512 SAPS. 
+    Implementing high availability in the application tier involves provisioning three pairs of Azure VMs. The first pair consists of two E2 v3 Azure VMs hosting SAP ASCS components. The second pair also consists of two E2 v3 Azure VMs hosting NFS servers. High availability in both cases is implemented by relying on Pacemaker-based clustering. The third pair consists of a two E8 v3 Azure VMs, hosting the application servers. This satisfies the customer requirement, according to which the Business Warehouse application servers must be able to handle 15,000 SAPS (two E8 v3 Azure VMs can facilitate 17,512 SAPS). 
 
-    The second option relies on two identically configured M128s Azure VM that form the database tier and host two identically configured HANA instances replicating synchronously with each other by using HANA System Replication. Implementing high availability in the application tier involves provisioning two pairs of Azure VMs. The first pair consists of two E2_v3 Azure VMs hosting SAP ASCS and NFS components. The second pair consists of a two E8_v3 Azure VMs, forming a Linux-based cluster, hosting the application servers and delivering total of 17,512 SAPS.
+    The second option includes another M128s Azure VM, deployed in the West US 2 Azure region and hosting a HANA instance configured with asynchronous HANA system replication from the cluster hosting the primary database instances. We also implement standby disaster recovery environment for the application tier by using Azure Site Recovery. In order to ensure that the content of the **sapmnt** share is up-to-date, we provision a single E2 v3 Azure VM serving the role of the SAP ASCS DR instance and configure it as target of a scheduled task that performs file robocopy from the production SAP ASCS instance.
 
-    The third option includes another M128s Azure VM in the West US2 Azure region hosting a HANA instance configured with asynchronous HANA system replication from the cluster hosting the primary database instance. We also implement standby disaster recovery environment for the application tier by using Azure Site Recovery.
+    As per customer's requirements, the Azure deployment includes Dev, Test, QA, and production environments. There are two Dev and Test Standard E32s v3 Azure VMs, each with two P20 data disk, one P20 transaction log disk, two P6 disks for root and usr/sap volumes, respectively, and a single P20 disk for backups. There is also a single QA Azure VM of Standard M64s size with two P30 disks containing data, one P30 disk containing logs, two P6 disks for root and usr/sap volumes, respectively, and two P30 disks for backups. 
 
-3.  **Design**: What other Azure resources will be part of your solution?
+1.  **Design**: What other Azure resources will be part of your solution?
 
-    **Solution**: In order to facilitate short term backup, the solution relies on four P30 Premium Storage disks. For long term backups, the solution utilizes Azure Site Recovery vault, with retention of 30 daily, 12 monthly, and 3 yearly backups, yielding the total of 54TB. We also rely on Azure Site Recovery for maintaining replicas of the application tier Azure VMs in the secondary region.
+    **Solution**: In order to facilitate short term production backup, the solution relies on two P40 Premium Storage disks. For long term backups, the solution utilizes Azure Site Recovery vault, with retention set to 31 daily, 12 monthly, and 3 yearly backups, yielding the estimated total of about 55TB of storage space. We also rely on Azure Site Recovery for maintaining replicas of the application tier Azure VMs in the secondary region.
     
+1.  What should be the SAP deployment methodology?
+
+    **Solution**: Considering technologies used or intended to be used for on-premises deployments, the solution will leverage Ansible for configuration management and Terraform for Azure resource provisioning. The solution offers full automation capabilities, including both provisioning Azure resources, as well as installation and configuration of SAP HANA software components.
+
 *Solution cost:*
 
 1.  **Design**: What is the estimated cost of your solution with HA?
 
-    **Solution**: The extra cost of the second option reflects charges associated with the additional components necessary to provide high availability. These components effectively double the cost of the production instance of the HANA database included in the first option (for both compute and storage resources). In addition, there are extra charges associated with implementing high availability of the application tier. In this case, the increase represents compute and storage resources of two E2_v3 Azure VMs that host the ASCS and NFS components.
+    **Solution**: The cost of the first option reflects charges associated with the components necessary to provide high availability. These components approximately double the cost of a single production instance of the HANA database (for both compute and storage resources). In addition, there are charges associated with implementing high availability of the application tier. In this case, the increase represents compute and storage resources of four E2 v3 Azure VMs that host highly available ASCS and NFS components.
     
-    Note that the charges do not take into account licensing costs, ExpressRoute telco charges, pricing of the Microsoft Premier Support which is required when deploying SAP production solutions in Azure, and any managed services.
+    Note that the charges do not take into account licensing, but do include ExpressRoute-related charges, Azure Backup and Azure Monitor costs, and pricing of the Microsoft Professional Direct-level Support. ![A table displays the cost estimates for BW on HANA with HA.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png "BW on HANA with HA Costs")
 
-![A table displays the cost estimates for BW on HANA with HA.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png "BW on HANA with HA Costs")
+1.  **Design**:  What is the estimated cost of your solution with HA/DR?
 
-2.  **Design**:  What is the estimated cost of your solution with HA/DR?
-
-    **Solution**: The extra cost of the third option reflects charges associated with additional components necessary to provide disaster recovery. These components effectively represent the cost of the production instance of the HANA database included in the first option (for both compute and storage resources). In addition, there are extra charges associated with implementing high availability of the application tier. In this case, the increase represents storage resources of two E2_v3 Azure VMs that host the ASCS and NFS components as well as Azure VMs hosting the SAP production application tier. There is also an added cost of Azure Site Recovery.
+    **Solution**: The extra cost of the second option reflects charges associated with additional components necessary to provide disaster recovery. These components effectively represent the cost of the production instance of a single HANA database instance (for both compute and storage resources). In addition, there are extra charges associated with implementing high availability of the application tier. In this case, the increase represents storage resources of two E2_v3 Azure VMs that host the ASCS and NFS components as well as Azure VMs hosting the SAP production application tier. There is also an added cost of Azure Site Recovery.
  
-    Note that the charges do not take into account licensing costs, ExpressRoute telco charges, pricing of the Microsoft Premier Support which is required when deploying SAP production solutions in Azure, and any managed services.
-
-![A table displays the cost estimates for BW on HANA with HA/DR.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image21.png "BW on HANA with HA/DR Costs")
+    Note that the charges do not take into account licensing, but do include ExpressRoute-related charges, Azure Backup and Azure Monitor costs, and pricing of the Microsoft Professional Direct-level Support. ![A table displays the cost estimates for BW on HANA with HA/DR.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image21.png "BW on HANA with HA/DR Costs")
 
 ## Checklist of preferred objection handling
 
-1.  ECC remains on-premises until Dec CY19. How can we maintain integrations between ECC and BW?
+1.  ECC remains on-premises until Dec CY20. How can we maintain integrations between ECC and BW?
 
     -   Microsoft supports a hybrid solution, with symmetry between on-premises applications and those on the public cloud.
 
@@ -559,17 +575,15 @@ Central IT (VP of IT Operations)
 
     -   ExpressRoute provides secure, high-bandwidth, low-latency connectivity between Azure and on-premises datacenters.
 
-2.  How much does Azure cost? Give us a few options (e.g. HA and non-HA, DR and non-DR).
+1.  How much does Azure cost? Give us two options (HA only and HA with DR).
 
-    -   The proposed design offers three options:
-
-        -   Non-HA
+    -   The proposed design offers two options:
 
         -   HA with no DR
 
         -   HA and DR
 
-    -   For mission-critical SAP applications using SAP HANA, high availability can be achieved through a highly resilient architecture with active and standby systems that have databases running with data replication. If a deployment is non-mission critical, it is possible to ensure high availability for just the data and spin up necessary compute on-demand in the event of a failure.
+    -   For mission-critical SAP applications using SAP HANA, high availability can be achieved through a highly resilient architecture with active and standby systems that have databases configured with synchronous data replication. If a deployment is non-mission critical, it is possible to ensure high availability for just the data and spin up necessary compute on-demand in the event of a failure.
 
     -   Disaster recovery can leverage:
 
@@ -581,19 +595,21 @@ Central IT (VP of IT Operations)
 
         -   SAP HANA System Replication in asynchronous replication mode
 
-3.  Do I have to pay for virtual machines when they are stopped?
+        -   File robocopy from the production SAP ASCS instance to a single, low-end Azure VM serving the role of the SAP ASCS DR instance
 
-    -   Azure VM must be in the stopped (deallocated) state in order to avoid compute charges. If the VM is stopped it will continue to incur charges.
+1.  Do I have to pay for virtual machines when they are stopped?
+
+    -   Azure VM must be in the stopped (deallocated) state in order to avoid compute charges. If the VM is stopped (but not deallocated), it will continue to incur compute charges.
 
     -   Deallocating does not mean deleting the VM as it still exists in storage.
 
     -   You will still incur storage charge even if the VM is deallocated.
 
-4.  Can I automate the shutdown of virtual machines at periodic times of day?
+1.  Can I automate the shutdown of virtual machines at periodic times of day?
 
-    -   Yes, this functionality is available directly from the Azure portal. Alternatively, you can use Azure Automation runbooks or custom Azure PowerShell and Azure CLI scripts to stop and deallocate any instance.
+    -   Yes, this functionality is available directly from the Azure portal. Alternatively, you can use the **Start/Stop VMs during off-hours** Azure Automation solution, custom Azure Automation runbooks, or custom Azure PowerShell and Azure CLI scripts to stop and deallocate any instance.
 
-    -   The same tools can be used to start the instance on a scheduled time.
+    -   The same approach can be used to start the instance on a scheduled time.
 
     -   Note that the built-in platform auto-shutdown functionality does not provide the draining functionality of application servers, so it is important to verify that these servers do not have any active tasks before initiating shutdown. This can be implemented by using Azure Automation or Azure functions.
 
@@ -602,4 +618,3 @@ Central IT (VP of IT Operations)
 "Azure has provided high availability and disaster recovery capabilities for our production environment at a very reasonable price."
 
 Andrew Cross, CIO, Contoso Group
-
