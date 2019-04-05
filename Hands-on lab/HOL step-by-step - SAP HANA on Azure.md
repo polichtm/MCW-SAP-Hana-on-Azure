@@ -206,7 +206,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     ```
     HANA_SP_NAME='hanav1snsp01'
     HANA_SP_ID=$(az ad sp list --display-name $HANA_SP_NAME --query "[0].appId" --output tsv)
-    if ! [ -z "$HANA_SP_ID"]
+    if ! [ -z "$HANA_SP_ID" ]
     then
         az ad sp delete --id $HANA_SP_ID
     fi
