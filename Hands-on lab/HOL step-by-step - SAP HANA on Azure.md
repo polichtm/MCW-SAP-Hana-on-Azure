@@ -114,9 +114,9 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
     -   SAPCAR_1211-80000938.EXE (SAPCAR for Windows 64-bit)
 
-    -   IMDB_SERVER100_122_23-10009569.SAR (HANA DB Server for Linux x86_64)
+    -   IMDB_SERVER100_122_24-10009569.SAR (HANA DB Server for Linux x86_64)
 
-    -   IMC_STUDIO2_122_23-80000323.SAR (HANA Studio for Windows 64-bit)
+    -   IMC_STUDIO2_122_24-80000323.SAR (HANA STUDIO 2 for Windows 64-bit)
 
     -   SAPHOSTAGENT36_36-20009394.SAR (SAP Host Agent)
 
