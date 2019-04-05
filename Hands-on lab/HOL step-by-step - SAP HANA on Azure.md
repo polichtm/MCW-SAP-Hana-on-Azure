@@ -204,7 +204,13 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
 
     ```
-    HANA_SP=$(az ad sp create-for-rbac --name hanav1snsp01)
+    HANA_SP_NAME='hanav1snsp01'
+    HANA_SP_ID=$(az ad sp list --display-name $HANA_SP_NAME --query "[0].appId" --output tsv)
+    if ! [ -z "$HANA_SP_ID"]
+    then
+        az ad sp delete --id $HANA_SP_ID
+    fi
+    HANA_SP=$(az ad sp create-for-rbac --name $HANA_SP_NAME)
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the variables that that will be used during deployment, representing, respectively, the identifier of the Azure subscription and its Azure AD tenant, as well as the application identifier and the corresponding password of the service principal you created in the previous step:
