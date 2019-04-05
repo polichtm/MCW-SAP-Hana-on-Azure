@@ -91,6 +91,8 @@ To complete this lab, you must verify your account has sufficient permissions to
     az vm list-usage --location <Azure_region> --query "[?localName == 'Standard DSv2 Family vCPUs' || localName == 'Standard ESv3 Family vCPUs'].{VMFamily:localName, currentValue:currentValue, Limit:limit}" --output table
     ``` 
 
+   > **Note**: To identify the names of Azure regions, in the **Cloud Shell**, at the Bash prompt, run `az account list-locations --query '[].name' --output tsv`
+   
 1.  Review the output of the command executed in the previous step and ensure that you have at least 6 available vCPUs in the **Standard DSv2 Family** VM family and at least 24 available vCPUs in the **Standard ESv3 Family** in the target Azure region.
 
 1.  If the number of vCPUs is not sufficient, navigate back to the subscription blade, and click **Usage + quotas**. 
