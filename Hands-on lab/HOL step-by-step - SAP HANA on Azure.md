@@ -448,7 +448,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 1.  Switch to the lab computer and, in the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the single node HANA deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/
     ``` 
 
     > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
@@ -486,7 +486,7 @@ You will leverage a number of tasks that you already performed earlier in this l
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
@@ -912,7 +912,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Switch to the lab computer and, in the first Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the highly-available HANA deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/
     ``` 
 
     > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
