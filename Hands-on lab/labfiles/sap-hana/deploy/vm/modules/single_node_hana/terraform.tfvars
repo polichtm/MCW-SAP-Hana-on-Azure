@@ -19,7 +19,7 @@ sshkey_path_public = "~/.ssh/id_rsa.pub"
 sshkey_path_private = "~/.ssh/id_rsa"
 
 # OS user with sudo privileges to be deployed on VM (e.g. "demo")
-vm_user = "VAR_VM_USERNAME"
+vm_user = "VAR_DEMOUSER_NAME"
 
 # SAP system ID (SID) to be used for HANA installation (example: "HN1")
 sap_sid = "HN1"
@@ -41,24 +41,6 @@ url_hana_studio_windows = "VAR_HANA_STUDIO_WINDOWS_URL"
 
 # URL to download SAP HOST AGENT package from
 url_sap_hostagent = "VAR_SAP_HOST_AGENT_URL"
-
-url_xsa_runtime = "VAR_XSA_RUNTIME_URL"
-
-url_di_core = "VAR_DI_CORE_URL"
-
-url_sapui5 = "VAR_SAP_UI5_URL"
-
-url_portal_services = "VAR_PORTAL_SERVICES_URL"
-
-url_xs_services = "VAR_XS_SERVICES_URL"
-
-url_cockpit = "VAR_HANA_COCKPIT_URL"
-
-# url_xsa_hrtt
-
-# url_xsa_webide
-
-# url_xsa_mta
 
 # Password for the OS sapadm user
 pw_os_sapadm = "VAR_SAPADMUSER_PASSWORD"
@@ -83,23 +65,23 @@ pwd_db_shine = "VAR_DBSHINEUSER_PASSWORD"
 email_shine = "shine@emailaddress.com"
 
 # Set this flag to true when installing HANA 2.0 (or false for HANA 1.0)
-useHana2 = true
+useHana2 = false
 
 # Set this flag to true when installing the XSA application server
-install_xsa = true
+install_xsa = false
 
 # Set this flag to true when installing SHINE demo content (requires XSA)
 install_shine = false
 
 # Set this flag to true when installing Cockpit (requires XSA)
-install_cockpit = true
+install_cockpit = false
 
 # Set this flag to true when installing WebIDE (requires XSA)
 install_webide = false
 
-# Set this flag to false to install HDB with multiple containers (tenants)
-hdb_mdc = true
-hana1_db_mode = "multiple_containers"
+# Set this flag to false to install HDB with single containers (tenants)
+hdb_mdc = false
+hana1_db_mode = "single_container"
 
 # Set this flag to true to install the Windows bastion host
 windows_bastion = true
