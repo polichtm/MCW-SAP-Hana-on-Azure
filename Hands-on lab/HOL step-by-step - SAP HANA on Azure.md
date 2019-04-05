@@ -230,7 +230,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the previous task:
