@@ -114,9 +114,9 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
     -   SAPCAR_1211-80000938.EXE (SAPCAR for Windows 64-bit)
 
-    -   IMDB_SERVER100_122_23-10009569.SAR (HANA DB Server for Linux x86_64)
+    -   IMDB_SERVER100_122_24-10009569.SAR (HANA DB Server for Linux x86_64)
 
-    -   IMC_STUDIO2_122_23-80000323.SAR (HANA Studio for Windows 64-bit)
+    -   IMC_STUDIO2_122_24-80000323.SAR (HANA STUDIO 2 for Windows 64-bit)
 
     -   SAPHOSTAGENT36_36-20009394.SAR (SAP Host Agent)
 
@@ -204,7 +204,13 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
 
     ```
-    HANA_SP=$(az ad sp create-for-rbac --name hanav1snsp01)
+    HANA_SP_NAME='hanav1snsp01'
+    HANA_SP_ID=$(az ad sp list --display-name $HANA_SP_NAME --query "[0].appId" --output tsv)
+    if ! [ -z "$HANA_SP_ID" ]
+    then
+        az ad sp delete --id $HANA_SP_ID
+    fi
+    HANA_SP=$(az ad sp create-for-rbac --name $HANA_SP_NAME)
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the variables that that will be used during deployment, representing, respectively, the identifier of the Azure subscription and its Azure AD tenant, as well as the application identifier and the corresponding password of the service principal you created in the previous step:
@@ -230,7 +236,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the previous task:
@@ -288,8 +294,8 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     ```
     SAPCAR_LINUX_NAME='SAPCAR_1211-80000935.EXE'
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
-    HDBSERVER_NAME='IMDB_SERVER100_122_23-10009569.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_23-80000323.SAR'
+    HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_24-80000323.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
     ```
 
@@ -442,7 +448,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 1.  Switch to the lab computer and, in the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the single node HANA deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/
     ``` 
 
     > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
@@ -480,13 +486,19 @@ You will leverage a number of tasks that you already performed earlier in this l
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
 
     ```
-    HANA_SP=$(az ad sp create-for-rbac --name hanav1hasp01)
+    HANA_SP_NAME='hanav1hasp01'
+    HANA_SP_ID=$(az ad sp list --display-name $HANA_SP_NAME --query "[0].appId" --output tsv)
+    if ! [ -z "$HANA_SP_ID" ]
+    then
+        az ad sp delete --id $HANA_SP_ID
+    fi
+    HANA_SP=$(az ad sp create-for-rbac --name $HANA_SP_NAME)
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the variables that that will be used during deployment, representing, respectively, the identifier of the Azure subscription and its Azure AD tenant, as well as the application identifier and the corresponding password of the service principal you created in the previous step:
@@ -556,8 +568,8 @@ You will leverage a number of tasks that you already performed earlier in this l
     ```
     SAPCAR_LINUX_NAME='SAPCAR_1211-80000935.EXE'
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
-    HDBSERVER_NAME='IMDB_SERVER100_122_23-10009569.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_23-80000323.SAR'
+    HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_24-80000323.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
     ```
 
@@ -900,7 +912,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Switch to the lab computer and, in the first Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you used for the highly-available HANA deployment:
 
     ```
-    cd '~/MCW-SAP-HANA-on-Azure/Hands-on lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/'
+    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/
     ``` 
 
     > **Note**: If needed, in the Azure portal, restart the Cloud Shell. 
