@@ -859,6 +859,10 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![The Constraints tab is selected on the Edit Configuration page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image29.png "Edit Configuration page")
 
+    > **Note**: Ban and prefer location constraints are generated automatically during migration operation in order to prevent unintended failback to the original cluster node. However, such constraints should be removed once the original node is available to host custer resources. 
+
+    > **Note**: Make sure not to accidentally remove other constraints.  
+    
 1.  From the **Constraints** page, delete the **cli-prefer-msl\_SAPHana\_HN1\_HDB01** Location constraint.
 
     ![Under Operations, the Delete constraint icon is selected for cli-prefer-msl\_SAPHana\_HN1\_HDB01.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image30.png "Delete constraint")
