@@ -116,11 +116,13 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
     -   IMDB_SERVER100_122_24-10009569.SAR (HANA DB Server for Linux x86_64)
 
-    -   IMC_STUDIO2_122_24-80000323.SAR (HANA STUDIO 2 for Windows 64-bit)
-
     -   SAPHOSTAGENT36_36-20009394.SAR (SAP Host Agent)
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly all references to the names of these packages in this task. 
+
+1.  From the **SAP Software Download**, download the following software package to the lab computer:
+
+    -   IMC_STUDIO2_122_23-80000323.SAR (HANA STUDIO 2 for Windows 64-bit patch level 23)
 
 1.  From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com.
 
@@ -230,13 +232,13 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to clone the repository hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    git clone https://github.com/Microsoft/MCW-SAP-HANA-on-Azure
+    git clone https://github.com/polichtm/sap-hana.git
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/single_node_hana/
+    cd ~/sap-hana/deploy/vm/modules/single_node_hana/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to retrieve the location in which you created the storage account in the previous task:
@@ -295,8 +297,8 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     SAPCAR_LINUX_NAME='SAPCAR_1211-80000935.EXE'
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
     HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_24-80000323.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_23-80000323.SAR'
     ```
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly the names of these packages. 
@@ -310,16 +312,16 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     SAPCAR_WINDOWS_URL_REGEX="$(echo $SAPCAR_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
     HDBSERVER_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HDBSERVER_NAME
     HDBSERVER_URL_REGEX="$(echo $HDBSERVER_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
-    HANA_STUDIO_WINDOWS_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HANA_STUDIO_WINDOWS_NAME
-    HANA_STUDIO_WINDOWS_URL_REGEX="$(echo $HANA_STUDIO_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
     SAP_HOST_AGENT_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$SAP_HOST_AGENT_NAME
     SAP_HOST_AGENT_URL_REGEX="$(echo $SAP_HOST_AGENT_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
+    HANA_STUDIO_WINDOWS_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HANA_STUDIO_WINDOWS_NAME
+    HANA_STUDIO_WINDOWS_URL_REGEX="$(echo $HANA_STUDIO_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
 
     sed -i "s/VAR_SAPCAR_LINUX_URL/$SAPCAR_LINUX_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_SAPCAR_WINDOWS_URL/$SAPCAR_WINDOWS_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_HDBSERVER_URL/$HDBSERVER_URL_REGEX/" ./terraform.tfvars
-    sed -i "s/VAR_HANA_STUDIO_WINDOWS_URL/$HANA_STUDIO_WINDOWS_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_SAP_HOST_AGENT_URL/$SAP_HOST_AGENT_URL_REGEX/" ./terraform.tfvars
+    sed -i "s/VAR_HANA_STUDIO_WINDOWS_URL/$HANA_STUDIO_WINDOWS_URL_REGEX/" ./terraform.tfvars
     ```
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the values of passwords for user accounts that will be used to manage the single-node HANA instance:
@@ -486,7 +488,7 @@ You will leverage a number of tasks that you already performed earlier in this l
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
-    cd ~/MCW-SAP-HANA-on-Azure/Hands-on\ lab/labfiles/sap-hana/deploy/vm/modules/ha_pair/
+    cd ~/sap-hana/deploy/vm/modules/ha_pair/
     ``` 
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to create an Azure AD service principal that will be used during deployment:
@@ -569,8 +571,8 @@ You will leverage a number of tasks that you already performed earlier in this l
     SAPCAR_LINUX_NAME='SAPCAR_1211-80000935.EXE'
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
     HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_24-80000323.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_23-80000323.SAR'    
     ```
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly the names of these packages. 
@@ -584,16 +586,16 @@ You will leverage a number of tasks that you already performed earlier in this l
     SAPCAR_WINDOWS_URL_REGEX="$(echo $SAPCAR_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
     HDBSERVER_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HDBSERVER_NAME
     HDBSERVER_URL_REGEX="$(echo $HDBSERVER_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
-    HANA_STUDIO_WINDOWS_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HANA_STUDIO_WINDOWS_NAME
-    HANA_STUDIO_WINDOWS_URL_REGEX="$(echo $HANA_STUDIO_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
     SAP_HOST_AGENT_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$SAP_HOST_AGENT_NAME
     SAP_HOST_AGENT_URL_REGEX="$(echo $SAP_HOST_AGENT_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
+    HANA_STUDIO_WINDOWS_URL='https://'$STORAGE_ACCOUNT_NAME'.blob.core.windows.net/sapbits/'$HANA_STUDIO_WINDOWS_NAME
+    HANA_STUDIO_WINDOWS_URL_REGEX="$(echo $HANA_STUDIO_WINDOWS_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')"
 
     sed -i "s/VAR_SAPCAR_LINUX_URL/$SAPCAR_LINUX_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_SAPCAR_WINDOWS_URL/$SAPCAR_WINDOWS_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_HDBSERVER_URL/$HDBSERVER_URL_REGEX/" ./terraform.tfvars
-    sed -i "s/VAR_HANA_STUDIO_WINDOWS_URL/$HANA_STUDIO_WINDOWS_URL_REGEX/" ./terraform.tfvars
     sed -i "s/VAR_SAP_HOST_AGENT_URL/$SAP_HOST_AGENT_URL_REGEX/" ./terraform.tfvars
+    sed -i "s/VAR_HANA_STUDIO_WINDOWS_URL/$HANA_STUDIO_WINDOWS_URL_REGEX/" ./terraform.tfvars    
     ```
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to set the values of passwords for user accounts that will be used to manage the single-node HANA instance:
