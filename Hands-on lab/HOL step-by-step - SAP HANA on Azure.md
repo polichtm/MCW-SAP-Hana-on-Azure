@@ -122,7 +122,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
 1.  From the **SAP Software Download**, download the following software package to the lab computer:
 
-    -   IMC_STUDIO2_122_23-80000323.SAR (HANA STUDIO 2 for Windows 64-bit patch level 23)
+    -   IMC_STUDIO2_240_0-80000323.SAR (HANA STUDIO 2 for Windows 64-bit)
 
 1.  From the lab computer, start a Web browser, and navigate to the Azure portal at https://portal.azure.com.
 
@@ -298,7 +298,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
     HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_23-80000323.SAR'
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_240_0-80000323.SAR'
     ```
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly the names of these packages. 
