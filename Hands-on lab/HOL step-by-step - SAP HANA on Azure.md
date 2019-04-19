@@ -232,6 +232,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to clone the repository hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
+    rm ~/sap-hana/ -r -f
     git clone https://github.com/polichtm/sap-hana.git
     ``` 
 
