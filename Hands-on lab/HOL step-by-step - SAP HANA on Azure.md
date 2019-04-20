@@ -479,13 +479,18 @@ You will leverage a number of tasks that you already performed earlier in this l
 
     -   SSH key pair you generated in the second task of the first exercise
 
-    -   the clone of the Git repository hosting the lab files created in the second task of the first exercise
-
 
 ### Task 1: Prepare for a highly-available HANA deployment
 
 1.  If needed, in the Azure portal, start the Cloud Shell. 
 
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to clone the repository hosting the Terraform and Ansible files that you will use for deployment:
+
+    ```
+    rm ~/sap-hana/ -r -f
+    git clone https://github.com/polichtm/sap-hana.git
+    ``` 
+    
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to change the current directory to the one hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
