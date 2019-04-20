@@ -459,7 +459,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based single-node HANA deployment:
 
     ```
-    terraform destroy
+    terraform destroy -auto-approve
     ```
 
 1.  When prompted, type **yes** and press the Enter key to continue with the removal of the deployed resources.
@@ -938,7 +938,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to remove all resources provisioned by Terraform-based highly-available HANA deployment:
 
     ```
-    terraform destroy
+    terraform destroy -auto-approve
     ```
 
 1.  When prompted, type **yes** and press the Enter key to continue with the deployment. 
