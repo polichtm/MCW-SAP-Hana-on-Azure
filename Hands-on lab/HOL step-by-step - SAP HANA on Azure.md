@@ -389,7 +389,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 
     > **Note**: The user name of the Windows bastion host is set in **/deploy/vm/modules/single_node_hana/variables.tf**
 
-1.  Within the Remote Desktop session to s03-hana-0, start **Notepad**, and open the **hosts** file located in **C:\\Windows\\System32\\drivers\\etc**.
+1.  Within the Remote Desktop session to hn1-win-bastion, start **Notepad**, and open the **hosts** file located in **C:\\Windows\\System32\\drivers\\etc**.
 
 1.  Add the following entries to the host file, save your changes, and close the file:
 
@@ -433,7 +433,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 
         ![The Connection Properties dialog box displays with the previously defined settings.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image8.png "Connection Properties dialog box")
 
-1.  Once you successfully connected to **S03** as **SYSTEM**, select the **HN1 (SYSTEM)** node and click the **Administration** icon in the Systems toolbar and then click **Open Default Administration**.
+1.  Once you successfully connected to **hn1-hdb0** as **SYSTEM**, select the **HN1 (SYSTEM)** node and click the **Administration** icon in the Systems toolbar and then click **Open Default Administration**.
 
     ![On the Systems node toolbar, the Administration icon is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image9.png "Systems toolbar")
 
@@ -717,9 +717,9 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     > **Note**: It typically takes a few minutes before the operational state is fully identified.
    
-1.  Right click the **S03 (SYSTEM)** node and in the right click menu. Click **Configuration and Monitoring** followed by **Open Administration**.
+1.  Right click the **HN1 (SYSTEM)** node and in the right click menu. Click **Configuration and Monitoring** followed by **Open Administration**.
 
-    ![On the Systems node, S03 (System) is selected. From its right-click menu, Configuration and Monitoring is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image15.png "Systems node")
+    ![On the Systems node, HN1 (System) is selected. From its right-click menu, Configuration and Monitoring is selected.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image15.png "Systems node")
 
 1.  In the **Configuration and Monitoring** view, examine the **Overview** tab. Verify that all services are started, active, and in sync. You might need to wait a few minutes before the operational state is identified.
 
@@ -821,7 +821,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     > **Note**: You might need to wait a few minutes before the operational state is identified.
 
-1.  Switch to the lab computer, in the Azure portal and, in the SSH session to s03-db-0 in Cloud Shell, start the pacemaker service by running the following:
+1.  Switch to the lab computer, in the Azure portal and, in the SSH session in Cloud Shell, start the pacemaker service by running the following:
 
     ```
     sudo service pacemaker start
