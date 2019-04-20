@@ -961,5 +961,5 @@ After completing the hands-on lab, you will remove the resource group and any re
     az group delete --name hanav1sn-RG --no-wait --yes
     az group delete --name hanav1ha-RG --no-wait --yes
     az group delete --name hanaMedia-RG --no-wait --yes
-    rm ~/MCW-SAP-HANA-on-Azure -r -f
+    rm ~/sap-hana/ -r -f
     ```
