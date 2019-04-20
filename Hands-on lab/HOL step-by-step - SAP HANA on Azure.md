@@ -579,7 +579,7 @@ You will leverage a number of tasks that you already performed earlier in this l
     SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
     HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
-    HANA_STUDIO_WINDOWS_NAME= 'IMC_STUDIO2_240_0-80000323.SAR'    
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_240_0-80000323.SAR' 
     ```
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly the names of these packages. 
