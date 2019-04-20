@@ -964,8 +964,18 @@ After completing the hands-on lab, you will remove the resource group and any re
 3.  At the Bash prompt, run the following:
 
     ```
-    az group delete --name hanav1sn-RG --no-wait --yes
-    az group delete --name hanav1ha-RG --no-wait --yes
-    az group delete --name hanaMedia-RG --no-wait --yes
+    if [ az group exists --name hanav1sn-RG ]
+    then
+         az group delete --name hanav1sn-RG --no-wait --yes
+    fi
+    if [ az group exists --name hanav1ha-RG ]
+    then
+         az group delete --name hanav1ha-RG --no-wait --yes
+    fi
+    if [ az group exists --name hanaMedia-RG ]
+    then
+         az group delete --name hanaMedia-RG --no-wait --yes
+    fi
+    cd ~
     rm ~/sap-hana/ -r -f
     ```
