@@ -628,6 +628,12 @@ You will leverage a number of tasks that you already performed earlier in this l
 
 ### Task 2: Perform the highly-available HANA deployment
 
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to initialize Terraform modules and provider plugins necessary to perform Terraform-based single-node HANA deployment:
+
+    ```
+    terraform init
+    ```
+
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based highly-available HANA deployment:
 
     ```
