@@ -487,6 +487,7 @@ You will leverage a number of tasks that you already performed earlier in this l
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to clone the repository hosting the Terraform and Ansible files that you will use for deployment:
 
     ```
+    cd ~
     rm ~/sap-hana/ -r -f
     git clone https://github.com/polichtm/sap-hana.git
     ``` 
