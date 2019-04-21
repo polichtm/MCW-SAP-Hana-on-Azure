@@ -473,7 +473,7 @@ Duration: 90 minutes
 
 In this exercise, you will implement a highly-available deployment of SAP HANA on Azure virtual machines (VMs). Following initial configuration of Terraform configuration files, the deployment will be fully automated, including installation of all necessary SAP HANA components. 
 
-You will leverage a number of tasks that you already performed earlier in this lab, including:
+You will leverage a number of artifacts that you already implemented earlier in this lab, including:
 
     -   HANA software that you uploaded to an Azure Storage account in the first task of the first exercise
 
