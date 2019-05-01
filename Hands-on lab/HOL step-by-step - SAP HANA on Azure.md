@@ -680,7 +680,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Add the following entries to the host file, save your changes, and close the file:
 
     ```
-    10.0.0.13	hadbha        
+    10.0.0.13	hdbha        
     ```
 
     > **Note**: `10.0.0.13` is the IP address assigned to the front end of the Azure Internal Load Balancer that distributes network traffic to the Azure VMs hosting highly-available HANA instances.
@@ -705,7 +705,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 1.  In the Specify System dialog box, specify the following information, and click **Next**.
 
-    -   Host Name: **hadbha**
+    -   Host Name: **hdbha**
 
     -   Instance number: **01**
 
