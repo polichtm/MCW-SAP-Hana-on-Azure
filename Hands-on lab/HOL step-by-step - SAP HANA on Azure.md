@@ -705,7 +705,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 1.  In the Specify System dialog box, specify the following information, and click **Next**.
 
-    -   Host Name: **hdbha**
+    -   Host Name: **hadbha**
 
     -   Instance number: **01**
 
