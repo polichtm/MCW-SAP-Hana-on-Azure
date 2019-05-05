@@ -289,7 +289,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify the name of the storage account containing the media files, which you configured and populated in the previous task of this exercise:
 
     ```
-    STORAGE_ACCOUNT_NAME=$(az storage account list --resource-group $MEDIA_RESOURCE_GROUP_NAME --query "[0].name" --output tsv)
+    STORAGE_ACCOUNT_NAME=$(az storage account list --resource-group $MEDIA_RESOURCE_GROUP_NAME --query "[?starts_with(name,'hana')].[name]" --output tsv)
     ```
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the names of the software packages you uploaded to the storage account in the previous task of this exercise:
@@ -569,7 +569,7 @@ You will leverage a number of artifacts that you already implemented earlier in 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify the name of the storage account containing the media files, which you configured and populated in the previous task of this exercise:
 
     ```
-    STORAGE_ACCOUNT_NAME=$(az storage account list --resource-group $MEDIA_RESOURCE_GROUP_NAME --query "[0].name" --output tsv)
+    STORAGE_ACCOUNT_NAME=$(az storage account list --resource-group $MEDIA_RESOURCE_GROUP_NAME --query "[?starts_with(name,'hana')].[name]" --output tsv)
     ```
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the names of the software packages you uploaded to the storage account in the previous task of this exercise:
