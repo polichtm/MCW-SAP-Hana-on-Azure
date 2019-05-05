@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-March 2019
+May 2019
 </div>
 
 
@@ -118,8 +118,8 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
     -   SAPHOSTAGENT36_36-20009394.SAR (SAP Host Agent)
 
-    > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly all references to the names of these packages in this task. 
-
+    > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly all references to the names of these packages in this task. To find appropriate packages, you can take advantage of the search functionality of the **SAP Software Downloads** portal. Use the first part of each package (up to the first hyphen) as the search criterion and, in the search results, identify the type that matches the intended platform (either Linux x86_64 or Windows 64-bit).
+    
 1.  From the **SAP Software Download**, download the following software package to the lab computer:
 
     -   IMC_STUDIO2_240_0-80000323.SAR (HANA STUDIO 2 for Windows 64-bit)
