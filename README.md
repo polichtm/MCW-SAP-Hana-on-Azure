@@ -1,6 +1,6 @@
 # SAP HANA on Azure
 
-Contoso, a pharmaceutical company, wants to migrate its SAP HANA deployment to Azure. In order to evaluate Azure Infrastructure as a service (IaaS) capabilities, Contoso needs to set up a highly available deployment of SAP HANA on Azure virtual machines, running SUSE Linux Enterprise Edition. 
+Contoso, a pharmaceutical company, wants to significantly reduce server and storage hardware in their own datacenters to minimize IT related costs. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud. Contoso also wants to dramatically simplify the process of provisioning Azure resources, as well as installation and configuration of SAP HANA software components. Contoso IT has been relying on Ansible to manage its on-premises environment and, with the cloud migration plans, it started evaluating the use of Terraform to automate on-premises and cloud-based deployments.
 
 ## Target audience
 
@@ -16,15 +16,15 @@ At the end of this workshop you will be able to better design and deploy SAP HAN
 
 ### Whiteboard design session
 
-In this whiteboard design session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
+In this Whiteboard Design Session, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for high availability, disaster recovery as well as supportability.
 
 At the end of this whiteboard design session you will be able to better design and deploy SAP HANA on Azure.
 
 ### Hands-on Lab
 
-In this hands-on lab, you will step through the implementation of a highly available SAP HANA deployment on Microsoft Azure virtual machines running SUSE Linux Enterprise Server. 
+In this hands-on lab, you will step through the implementation of a single node and highly available SAP HANA deployments on Microsoft Azure virtual machines running SUSE Linux Enterprise Server.
 
-After its completion, you will be able to provision Azure infrastructure components necessary to support highly available SAP HANA deployments, configure Azure virtual machines to support highly available SAP HANA installations, implement SUSE Linux Enterprise clustering, install SAP HANA, configure SAP HANA system replication, and test failover scenarios.
+After its completion, you will be able to perform single node and highly available SAP HANA deployments by using Terraform and Ansible, validate both types of deployments, test failover scenarios, and remove the deployed resources.
 
 ## Azure services and related products
 - SAP on Azure
