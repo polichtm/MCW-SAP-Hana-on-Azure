@@ -40,7 +40,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Exercise 2: Validate and remove the single node HANA deployment](#exercise-2-validate-and-remove-the-single-node-hana-deployment)
         - [Task 1: Connect to the single node HANA instance by using SAP HANA Studio](#task-1-connect-to-the-single-node-hana-instance-by-using-sap-hana-studio)
         - [Task 2: Remove the single node HANA deployment](#task-2-remove-the-single-node-hana-deployment)
-    - [Exercise 3: Deploy highly-available HANA instances by using Terraform and Ansible](#exercise-3-deploy-ha-hana-instances)
+    - [Exercise 3: Deploy highly-available HANA instances by using Terraform and Ansible](#exercise-3-deploy-highly-available-hana-instances-by-using-terraform-and-ansible)
         - [Task 1: Prepare for a highly-available HANA deployment](#task-1-prepare-for-ha-hana-deployment)
         - [Task 2: Perform the highly-available HANA deployment](#task-2-perform-ha-hana-deployment)
     - [Exercise 4: Validate and remove the deployment of the highly-available HANA instances](#exercise-4-validate-and-remove-the-ha-hana-deployment)
