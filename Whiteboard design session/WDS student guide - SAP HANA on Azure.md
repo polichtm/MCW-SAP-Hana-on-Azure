@@ -19,7 +19,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2018 Microsoft Corporation. All rights reserved.
+© 2019 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -71,7 +71,7 @@ Contoso Group is a global pharmaceutical company with its headquarters based in 
 
 Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytics systems on the HP-UX/Oracle platform. 
 
-Contoso Leadership and Planning Groups wants to significantly reduce server and storage hardware in their own datacenters to minimize IT related costs. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud. Contoso is also considering transitioning to SAP HANA 2.0 with a longer term objective of deploying S/4 HANA and BW/4 HANA.
+Contoso Leadership and Planning Groups wants to significantly reduce server and storage hardware in their own datacenters to minimize IT related costs. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud. Contoso is also considering transitioning to SAP HANA 2.0 with a longer-term objective of deploying S/4 HANA and BW/4 HANA.
 
 Contoso has already a number of their non-SAP systems migrated to Azure. Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY20), and migrate ECC in Q4 of CY20. The multi-stage approach is supposed to minimize potential migration risks.
 
