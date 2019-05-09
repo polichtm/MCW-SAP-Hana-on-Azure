@@ -1,4 +1,4 @@
-![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+﻿![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 SAP HANA on Azure
@@ -9,7 +9,7 @@ SAP HANA on Azure
 </div>
 
 <div class="MCWHeader3">
-December 2018
+March 2019
 </div>
 
 
@@ -69,15 +69,17 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 Contoso Group is a global pharmaceutical company with its headquarters based in Boston, US.
 
-Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytics systems on the HP-UX/Oracle platform.
+Contoso has been using SAP ERP and BW on HANA for its Finance/Logistics/Analytics systems on the HP-UX/Oracle platform. 
 
-Contoso Leadership and Planning Groups wants to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud.
+Contoso Leadership and Planning Groups wants to significantly reduce server and storage hardware in their own datacenters to minimize IT related costs. The leadership asked Contoso IT to look into the possibility of migrating its SAP HANA environment to cloud. Contoso is also considering transitioning to SAP HANA 2.0 with a longer term objective of deploying S/4 HANA and BW/4 HANA.
 
-Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY19), and migrate ECC in Q4 of CY19. The multi-stage approach is supposed to minimize potential migration risks.
+Contoso has already a number of their non-SAP systems migrated to Azure. Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP landscape in Azure. The intention is to migrate the BW system first (go live in March CY20), and migrate ECC in Q4 of CY20. The multi-stage approach is supposed to minimize potential migration risks.
 
 Considering that Contoso management team often uses BW to support their management decisions, the systems should be highly available, and their performance must be predictable and consistent. In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency of the migrated environment in case the primary region hosting the new deployment becomes unavailable.
 
 As Andrew Cross, CIO of Contoso Group emphasized this point by stating "Our operational dependencies on SAP applications force us to seek reasonably priced availability and disaster recovery capabilities for our production SAP HANA deployments."
+
+Contoso also wants to dramatically simplify the process of provisioning Azure resources, as well as installation and configuration of SAP HANA software components. Contoso IT has been relying on Ansible to manage its on-premises environment and, with the cloud migration plans, it started evaluating the use of Terraform to automate on-premises and cloud-based deployments. 
 
 Before migrating the production environment, Contoso wants to test its new deployment approach by provisioning training, development, test, and UAT environments in Azure.
 
@@ -95,13 +97,15 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 -   Access from HANA-based applications
 
+-   Automated provisioning
+
 -   Minimized cost
 
 1.  Design scope:
 
     -   BW migration to HANA in Azure VMs
 
-        -   Go-live date: March 2019
+        -   Go-live date: March 2020
 
         -   Current BW (ABAP Unicode) on-premises with HP-UX/Oracle and application layer on Linux
 
@@ -109,13 +113,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
             -   Use 1-year Reserved VM Instance option for Production VMs
 
-    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2019
+    -   ERP is kept on-premises (with HP-UX/Oracle) until December 2020
 
         -   Data is transferred from ERP (on-premises) to BW (in Cloud) every hour
 
     -   (Option) Need to start to prepare for ERP migration to Cloud
 
-2.  Target environment:
+1.  Target environment:
 
     -   Sizing
 
@@ -137,17 +141,17 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Uptime -- Prod: 24x7, 744 hours/month, QA - 50 hours/month, DEV/Test - 200 hours/month
 
-3.  High availability and disaster recovery:
+1.  High availability and disaster recovery:
 
     -   Availability
 
-        -   Both HA and Non-HA options need to be proposed.
+        -   Both HA only and HA with DR options need to be proposed.
 
-        -   With HA option, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day.
+        -   In regard to HA, in case of server/storage issues, auto failover to complete within a few minutes, in case of a disaster recovery within 1 day.
 
     -   Backup
 
-        -   Long term backup -- use reasonable backup storage in Cloud
+        -   Long term backup -- use backup storage in Cloud
 
         -   Data loss not allowed
 
@@ -161,7 +165,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
         -   Monthly HANA DB full backup for 1 year, annual for 3 years
 
-4.  End user access:
+1.  End user access:
 
     -   User locations -- 300 from US, 50 LATAM, 50 Europe, 30 Asia - all intranet
 
@@ -171,13 +175,13 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Customer objections 
 
-1.  ECC remains on-premises until Dec CY19. How can we maintain integrations between ECC and BW?
+1.  ECC remains on-premises until Dec CY20. How can we maintain integrations between ECC and BW?
 
-2.  How much does Azure cost? Give us a few options (e.g. HA and non-HA, DR and non-DR).
+1.  How much does Azure cost? Give us two options (HA only and HA with DR).
 
-3.  Do I have to pay for virtual machines when they are stopped?
+1.  Do I have to pay for virtual machines when they are stopped?
 
-4.  Can I automate the shutdown of virtual machines at periodic times of day?
+1.  Can I automate the shutdown of virtual machines at specific times of day?
 
 ### Infographic for common scenarios
 
@@ -207,31 +211,31 @@ Directions: With all participants at your table, respond to the following questi
 
 1.  What should be the Azure region(s) where the solution will be deployed?
 
-2.  Should the customer use a 2-tier and 3-tier architecture for its SAP deployment?
+1.  Should the customer use a 2-tier or 3-tier architecture for its SAP deployment?
 
-3.  How would you ensure that the high-availability and disaster recovery requirements are satisfied?
+1.  How would you ensure that the high-availability and disaster recovery requirements are satisfied?
 
 *Network design:*
 
 1.  What should be the hybrid connectivity option?
 
-2.  What should be the Azure virtual network design in order to maximize security?
+1.  What should be the Azure virtual network design in order to maximize security?
 
-*SAP deployment architecture:*
+*SAP deployment architecture and methodology:*
 
 1.  What will be the configuration of the configuration of the application and database components of your solution?
 
-2.  What Azure VM sizes do you intend to use?
+1.  What Azure VM sizes do you intend to use?
 
-3.  What other Azure resources will be part of your solution?
+1.  What other Azure resources will be part of your solution?
+
+1.  What should be the SAP deployment methodology?
 
 *Solution cost:*
 
-1.  What is the estimated cost of your solution without HA/DR?
+1.  What is the estimated cost of your solution with HA?
 
-2.  What is the estimated cost of your solution with HA?
-
-3.  What is the estimated cost of your solution with HA/DR?
+1.  What is the estimated cost of your solution with HA/DR?
 
 **Prepare**
 
@@ -282,6 +286,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 |    |            |
 |----------|:-------------:|
 | **Description** | **Links** |
-| High Availability of SAP HANA on Azure Virtual Machines (VMs) | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/sap-hana-high-availability/> |
-| HANA + NetWeaver HA on Azure VM | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/high-availability-guide-suse> |
-| Scripted HANA deployment | <https://github.com/AzureCAT-GSI/SAP-HANA-ARM> |
+| High availability of SAP HANA on Azure VMs on SUSE Linux Enterprise Server | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/sap-hana-high-availability/> |
+| High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server for SAP applications | <https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/high-availability-guide-suse> |
+| Automated SAP Deployments in Azure Cloud | <https://github.com/Azure/sap-hana> |
+| 1928533 - SAP Applications on Azure: Supported Products and Azure VM types | <https://launchpad.support.sap.com/#/notes/1928533> |
