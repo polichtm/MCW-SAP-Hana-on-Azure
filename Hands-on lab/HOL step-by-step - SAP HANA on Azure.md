@@ -61,7 +61,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 In this hands-on lab, you will step through the implementation of a single node and highly available SAP HANA deployments on Microsoft Azure virtual machines running SUSE Linux Enterprise Server. 
 
-After its completion, you will be able to perform single node and highly available SAP HANA deployments by using Terraform and Ansible, valiadate both types of deployments, test failover scenarios, and remove the deployed resources.
+After its completion, you will be able to perform single node and highly available SAP HANA deployments by using Terraform and Ansible, validate both types of deployments, test failover scenarios, and remove the deployed resources.
 
 ## Overview
 
@@ -803,7 +803,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 ### Task 3: Test a failover
 
-1.  Within the the Remote Desktop session to **hn1-win-bastion** Azure VM, in the Internet Explorer window displaying the **SUSE Hawk** page, from the **msl\_SAPHana\_HN1\_HDB01** pane, identify the system currently serving the master role. Close the **msl\_SAPHana\_HN1\_HDB01** pane.
+1.  Within the Remote Desktop session to **hn1-win-bastion** Azure VM, in the Internet Explorer window displaying the **SUSE Hawk** page, from the **msl\_SAPHana\_HN1\_HDB01** pane, identify the system currently serving the master role. Close the **msl\_SAPHana\_HN1\_HDB01** pane.
 
     ![The same page displays with the SAPHana resource details.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image21.png "SAPHana Resource details page")
 
@@ -868,11 +868,11 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![On the Resources tab, the SAPHana line now displays a question mark and two constraints symbols.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image28.png "Resources tab")
 
-1.  To remediate this, use the vertical menu on the left hand side of the **SUSE Hawk Status** to switch to the **Edit Configuration** page and display its **Constraints** tab. 
+1.  To remediate this, use the vertical menu on the left-hand side of the **SUSE Hawk Status** to switch to the **Edit Configuration** page and display its **Constraints** tab. 
 
     ![The Constraints tab is selected on the Edit Configuration page.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image29.png "Edit Configuration page")
 
-    > **Note**: Ban and prefer location constraints are generated automatically during migration operation in order to prevent unintended failback to the original cluster node. However, such constraints should be removed once the original node is available to host custer resources. 
+    > **Note**: Ban and prefer location constraints are generated automatically during migration operation in order to prevent unintended failback to the original cluster node. However, such constraints should be removed once the original node is available to host cluster resources. 
 
     > **Note**: Make sure not to accidentally remove other constraints.  
     
