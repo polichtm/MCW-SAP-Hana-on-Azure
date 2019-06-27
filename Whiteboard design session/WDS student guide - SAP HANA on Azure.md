@@ -238,7 +238,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ![Azure VM types to meet sizing requirements](images/VMtypesforSizingRequirements.png "Azure VM types to meet sizing requirements")
 
-![Premium Storage to run HANA on M series VM](images/PremiumStoraeforMseriesVM.png "Premium Storage config to run HANA on M series VM")
+![Premium Storage to run HANA on M series VM](images/PremiumStorageforMseriesVM.png "Premium Storage config to run HANA on M series VM")
 
 ![S/4HANA HA in Availability Sets and DR across regions](images/S4HANAinASandcrossRegionDR.png "S/4HANA HA in Availability Sets and DR across regions")
 
