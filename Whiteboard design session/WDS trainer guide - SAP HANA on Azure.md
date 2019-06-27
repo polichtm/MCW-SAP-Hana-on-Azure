@@ -779,7 +779,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     **Solution**: The pricing consists of two main categories: *HA/DR* and *cost conscious* (without HA/DR). Each quote includes cost of Production, QA, and Development environments, as well as it takes into account compute, storage, networking, SUSE OS/support, Azure Professional Direct Support (which is, at minimum, required when deploying SAP production solutions in Azure). The *cost conscious* pricing doesn’t include HA nor DR (single VM) and assumes retention of daily backups of Production for one month, along with biweekly QA and Dev backups. The *HA/DR* option includes Standard Load Balancer in the primary site and a DR replica in the secondary site, with retention of daily backups of Production for one month, monthly and quarterly for one year, along with monthly backups of QA and Dev monthly retained for one year. 
 
-![A table displays the cost estimates for BW on HANA with HA.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png "")
+![A table displays the cost for HA/DR and cost conscious options](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png)
 
 ## Checklist of preferred objection handling
 
