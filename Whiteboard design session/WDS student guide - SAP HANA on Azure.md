@@ -12,14 +12,13 @@ SAP HANA on Azure
 June 2019
 </div>
 
-
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2018 Microsoft Corporation. All rights reserved.
+© 2019 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -48,7 +47,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 In this workshop, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for in-memory database performance, business continuity and flexibility as well as fully optimized total cost of ownership. At the end of this workshop, you will be able to better design, price and present SAP HANA on Azure solutions to your customers. 
 
-At the end of this whiteboard design session you will be able to
+At the end of this whiteboard design session you will be able to:
 
 -   Design SAP HANA workloads on Azure in alignment with SAP HANA certification with high availability and disaster recovery.
 
@@ -84,13 +83,13 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 Contoso Group is a pharmaceutical company with its headquarters based in Boston, US.  
 
-Contoso Leadership and Planning Groups wants to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility to deploy its green field S/4HANA environment to cloud. 
+Contoso Leadership and Planning Groups want to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility to deploy its green field S/4HANA environment to cloud. 
 
 Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP S/4HANA landscape in Azure. 
 
-Considering that Contoso finance and supply chain team will strongly rely on S/4HANA, the systems should be highly available and their performance must be predictable and consistent.  In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency in case the primary region hosting the new deployment becomes unavailable. 
+Considering that Contoso finance and supply chain teams will strongly rely on S/4HANA, the systems should be highly available, and their performance must be predictable and consistent.  In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency in case the primary region hosting the new deployment becomes unavailable. 
 
-Andrew Cross, CIO of Contoso Group emphasized this point by stating "Our operational dependencies on SAP applications force us to seek reasonably priced high availability and disaster recovery capabilities for our production SAP S/4HANA deployments.” 
+Andrew Cross, CIO of Contoso Group emphasized this point by stating, "Our operational dependencies on SAP applications force us to seek reasonably priced high availability and disaster recovery capabilities for our production SAP S/4HANA deployments.” 
 
 Before migrating the production environment, Contoso wants to test its new deployment approach by provisioning development, and UAT environments in Azure
 
@@ -134,11 +133,11 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   High Availability and Disaster Recovery
 
-        -   Each proposed solution must include both high availability and disaster recovery capabilities for the Production environment (99.95% uptime)
+        -   Each proposed solution must include both high availability and disaster recovery capabilities for the Production environment (99.95% uptime).
 
-        -   Each proposed solution must include high availability for the Quality Assurance environment (99.95% uptime)
+        -   Each proposed solution must include high availability for the Quality Assurance environment (99.95% uptime).
 
-        -   The disaster recovery solution must ensure business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment
+        -   The disaster recovery solution must ensure business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment.
 
     -   Data protection
 
@@ -228,7 +227,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Provide assumptions for ExpressRoute bandwidth
 
-    -   Make sure to include the required minimum level of Azure support (e.g. Azure Professional Direct, whenever applicable)
+    -   Make sure to include the required minimum level of Azure support (e.g. Azure Professional Direct, whenever applicable).
 
 ### Infographic for key design concepts
 
