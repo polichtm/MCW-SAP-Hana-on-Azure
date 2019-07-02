@@ -19,7 +19,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2018 Microsoft Corporation. All rights reserved.
+© 2019 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -175,7 +175,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 In this workshop, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for in-memory database performance, business continuity and flexibility as well as fully optimized total cost of ownership. At the end of this workshop, you will be able to better design, price and present SAP HANA on Azure solutions to your customers. 
 
-At the end of this whiteboard design session you will be able to
+At the end of this whiteboard design session you will be able to:
 
 -   Design SAP HANA workloads on Azure in alignment with SAP HANA certification with high availability and disaster recovery.
 
@@ -211,13 +211,13 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 Contoso Group is a pharmaceutical company with its headquarters based in Boston, US.  
 
-Contoso Leadership and Planning Groups wants to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. The leadership asked Contoso IT to look into the possibility to deploy its green field S/4HANA environment to cloud. 
+Contoso Leadership and Planning Groups want to drastically reduce server and storage hardware in their own datacenters to minimize IT related costs. Contoso has already a number of their non-SAP systems migrated to Azure. Leadership has asked Contoso IT to look into the possibility to deploy its green field S/4HANA environment to cloud. 
 
 Contoso IT decided to leverage its knowledge of the Microsoft cloud platform and existing ExpressRoute connectivity and host its SAP S/4HANA landscape in Azure. 
 
-Considering that Contoso finance and supply chain team will strongly rely on S/4HANA, the systems should be highly available and their performance must be predictable and consistent.  In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency in case the primary region hosting the new deployment becomes unavailable. 
+Considering that Contoso finance and supply chain teams will strongly rely on S/4HANA, the systems should be highly available, and their performance must be predictable and consistent.  In addition, the management team wants to leverage disaster recovery capabilities offered by Azure in order to ensure resiliency in case the primary region hosting the new deployment becomes unavailable. 
 
-Andrew Cross, CIO of Contoso Group emphasized this point by stating "Our operational dependencies on SAP applications force us to seek reasonably priced high availability and disaster recovery capabilities for our production SAP S/4HANA deployments.” 
+Andrew Cross, CIO of Contoso Group emphasized this point by stating, "Our operational dependencies on SAP applications force us to seek reasonably priced high availability and disaster recovery capabilities for our production SAP S/4HANA deployments.” 
 
 Before migrating the production environment, Contoso wants to test its new deployment approach by provisioning development, and UAT environments in Azure
 
@@ -261,11 +261,11 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   High Availability and Disaster Recovery
 
-        -   Each proposed solution must include both high availability and disaster recovery capabilities for the Production environment (99.95% uptime)
+        -   Each proposed solution must include both high availability and disaster recovery capabilities for the Production environment (99.95% uptime).
 
-        -   Each proposed solution must include high availability for the Quality Assurance environment (99.95% uptime)
+        -   Each proposed solution must include high availability for the Quality Assurance environment (99.95% uptime).
 
-        -   The disaster recovery solution must ensure business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment
+        -   The disaster recovery solution must ensure business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment.
 
     -   Data protection
 
@@ -301,7 +301,7 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
 ### Key design considerations
 
-1.  Key design components:
+1.  Key design components
 
     -   HANA System Replication
 
@@ -355,21 +355,21 @@ Before migrating the production environment, Contoso wants to test its new deplo
 
     -   Provide assumptions for ExpressRoute bandwidth
 
-    -   Make sure to include the required minimum level of Azure support (e.g. Azure Professional Direct, whenever applicable)
+    -   Make sure to include the required minimum level of Azure support (e.g. Azure Professional Direct, whenever applicable).
 
 ### Infographic for key design concepts
 
-![SAP on Azure - a wide varity of compute instances](images/SoA-WideVerietyofCompute.png "Wide variety of Compute instances")
+![SAP on Azure - a wide varity of compute instances.](images/SoA-WideVerietyofCompute.png "Wide variety of Compute instances")
 
-![Pick Azure Compute for HANA and Application Servers](images/ComputeforHANAandAppServers.png "Azure Compute for HANA and Application Servers")
+![Pick Azure Compute for HANA and Application Servers.](images/ComputeforHANAandAppServers.png "Azure Compute for HANA and Application Servers")
 
-![Azure VM types to meet sizing requirements](images/VMtypesforSizingRequirements.png "Azure VM types to meet sizing requirements")
+![Azure VM types to meet sizing requirements.](images/VMtypesforSizingRequirements.png "Azure VM types to meet sizing requirements")
 
-![Premium Storage to run HANA on M series VM](images/PremiumStorageforMseriesVM.png "Premium Storage config to run HANA on M series VM")
+![Premium Storage to run HANA on M series VM.](images/PremiumStorageforMseriesVM.png "Premium Storage config to run HANA on M series VM")
 
-![S/4HANA HA in Availability Sets and DR across regions](images/S4HANAinASandcrossRegionDR.png "S/4HANA HA in Availability Sets and DR across regions")
+![S/4HANA HA in Availability Sets and DR across regions.](images/S4HANAinASandcrossRegionDR.png "S/4HANA HA in Availability Sets and DR across regions")
 
-![S/4HANA HA and DR across Availability Zones](images/S4HANAHAandDRacrossAZs.png "S/4HANA HA and DR across Availability Zones")
+![S/4HANA HA and DR across Availability Zones.](images/S4HANAHAandDRacrossAZs.png "S/4HANA HA and DR across Availability Zones")
 
 ## Step 2: Design a proof of concept solution
 
@@ -538,15 +538,15 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 1. **Business needs**: What customer business needs do you need to address with your solution?
 
-   -   business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment
+   -   Business continuity in case of an event affecting the entire Azure datacenter hosting the Production environment
 
-   -   data protection (no data loss allowed in the Production and the Quality Assurance environment)
+   -   Data protection (no data loss allowed in the Production and the Quality Assurance environment)
 
-   -   performant connectivity from legacy on-premises systems on-prem that need to interact with S/4HANA in Azure
+   -   Performant connectivity from legacy on-premises systems on-prem that need to interact with S/4HANA in Azure
 
-   -   agility (facilitating changes to the size of the environment)
+   -   Agility (facilitating changes to the size of the environment)
 
-   -   minimized cost
+   -   Minimized cost
 
 *High level solution architecture*
 
@@ -568,7 +568,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
         
     -   SAP Application Server layer - high availability is implemented by simply deploying multiple application servers. Disaster recovery across Azure regions relies on Azure Site Recovery, which replicates virtual disks of application servers to the secondary site. Azure Site Recovery is also used to orchestrate failover between sites.
 
-    In the context of HANA Database layer, the first option provides disaster recovery in case of an event affecting the entire region, but is a subject to increased latency between the primary and secondary site. The second option offers considerably lower latency between sites but its resiliency has more limited scope. In such case, the latency between the primary and secondary site is significant enough to preclude the possibility of using synchronous data replication between two SAP HANA instances under typical SAP workloads. Without the HANA synchronous replication mode, RTO and RPO requirements commonly force customers to deploy high availability configurations in one region, and then supplement it with additional deployments in a second region.
+    In the context of HANA Database layer, the first option provides disaster recovery in case of an event affecting the entire region, but is a subject to increased latency between the primary and secondary site. The second option offers considerably lower latency between sites, but its resiliency has more limited scope. In such case, the latency between the primary and secondary site is significant enough to preclude the possibility of using synchronous data replication between two SAP HANA instances under typical SAP workloads. Without the HANA synchronous replication mode, RTO and RPO requirements commonly force customers to deploy high availability configurations in one region, and then supplement it with additional deployments in a second region.
 
     Another aspect to consider in this context is failover and client redirect. The assumption is that a failover between SAP HANA instances in two different Azure regions is always manual. This is because SAP HANA system replication is in such case asynchronous, which, in turn, implies potential data loss during a failover. When performing manually controlled failover, you need to take additional measures to ensure that all the committed data on the primary side made it to the secondary instance.
 
@@ -624,7 +624,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
          -   Active/Active deployment: in this deployment architecture you deploy your active SAP application servers across two or three zones. The SAP Central Services instance that uses enqueue replication will be deployed between two zones. The same is true for the DBMS layer, which will be deployed across the same zones as SAP Central Service.
 
-             When considering this configuration, you need to find the two Availability Zones in your region that offer cross-zone network latency that's acceptable for your workload and your synchronous DBMS replication. You also want to be sure the delta between network latency within the zones you selected and the cross-zone network latency isn't too large. This is because you don't want large variations, depending on whether a job runs in-zone with the DBMS server or across zones, in the running times of your business processes or batch jobs. Some variations are acceptable, but not factors of difference.
+             When considering this configuration, you need to find the two Availability Zones in your region that offer cross-zone network latency that's acceptable for your workload and your synchronous DBMS replication. You also want to be sure the delta between network latency within the zones you selected, and the cross-zone network latency isn't too large. This is because you don't want large variations, depending on whether a job runs in-zone with the DBMS server or across zones, in the running times of your business processes or batch jobs. Some variations are acceptable, but not factors of difference.
 
          -   Active/Passive deployment: if you can't find an acceptable delta between the network latency within one zone and the latency of cross-zone network traffic, you can deploy an architecture that has an active/passive character from the SAP application layer point of view. You define an active zone, which is the zone where you deploy the complete application layer and where you attempt to run both the active DBMS and the SAP Central Services instance. With such a configuration, you need to make sure you don't have extreme run time variations, depending on whether a job runs in-zone with the active DBMS instance or not, in business transactions and batch jobs.
 
@@ -640,13 +640,13 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     In this option, Contoso will use the East US 2 Azure region as its production site the West US2 region as its disaster recovery site. It is worth noting that the choice of the disaster recovery site is not based on the region pairing (the East US 2 region is paired up with the Central US region) but rather takes into account the availability of Azure VM sizes that can be used to host SAP workloads (in particular, Mv2 and GS series VMs). 
 
-    The primary site hosts consists of multiple virtual networks forming the hub and spoke arrangment, according to the architectural principles of Virtual DataCenter in Azure. 
+    The primary site hosts consists of multiple virtual networks forming the hub and spoke arrangement, according to the architectural principles of Virtual DataCenter in Azure. 
 
     -   The hub virtual network consists of three subnets: 
 
-         -   Gateway subnet containing an instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corpoorate Network and Partner Admin Network, respectively, via a redundant pair of ExpressRoute circuits. 
+         -   Gateway subnet containing an instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corporate Network and Partner Admin Network, respectively, via a redundant pair of ExpressRoute circuits. 
 
-         -   Perimeter subnet containing a SAP Router VM, providing connectivity from SAP Support environment
+         -   Perimeter subnet containing an SAP Router VM, providing connectivity from SAP Support environment
 
          -   Management subnet containing VMs providing a number of infrastructure services, such as authentication, authorization, and name resolution (Active Directory Domain Controllers and DNS servers), patching, monitoring, backup, and remote management (Jumpbox).
 
@@ -664,9 +664,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     The design of secondary site also follows architectural principles of Virtual DataCenter in Azure by implementing the hub and spoke pattern.
 
-    -   The hub virtual network in the secondary site alos consists of three subnets: 
+    -   The hub virtual network in the secondary site also consists of three subnets: 
 
-         -   Gateway subnet containing an instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corpoorate Network (via a redundant pair of ExpressRoute circuits) and Partner Admin Network, respectively. 
+         -   Gateway subnet containing an instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corporate Network (via a redundant pair of ExpressRoute circuits) and Partner Admin Network, respectively. 
 
          -   Perimeter subnet containing a stopped instance of the SAP Router VM, which, once activated, would provide connectivity from SAP Support environment
 
@@ -678,9 +678,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
          -   AvSet ASCS/ERS: this availability set contains a pair of Windows Server VMs forming a WFC-based cluster hosting the highly available SAP ASCS and ERS roles.
 
-         -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the the PAS and AAS functionality.  
+         -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the PAS and AAS functionality.  
 
-         -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). One of the instances replicates asynchronously via SAP HANA Replication from a SAP HANA instance in the production environment. Clustering is implemented by using Pacemaker. 
+         -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). One of the instances replicates asynchronously via SAP HANA Replication from an SAP HANA instance in the production environment. Clustering is implemented by using Pacemaker. 
 
     All WFC-based clusters use Cloud Witness quorum for cluster arbitration. The Pacemaker-based cluster can use either an Azure fencing agent or a STONITH Block Device (SBD) daemon fencing (implemented as an iSCSI target server). The iSCSI target server can be shared with other Pacemaker clusters. The advantage of the SBD-based approach is a faster failover time (comparing with the Azure fencing agent that relies on an Azure Active Directory service principal). In addition, this approach is identical to the way SBD is used in on-premises scenarios. It is possible to use up to three SBD instances for a Pacemaker cluster to allow an SBD device to become unavailable, for example during OS patching of the iSCSI target server. 
 
@@ -690,13 +690,13 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     In this option, Contoso will use the East US 2 Azure region as its production and its disaster recovery site. The choice of the region takes into account the availability of Azure VM sizes that can be used to host SAP workloads (in particular, Mv2 and GS series VMs) as well as support for the Availability Zones, including support for all relevant zone-redundant components (in particular, Linux VMs, Windows Server VMs, Managed Disks, Standard IP Addresses, Standard Load Balancers, VPN Gateways, and ExpressRoute Gateways). The selected Azure region supports three availability zones. 
 
-    The design also includes multiple virtual networks forming the hub and spoke arrangment, according to the architectural principles of Virtual DataCenter in Azure.  
+    The design also includes multiple virtual networks forming the hub and spoke arrangement, according to the architectural principles of Virtual DataCenter in Azure.  
 
     -   The hub virtual network consists of three subnets spanning all three availability zones: 
 
-         -   Gateway subnet containing zone redundant instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corpoorate Network and Partner Admin Network, respectively. 
+         -   Gateway subnet containing zone redundant instance of ExpressRoute Gateway and VPN Gateway, providing connectivity from the Customer Corporate Network and Partner Admin Network, respectively. 
 
-         -   Perimeter subnet containing a SAP Router VM, providing connectivity from SAP Support environment, deployed into Availability Zone 1.
+         -   Perimeter subnet containing an SAP Router VM, providing connectivity from SAP Support environment, deployed into Availability Zone 1.
 
          -   Management subnet containing VMs providing a number of infrastructure services, such as authentication, authorization, and name resolution (Active Directory Domain Controllers and DNS servers), patching, monitoring, backup, and remote management (Jumpbox), all of which are deployed into Availability Zone 1. In addition, the management subnet contains the iSCSI Target SBD instance deployed into Availability Zone 3, providing arbitration for the Pacemaker cluster hosting HANA instances deployed into Availability Zone 1 and Availability Zone 2 (residing in the Production and QA subnet)
 
@@ -706,7 +706,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
          -   ASCS/ERS Prod and QA: these two clusters contain active VM instances residing in Availability Zone 1 and standby VM instances residing in Availability Zone 2. 
 
-         -   Application Prod and QA: PAS for each environment resides in Availability Zone 1 and AAS for each environment resides in Availability Zone 2. Clustering is not used in this case since high availability is built-into the the PAS and AAS functionality.  
+         -   Application Prod and QA: PAS for each environment resides in Availability Zone 1 and AAS for each environment resides in Availability Zone 2. Clustering is not used in this case since high availability is built-into the PAS and AAS functionality.  
 
          -   HANA Prod and QA: these two clusters contain active VM instances residing in Availability Zone 1 and standby VM instances residing in Availability Zone 2, with HANA Synchronous replication between nodes of each cluster. Clustering is implemented by using Pacemaker. The Pacemaker-based cluster relies on the STONITH Block Device (SBD) daemon fencing (with the iSCSI Target-based SBD VM residing in the Management subnet of the hub virtual network in Availability Zone 3). 
 
@@ -728,7 +728,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 1.  **Design**: What should be the Azure virtual network design in order to maximize security?
 
-    **Solution**: Virtual network design follows the architectural principles of Virtual DataCenter in Azure, with multiple virtual networks forming the hub and spoke topology. In both options, connectivity to the virtual network hosting our SAP deployment is established via a dedicated hub virtual network. The hub virtual network will contain Perimeter and Management subnets, hosting jumpbox VMs that can be used to perform standard remote management tasks. Traffic destined to and originating from each subnet of the hub and spokes virtual networks will be additinally restricted by using Network Security Groups.
+    **Solution**: Virtual network design follows the architectural principles of Virtual DataCenter in Azure, with multiple virtual networks forming the hub and spoke topology. In both options, connectivity to the virtual network hosting our SAP deployment is established via a dedicated hub virtual network. The hub virtual network will contain Perimeter and Management subnets, hosting jumpbox VMs that can be used to perform standard remote management tasks. Traffic destined to and originating from each subnet of the hub and spokes virtual networks will be additionally restricted by using Network Security Groups.
 
 *SAP deployment architecture and methodology:*
 
@@ -741,7 +741,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     -   AvSet ASCS/ERS: this availability set contains a pair of Windows Server VMs forming a WFC-based cluster hosting the highly available SAP ASCS and ERS roles.
 
-    -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the the PAS and AAS functionality.  
+    -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the PAS and AAS functionality.  
 
     -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). Clustering is implemented by using Pacemaker. 
 
@@ -753,9 +753,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     -   AvSet ASCS/ERS: this availability set contains a pair of Windows Server VMs forming a WFC-based cluster hosting the highly available SAP ASCS and ERS roles.
 
-    -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the the PAS and AAS functionality.  
+    -   AvSet PAS: this availability set contains a pair of Windows Server VMs hosting the Primary Application Server (PAS) and an Additional Application Server (AAS). Clustering is not used in this case since high availability is built-into the PAS and AAS functionality.  
 
-    -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). One of the instances replicates asynchronously via SAP HANA Replication from a SAP HANA instance in the production environment. Clustering is implemented by using Pacemaker. 
+    -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). One of the instances replicates asynchronously via SAP HANA Replication from an SAP HANA instance in the production environment. Clustering is implemented by using Pacemaker. 
 
     All WFC-based clusters use Cloud Witness quorum for cluster arbitration. The Pacemaker-based cluster can use either an Azure fencing agent or a STONITH Block Device (SBD) daemon fencing (implemented as an iSCSI target server). The iSCSI target server can be shared with other Pacemaker clusters. The advantage of the SBD-based approach is a faster failover time (comparing with the Azure fencing agent that relies on an Azure Active Directory service principal). In addition, this approach is identical to the way SBD is used in on-premises scenarios. It is possible to use up to three SBD instances for a Pacemaker cluster to allow an SBD device to become unavailable, for example during OS patching of the iSCSI target server. 
 
@@ -765,7 +765,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
      -   ASCS/ERS Prod and QA: these two clusters contain active VM instances residing in Availability Zone 1 and standby VM instances residing in Availability Zone 2. 
 
-     -   Application Prod and QA: PAS for each environment resides in Availability Zone 1 and AAS for each environment resides in Availability Zone 2. Clustering is not used in this case since high availability is built-into the the PAS and AAS functionality.  
+     -   Application Prod and QA: PAS for each environment resides in Availability Zone 1 and AAS for each environment resides in Availability Zone 2. Clustering is not used in this case since high availability is built-into the PAS and AAS functionality.  
 
      -   HANA Prod and QA: these two clusters contain active VM instances residing in Availability Zone 1 and standby VM instances residing in Availability Zone 2, with HANA Synchronous replication between nodes of each cluster. Clustering is implemented by using Pacemaker. The Pacemaker-based cluster relies on the STONITH Block Device (SBD) daemon fencing (with the iSCSI Target-based SBD VM residing in the Management subnet of the hub virtual network in Availability Zone 3). 
 
@@ -777,19 +777,19 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 1.  **Design**: What is the estimated cost of your solution?
 
-    **Solution**: The pricing consists of two main categories: *HA/DR* and *cost conscious* (without HA/DR). Each quote includes cost of Production, QA, and Development environments, as well as it takes into account compute, storage, networking, SUSE OS/support, Azure Professional Direct Support (which is, at minimum, required when deploying SAP production solutions in Azure). The *cost conscious* pricing doesn’t include HA nor DR (single VM) and assumes retention of daily backups of Production for one month, along with biweekly QA and Dev backups. The *HA/DR* option includes Standard Load Balancer in the primary site and a DR replica in the secondary site, with retention of daily backups of Production for one month, monthly and quarterly for one year, along with monthly backups of QA and Dev monthly retained for one year. 
+    **Solution**: The pricing consists of two main categories: *HA/DR* and *cost conscious* (without HA/DR). Each quote includes cost of Production, QA, and Development environments, as well as it takes into account compute, storage, networking, SUSE OS/support, Azure Professional Direct Support (which is, at minimum, required when deploying SAP production solutions in Azure). The *cost-conscious* pricing doesn’t include HA nor DR (single VM) and assumes retention of daily backups of Production for one month, along with biweekly QA and Dev backups. The *HA/DR* option includes Standard Load Balancer in the primary site and a DR replica in the secondary site, with retention of daily backups of Production for one month, monthly and quarterly for one year, along with monthly backups of QA and Dev monthly retained for one year. 
 
-![A table displays the cost for HA/DR and cost conscious options](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png)
+![A table displays the cost for HA/DR and cost conscious options.](images/Whiteboarddesignsessiontrainerguide-SAPHANAonAzureimages/media/image17.png)
 
 ## Checklist of preferred objection handling
 
 1.  Is the proposed solution fully certified by SAP? 
 
-    Each of the *T-Shirt* pricing options represents a fully SAP-certified configuration. For more information, refer to https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/hana-available-skus  
+    Each of the *T-Shirt* pricing options represents a fully SAP-certified configuration. For more information, refer to https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/hana-available-skus.  
 
 1.  Does the proposal meet Contoso business continuity requirements? What if there’s outage on VM or storage? How can we restore from backup? How can we failover the landscape in case of an outage?
 
-    Both proposed options faciliate HA and, depending on the scope, an accidental outage affecting either the entire Azure region (option 1) or an individual Azure datacenter (corresponding to the Availability Zone hosting the production environment). With option 1, the failover between regions is manual because there is a potential for data loss due to asynchronous replication of HANA between the production and disaster recovery site. Such failover can be streamlined by leveraging Azure Site Recovery. With option 2, this failover can be automated since HANA replication is synchronous.
+    Both proposed options facilitate HA and, depending on the scope, an accidental outage affecting either the entire Azure region (option 1) or an individual Azure datacenter (corresponding to the Availability Zone hosting the production environment). With option 1, the failover between regions is manual because there is a potential for data loss due to asynchronous replication of HANA between the production and disaster recovery site. Such failover can be streamlined by leveraging Azure Site Recovery. With option 2, this failover can be automated since HANA replication is synchronous.
 
     VMs hosting SAP Application can be backed up using Azure Backup. For VM-level recovery, you might consider using Azure VM Backup. Azure Backup stores the backups in Azure and allows a restore of a VM again. However, be aware that Azure VM backup supports only a single scheduled backup per day. In addition, note that using VM Backup does not preserve the unique VM ID which is used for SAP licensing. This means that a restore from a VM backup requires installation of a new SAP license key as the restored VM is considered to be a new VM and not a replacement of the former one which was saved.
 
