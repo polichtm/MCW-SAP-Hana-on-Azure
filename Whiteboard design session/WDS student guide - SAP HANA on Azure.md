@@ -46,15 +46,9 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 ## Abstract and learning objectives 
 
-In this workshop, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for in-memory database performance, business continuity and flexibility as well as fully optimized total cost of ownership. At the end of this workshop, you will be able to better design, price and present SAP HANA on Azure solutions to your customers. 
+In this workshop, you will look at what is involved in deploying SAP HANA on Azure with the goals of designing for in-memory database performance, business continuity and flexibility as well as fully optimized total cost of ownership. 
 
-At the end of this whiteboard design session you will be able to:
-
--   Design SAP HANA workloads on Azure in alignment with SAP HANA certification with high availability and disaster recovery.
-
--   Run Azure Pricing Calculator to price the SAP HANA landscape. 
-
--   Present the solution to business/technical decision makers and handle Q&A with customer. 
+At the end of this whiteboard design session you will be able to design SAP HANA workloads on Azure in alignment with SAP HANA certification with high availability and disaster recovery, as well as run Azure Pricing Calculator to price the SAP HANA landscape.  , and present the solution to business/technical decision makers and handle Q&A with customer. 
 
 ## Prerequisites
 
