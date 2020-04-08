@@ -373,7 +373,7 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     ~/bin/terraform apply -auto-approve
     ```
 
-   > **Note**: The deployment takes about 40 minutes to complete. 
+   > **Note**: The deployment takes about 30 minutes to complete. 
 
 
 ## Exercise 2: Validate and remove the single node HANA deployment
@@ -403,7 +403,7 @@ In this exercise, you will validate the single-node HANA deployment you performe
 
     > **Note**: `10.0.0.6` is the private IP address assigned to the network interface of the Azure VM hosting the HANA instance.
 
-1.  Within the Remote Desktop session, start SAP HANA Studio Administration.
+1.  Within the Remote Desktop session, start SAP HANA Studio.
 
 1.  When prompted to select a workspace, accept the default value, and select **Launch**.
 
