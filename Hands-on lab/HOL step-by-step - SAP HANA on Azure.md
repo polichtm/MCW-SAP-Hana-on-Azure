@@ -479,9 +479,11 @@ In this exercise, you will implement a highly-available deployment of SAP HANA o
 
 You will leverage a number of artifacts that you already implemented earlier in this lab, including:
 
-    -   HANA software that you uploaded to an Azure Storage account in the first task of the first exercise
+-   Terraform binaries which you uploaded into your Cloud Shell home directory in the first task of the first exercise
 
-    -   SSH key pair you generated in the second task of the first exercise
+-   HANA software that you uploaded to an Azure Storage account in the first task of the first exercise
+
+-   SSH key pair you generated in the second task of the first exercise
 
 
 ### Task 1: Prepare for a highly-available HANA deployment
@@ -579,11 +581,11 @@ You will leverage a number of artifacts that you already implemented earlier in 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to specify the names of the software packages you uploaded to the storage account in the previous task of this exercise:
 
     ```sh
-    SAPCAR_LINUX_NAME='SAPCAR_1211-80000935.EXE'
-    SAPCAR_WINDOWS_NAME='SAPCAR_1211-80000938.EXE'
-    HDBSERVER_NAME='IMDB_SERVER100_122_24-10009569.SAR'
+    SAPCAR_LINUX_NAME='SAPCAR_1311-80000935.EXE'
+    SAPCAR_WINDOWS_NAME='SAPCAR_1311-80000938.EXE'
+    HDBSERVER_NAME='IMDB_SERVER100_122_30-10009569.SAR'
     SAP_HOST_AGENT_NAME='SAPHOSTAGENT36_36-20009394.SAR'
-    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_240_0-80000323.SAR' 
+    HANA_STUDIO_WINDOWS_NAME='IMC_STUDIO2_122_30-80000323.SAR'
     ```
 
     > **Note**: The packages listed above might be superseded by newer versions. If so, ensure to adjust accordingly the names of these packages. 
@@ -640,13 +642,13 @@ You will leverage a number of artifacts that you already implemented earlier in 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to initialize Terraform modules and provider plugins necessary to perform Terraform-based single-node HANA deployment:
 
     ```sh
-    terraform init
+    ~/bin/terraform init
     ```
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to identify changes to be performed by the Terraform-based highly-available HANA deployment:
 
     ```sh
-    terraform plan
+    ~/bin/terraform plan
     ```
 
     > **Note**: If you receive an error message regarding listing service principal, wait for 5 minutes and try running the above commmand again.
@@ -654,7 +656,7 @@ You will leverage a number of artifacts that you already implemented earlier in 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to initiate Terraform-based highly-available HANA deployment:
 
     ```sh
-    terraform apply -auto-approve
+    ~/bin/terraform apply -auto-approve
     ```
 
    > **Note**: The deployment takes about 60 minutes to complete. 
@@ -685,7 +687,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 1.  Add the following entries to the host file, save your changes, and close the file:
 
     ```sh
-    10.0.0.13	hdbha        
+    10.0.0.13	hdbha
     ```
 
     > **Note**: `10.0.0.13` is the IP address assigned to the front end of the Azure Internal Load Balancer that distributes network traffic to the Azure VMs hosting highly-available HANA instances.
