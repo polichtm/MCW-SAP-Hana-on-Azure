@@ -126,12 +126,14 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
 
 1.  In the Azure portal at <http://portal.azure.com>, start a Bash session in **Cloud Shell**.
 
-1.  In the Cloud Shell pane, from the Bash prompt, run the following to create a resource group that will host a storage account containing media files, where the `<location>` placeholder designates the target Azure region that you intend to use for this lab (e.g. `eastus`):
+1.  In the Cloud Shell pane, from the Bash prompt, run the following to create a resource group that will host a storage account containing media files, where the `<location>` placeholder designates the target Azure region that you intend to use for this lab (e.g. `westus2`):
 
     ```sh
     MEDIA_RESOURCE_GROUP_NAME='hanaMedia-RG'
     MEDIA_RESOURCE_GROUP=$(az group create --location location --name $MEDIA_RESOURCE_GROUP_NAME)
     ``` 
+
+   > **Note**: Consider using the **westus2** Azure region for this lab. Do not use **eastus**.
 
 1.  In the Cloud Shell pane, from the Bash prompt, run the following to generate a pseudo-random name you will assign to the storage account:
 
@@ -374,6 +376,8 @@ In this exercise, you will implement a single-node deployment of SAP HANA on Azu
     ```
 
    > **Note**: The deployment takes about 30 minutes to complete. 
+
+   > **Note**: If your deployment fails with the error **Cannot resolve host name**, error message, the retry the deployment. This issue is a result of waagent not setting up hostname in a stable way, which is expected to be fixed in the next image release of Suse Linux Enterprise Server. For details, refer to <https://github.com/Azure/WALinuxAgent/pull/1832>.
 
 
 ## Exercise 2: Validate and remove the single node HANA deployment
@@ -661,6 +665,8 @@ You will leverage a number of artifacts that you already implemented earlier in 
 
    > **Note**: The deployment takes about 60 minutes to complete. 
 
+   > **Note**: If the deployment fails, in the Azure portal, delete the **hanav1ha-RG** resource group and re-run the first task.
+
 
 ## Exercise 4: Validate and remove the deployment of the highly-available HANA instances
 
@@ -671,7 +677,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 ### Task 1: Connect to the highly-available HANA instances by using SAP HANA Studio
 
-1.  From the lab computer, in the Azure portal, navigate to the blade of the **hn1-win-bastion** Azure VM operating as the Windows bastion host and initiate a Remote Desktop session. When prompted, sign in with the following credentials:
+1.  From the lab computer, in the browser displaying the Azure portal, navigate to the blade of the **hn1-win-bastion** Azure VM operating as the Windows bastion host and initiate a Remote Desktop session. When prompted, sign in with the following credentials:
 
     -   Username: **bastion_user**
 
@@ -753,11 +759,9 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 1.  From the lab computer, in the Azure portal, navigate to the **Virtual machines** blade. 
 
-1.  On the **Virtual machines** blade, right-click the ellipsis to the right of the **hn1-hdb0** entry and, in the drop-down menu, select **Connect**.
+1.  On the **Virtual machines** blade, click the **hn1-hdb0** entry and, on the **hn1-hdb0** blade, note the value of the **DNS name** entry. 
 
-1.  On the **Connect to virtual machine** blade, copy the entry in the **Login using VM local account** entry. 
-
-1.  In the Azure portal, start a Bash session within the Cloud Shell and paste the entry you copied in the previous step. The entry will be in the following format (where `<dns_name>` designates the fully qualified DNS name assigned to the public IP address assigned to the Azure VM):
+1.  In the Azure portal, start a Bash session within the Cloud Shell and type the following entry (where the `<dns_name>` placeholder designates the fully qualified DNS name assigned to the public IP address assigned to the Azure VM, which you copied in the previous step):
 
     ```sh
     ssh labuser@<dns_name>
@@ -771,11 +775,9 @@ In this exercise, you will validate the deployment of the highly-available HANA 
     sudo passwd hacluster
     ```
 
-1.  Switch back to the **Virtual machines** blade, right-click the ellipsis to the right of the **hn1-hdb1** entry and, in the drop-down menu, select **Connect**.
+1.  Switch back to the **Virtual machines** blade, click the **hn1-hdb1** entry and, on the **hn1-hdb1** blade, note the value of the **DNS name** entry. 
 
-1.  On the **Connect to virtual machine** blade, copy the entry in the **Login using VM local account** entry. 
-
-1.  In the Azure portal, start another Bash session within the Cloud Shell and paste the entry you copied in the previous step. The entry will be in the following format (where `<dns_name>` designates the fully qualified DNS name assigned to the public IP address assigned to the Azure VM):
+1.  In the Azure portal, start another Bash session within the Cloud Shell and type the following entry (where the `<dns_name>` placeholder designates the fully qualified DNS name assigned to the public IP address assigned to the Azure VM, which you copied in the previous step):
 
     ```sh
     ssh labuser@<dns_name>
@@ -790,6 +792,8 @@ In this exercise, you will validate the deployment of the highly-available HANA 
     ```
 
 1.  Switch to the Remote Desktop session to hn1-win-bastion Azure VM, start **Internet Explorer**, and browse to **https://hn1-hdb0:7630**. On the **SUSE Hawk Sign in** page, sign in as **hacluster** with the password **Lab\@pa55hv1.0**.
+
+    > **Note**: Ignore any prompts regarding problems with security certificate of the target website. That is expected in this scenario.
 
 1.  Once you sign in, review the **Resources** tab on the **Status** page.
 
@@ -810,7 +814,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
 ### Task 3: Test a failover
 
-1.  Within the Remote Desktop session to **hn1-win-bastion** Azure VM, in the Internet Explorer window displaying the **SUSE Hawk** page, from the **msl\_SAPHana\_HN1\_HDB01** pane, identify the system currently serving the master role. Close the **msl\_SAPHana\_HN1\_HDB01** pane.
+1.  Within the Remote Desktop session to **hn1-win-bastion** Azure VM, in the Internet Explorer window displaying the **SUSE Hawk** page, from the **msl\_SAPHana\_HN1\_HDB01** pane, identify the system currently serving the master role. Then close the **msl\_SAPHana\_HN1\_HDB01** pane.
 
     ![The same page displays with the SAPHana resource details.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image21.png "SAPHana Resource details page")
 
@@ -908,6 +912,10 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![On the Resources tab, the status of the resource has a blue dot, and its location is hn1-hdb1.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image34.png "Status page")
 
+1.  If you receive the error message **Partition without quorum! Fencing and resource management is disabled. Node "hn1-hdb0" is UNCLEAN and needs to be fenced, in the SUSE Hawk interface, on the Status page, switch to the **Nodes** tab, in the row representing the **hn1-hdb0** node, in the **Operations** column, select the drop-down button, in the drop-down menu, select **Fence**, and when prompted to continue, select **OK**.
+
+    ![On the Resources tab, the status of the resource has a blue dot, and its location is hn1-hdb1.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image34.png "Status page")
+
 1.  Switch to **SAP HANA Administration Console**, and refresh the Overview tab in the **Configuration and Monitoring** view. Note that SAP HANA is running at this point on the **hn1-hdb1** node.
 
     ![In the Configuration and Monitoring view, on the Overview tab, details display for SAP HANA.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image35.png "SAP HANA Administration Console, Overview tab")
@@ -918,7 +926,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     > **Note**: You might need to wait a few minutes before the operational state is identified.
 
-1.  Switch to the lab computer, in the Azure portal, navigate to the **Virtual machines** blade, start the hn1-hdb0 virtual machine and wait until it is running again.
+1.  Switch to the lab computer, in the Azure portal, navigate to the **Virtual machines** blade, start the virtual machine you stopped earlier in this task and wait until it is running again.
 
 1.  Switch back to the Remote Desktop session to **hn1-win-bastion** Azure VM and, on the **SUSE Hawk Status** page at **https://hn1-hdb1:7630** note that the **SAPHana** clustered resource is operational on both hn1-hdb0 and hn1-hdb1 with hn1-hdb1 as the primary (you might need to wait a few minutes for the interface to refresh):
 
