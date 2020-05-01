@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-March 2020
+May 2020
 </div>
 
 
@@ -912,10 +912,6 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![On the Resources tab, the status of the resource has a blue dot, and its location is hn1-hdb1.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image34.png "Status page")
 
-1.  If you receive the error message **Partition without quorum! Fencing and resource management is disabled. Node "hn1-hdb0" is UNCLEAN and needs to be fenced, in the SUSE Hawk interface, on the Status page, switch to the **Nodes** tab, in the row representing the **hn1-hdb0** node, in the **Operations** column, select the drop-down button, in the drop-down menu, select **Fence**, and when prompted to continue, select **OK**.
-
-    ![On the Resources tab, the status of the resource has a blue dot, and its location is hn1-hdb1.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image34.png "Status page")
-
 1.  Switch to **SAP HANA Administration Console**, and refresh the Overview tab in the **Configuration and Monitoring** view. Note that SAP HANA is running at this point on the **hn1-hdb1** node.
 
     ![In the Configuration and Monitoring view, on the Overview tab, details display for SAP HANA.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image35.png "SAP HANA Administration Console, Overview tab")
@@ -932,7 +928,7 @@ In this exercise, you will validate the deployment of the highly-available HANA 
 
     ![On the Resources tab, the SAPHana line now displays a blue dot.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image37.png "Resources tab")
 
-1.  Within the Remote Desktop session to **hn1-win-bastion** Azure VM, switch to the **SAP HANA Administration Console** and, on the **System Replication** sub-tab of the Landscape tab of the **Configuration and Monitoring** view, note that replication status is active.
+1.  Within the Remote Desktop session to **hn1-win-bastion** Azure VM, switch to the **SAP HANA Administration Console**, navigate to the **System Replication** sub-tab of the **Landscape** tab of the **Configuration and Monitoring** view and note that replication status is active.
 
     ![In the Configuration and Monitoring view, on the System Repliation sub-tab of the Landscape tab, details display active replication status for SAP HANA.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/image38.png "SAP HANA Administration Console, Landscape tab")
 
