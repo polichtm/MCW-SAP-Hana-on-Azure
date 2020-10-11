@@ -364,7 +364,7 @@ Before implementing the production environment, Contoso wants to test its new de
 
 ![Premium Storage to run HANA on M series VM](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_premium_storage_hana.png "Premium Storage config to run HANA on M series VM")
 
-![S/4HANA HA in Availability Sets and DR across regions](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_hana_dr_across_regions.png.png "S/4HANA HA in Availability Sets and DR across regions")
+![S/4HANA HA in Availability Sets and DR across regions](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_hana_dr_across_regions.png "S/4HANA HA in Availability Sets and DR across regions")
 
 ![S/4HANA HA and DR across Availability Zones](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_hana_dr_across_zones.png "S/4HANA HA and DR across Availability Zones")
 
