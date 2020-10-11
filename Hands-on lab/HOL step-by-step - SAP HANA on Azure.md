@@ -38,11 +38,11 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
         - [Task 2: Deploy a single node HANA instance by using Terraform and Ansible](#task-2-Deploy-a-single-node-HANA-instance-by-using-Terraform-and-Ansible)
         - [Task 3: Review the deployment of a single node HANA instance](#task-3-Review-the-deployment-of-a-single-node-HANA-instance)
         - [Task 4: Prepare for the highly-available deployment of SAP HANA](#task-4-Prepare-for-the-highly-available-deployment-of-SAP-HANA)
-    - [Exercise 2: Implement highly-available HANA instances by using Terraform and Ansible](#exercise-3-Implement-highly-available-HANA-instances-by-using-Terraform-and-Ansible)
+    - [Exercise 2: Implement highly-available HANA instances by using Terraform and Ansible](#exercise-2-Implement-highly-available-HANA-instances-by-using-Terraform-and-Ansible)
         - [Task 1: Deploy highly-available Azure infrastructure by using Terraform](#task-1-Deploy-highly-available-Azure-infrastructure-by-using-Terraform)
         - [Task 2: Deploy highly-available Azure HANA instances by using Ansible](#task-2-Deploy-highly-available-Azure-HANA-instances-by-using-Ansible)
         - [Task 3: Review the deployment of highly-available HANA instances](#task-3-Review-the-deployment-of-highly-available-HANA-instances)
-        - [Task 4: Install SAP HANA Client 2.0 on the Windows Server jumpbox Azure VM](#task-4-Install-SAP-HANA-Client-2.0-on-the-Windows-Server-jumpbox-Azure-VM)
+        - [Task 4: Install SAP HANA Client on the Windows Server jumpbox Azure VM](#task-4-Install-SAP-HANA-Client-on-the-Windows-Server-jumpbox-Azure-VM)
         - [Task 5: Test failover of the clustered resources](#task-5-Test-failover-of-the-clustered-resources)
         - [Task 6: Test fencing of the clustered resources](#task-6-Test-fencing-of-the-clustered-resources)
         - [Task 7: Test migration of the clustered resources](#task-7-Test-migration-of-the-clustered-resources)
@@ -1250,7 +1250,7 @@ You will leverage a number of artifacts that you implemented in the first exerci
     ![The SAP HANA XS Advanced Cockpit displays the the XSA Host: Home - User Management page with the new user created.](images/Hands-onlabstep-by-step-SAPHANAonAzureimages/media/ex2task3_xsa_new_user_created.png "XSA Host: Home - User Management page")
 
 
-### Task 4: Install SAP HANA Client 2.0 on the Windows Server jumpbox Azure VM
+### Task 4: Install SAP HANA Client on the Windows Server jumpbox Azure VM
 
 1.  Within the Remote Desktop session to Windows Server jumpbox Azure VM **hanav2jmp-vm0**, start **Internet Explorer**, and browse to [SAP HANA Client 2.0 download page](https://tools.hana.ondemand.com/#hanatools)
 
@@ -1673,7 +1673,7 @@ After completing the hands-on lab, remove the resource group and any remaining r
 
 ### Task 1: Remove the resource group containing all Azure resources deployed in this lab
 
-1.  From the lab computer, in the Azure portal at <http://portal.azure.com> , select the **Cloud Shell** icon.
+1.  From the lab computer, in [the Azure portal](http://portal.azure.com) , select the **Cloud Shell** icon.
 
 1.  If prompted, in the **Welcome to Azure Cloud Shell** window, select **Bash (Linux)**.
 

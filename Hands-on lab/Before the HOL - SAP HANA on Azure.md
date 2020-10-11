@@ -73,7 +73,7 @@ To complete this lab, you must verify that your account has sufficient permissio
 
 1.  Switch to the **Role assignments** tab, review the list of role assignments, and verify that your user account has the Owner role assigned to it.
 
-### Task 2: Validate availability of the SUSE Linux Enterprise Server image 
+### Task 2: Validate the availability of the SUSE Linux Enterprise Server image
 
 1.  In the Azure portal, select the **Cloud Shell** icon.
 
