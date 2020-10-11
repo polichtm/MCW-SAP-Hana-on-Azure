@@ -557,7 +557,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
     Note that, with both options, it is important to consider high availability and disaster recovery provisions separately for each component of our solution:
 
-    -   HANA Database layer - both high availability and disaster recovery is implemented by using HANA System Replication (synchronous or asynchronous, depending on the option). In case of synchronous replication, the high availability functionality relies additionally on Linux-based Pacemaker clustering.
+    -   HANA Database layer - both high availability and disaster recovery is implemented by using HANA System Replication (synchronous or asynchronous, depending on the option). In case of synchronous replication, the high availability functionality relies additionally on Linux-based Pacemaker clustering. 
+
+     > **Note**: To provide high availability and automatic failover of XSA-based apps, Contoso should additionally consider implementing a reverse proxy functioning as a failover router. You have the option of terminating the SSL traffic targeting the apps at the reverse proxy. For details regarding this configuration, refer to SAP documentation. 
 
     -   SAP Central Services (ASCS) layer - high availability is implemented by using operating system-level clustering (either Windows Server Failover Clustering or Linux-based Pacemaker clustering, depending on the underlying operating system). Disaster recovery relies across Azure regions on Azure Site Recovery, which replicates virtual disks of cluster members to the secondary site. Azure Site Recovery is also used to orchestrate failover between sites.
 
@@ -657,7 +659,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
          -   AvSet HANA: this availability set contains a pair of clustered Linux VMs hosting HANA instances configured with synchronous HANA System Replication (HSR). Clustering is implemented by using Pacemaker. 
 
-    All WFC-based clusters use Cloud Witness quorum for cluster arbitration. The Pacemaker-based cluster can use either an Azure fencing agent or a STONITH Block Device (SBD) daemon fencing (the latter is preferred due to a considerably faster failover). 
+    All WFC-based clusters use Cloud Witness quorum for cluster arbitration. The Pacemaker-based cluster can use either an Azure fencing agent or a STONITH Block Device (SBD) daemon fencing.  (the latter is preferred due to a faster failover, although the latest versions of the Azure fencing agent offer improvements in this regard.)
 
     The design of secondary site is also implemented in a hub and spoke pattern.
 
