@@ -356,17 +356,17 @@ Before implementing the production environment, Contoso wants to test its new de
 
 ### Infographic for key design concepts
 
-![SAP on Azure - a wide varity of compute instances](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_wide_variety_compute_instances.png "Wide variety of Compute instances")
+![SAP on Azure - a wide varity of compute instances](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_wide_variety_compute_instances.png "Wide variety of Compute instances")
 
-![Pick Azure Compute for HANA and Application Servers](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_pick_compute_hana_and_app_servers.png "Azure Compute for HANA and Application Servers")
+![Pick Azure Compute for HANA and Application Servers](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_pick_compute_hana_and_app_servers.png "Azure Compute for HANA and Application Servers")
 
-![Azure VM types to meet sizing requirements](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_vm_sizing_requirements.png "Azure VM types to meet sizing requirements")
+![Azure VM types to meet sizing requirements](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_vm_sizing_requirements.png "Azure VM types to meet sizing requirements")
 
-![Premium Storage to run HANA on M series VM](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_premium_storage_hana.png "Premium Storage config to run HANA on M series VM")
+![Premium Storage to run HANA on M series VM](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_premium_storage_hana.png "Premium Storage config to run HANA on M series VM")
 
-![S/4HANA HA in Availability Sets and DR across regions](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_hana_dr_across_regions.png.png "S/4HANA HA in Availability Sets and DR across regions")
+![S/4HANA HA in Availability Sets and DR across regions](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_hana_dr_across_regions.png.png "S/4HANA HA in Availability Sets and DR across regions")
 
-![S/4HANA HA and DR across Availability Zones](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzure/media/sap_on_azure_hana_dr_across_zones.png "S/4HANA HA and DR across Availability Zones")
+![S/4HANA HA and DR across Availability Zones](images/Whiteboarddesignsessionstudentguide-SAPHANAonAzureimages/media/sap_on_azure_hana_dr_across_zones.png "S/4HANA HA and DR across Availability Zones")
 
 ## Step 2: Design a proof of concept solution
 
